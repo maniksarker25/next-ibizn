@@ -11,9 +11,11 @@ const BestBoard = () => {
             Best of this month
           </h1>
           <h2 className="text-gray-500 md:text-2xl md:leading-[26px] text-lg   mt-3 text-secondary">
-          Every month we select the best resorts and liveboards, according to your reviews
+            Every month we select the best resorts and liveboards, according to
+            your reviews
           </h2>
         </div>
+
         <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4   gap-14">
           {[1, 2, 3, 4].map((item, index) => (
             <div key={index} className="mt-10 text-center">
@@ -26,9 +28,11 @@ const BestBoard = () => {
               </div>
               <div className="mt-3 ">
                 <h1 className="text-primary text-xl md:text-2xl md:leading-[24px] md:w-[255px] font-light mx-auto text-center font-outfit">
-                  Emperor  Elite Liveaboard
+                  Emperor Elite Liveaboard
                 </h1>
-                <h2 className="text-[#9d9d9c] font-normal text-xl my-3">Liveboard / Egypt</h2>
+                <h2 className="text-[#9d9d9c] font-normal text-xl my-3">
+                  Liveboard / Egypt
+                </h2>
                 <div className="mt-3 flex gap-2 justify-center">
                   {[1, 2, 3, 4, 5].map((star, index) => (
                     <div className="" key={index}>

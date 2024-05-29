@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { ArrowDropDown } from "@mui/icons-material";
 import OutlinedInput from "@mui/material/OutlinedInput";
 import InputLabel from "@mui/material/InputLabel";
@@ -6,54 +6,19 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import { useTheme } from "@mui/material/styles";
+import TextField from "@mui/material/TextField";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+import { DatePicker } from "@mui/x-date-pickers/DatePicker";
+import SearchItemModal from "./SearchItemModal";
 
-const ITEM_HEIGHT = 48;
-const ITEM_PADDING_TOP = 8;
-const MenuProps = {
-  PaperProps: {
-    style: {
-      maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
-      width: 250,
-    },
-  },
-};
-
-const names = [
-  "Oliver Hansen",
-  "Van Henry",
-  "April Tucker",
-  "Ralph Hubbard",
-  "Omar Alexander",
-  "Carlos Abbott",
-  "Miriam Wagner",
-  "Bradley Wilkerson",
-  "Virginia Andrews",
-  "Kelly Snyder",
-];
-
-function getStyles(name, personName, theme) {
-  return {
-    fontWeight:
-      personName.indexOf(name) === -1
-        ? theme.typography.fontWeightRegular
-        : theme.typography.fontWeightMedium,
-  };
-}
+const tabItems = ["Liveaboards", "Resorts", "Special Offers"];
 
 const Banner = () => {
-  const theme = useTheme();
-  const [personName, setPersonName] = React.useState([]);
-
-  const handleChange = (event) => {
-    const {
-      target: { value },
-    } = event;
-    setPersonName(
-      // On autofill we get a stringified value.
-      typeof value === "string" ? value.split(",") : value
-    );
-  };
-
+  const [tabValue, setTabValue] = useState("");
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [destination, setDestination] = useState("");
+  console.log(destination);
   return (
     <div className="bg-primary">
       <div className=" customContainer px-5 xl:px-0">
@@ -70,55 +35,42 @@ const Banner = () => {
             </div>
             {/* test */}
             <div className="flex items-center gap-2 md:gap-5 mt-10">
-              <div>
-                <button className=" button2 text-[#f1f2f2] hover:text-[#0080ff] text-[14px] md:text-[22px] font-[400]">Liveaboards</button>
-              </div>
-              <div >
-                <button className=" button2 text-[#f1f2f2] hover:text-[#0080ff] text-[14px] md:text-[22px] font-[400]">Resorts</button>
-              </div>
-              <div >
-                <button className=" button2 text-[#f1f2f2] hover:text-[#0080ff] text-[14px] md:text-[22px] font-[400]">Special Offers</button>
-              </div>
+              {tabItems?.map((item, index) => (
+                <div
+                  onClick={() => setTabValue(item)}
+                  key={index}
+                  className={`${
+                    tabValue === item && `bg-white text-black`
+                  } button2 text-[#f1f2f2] hover:text-[#0080ff] text-[14px] md:text-[22px] font-[400]`}
+                >
+                  {item}
+                </div>
+              ))}
             </div>
           </div>
           <div className="md:mt-10 xl:block hidden lg:mt-0 mt-10">
             <img className="h-80" src="/images/client/bannerImage.png" alt="" />
           </div>
         </div>
-        <form className="mt-10 flex flex-col md:flex-row md:space-y-0 space-y-5 gap-3 justify-between md:items-center pb-10">
+        {/* <form className="mt-10 flex flex-col md:flex-row md:space-y-0 space-y-5 gap-3 justify-between md:items-center pb-10">
           <div className="w-full md:w-3/12 lg:w-6/12">
             <FormControl className=" w-full">
-              <InputLabel style={{color: '#f1f2f2'}} id="demo-multiple-name-label">
-                Destinations
-              </InputLabel>
-              <Select
-                className="border-2 border-white"
-                labelId="demo-multiple-name-label"
-                id="demo-multiple-name"
-                multiple
-                value={personName}
-                onChange={handleChange}
+              <TextField
+                className="border-2 border-white bg-none"
                 input={<OutlinedInput label="Name" />}
                 MenuProps={MenuProps}
-                IconComponent={() => (
-                  <ArrowDropDown className="text-white cursor-pointer" />
-                )}
-              >
-                {names.map((name) => (
-                  <MenuItem
-                    key={name}
-                    value={name}
-                    style={getStyles(name, personName, theme)}
-                  >
-                    {name}
-                  </MenuItem>
-                ))}
-              </Select>
+                id="outlined-basic"
+                label="Outlined"
+                variant="outlined"
+              />
             </FormControl>
           </div>
           <div className="w-full md:w-3/12 lg:w-3/12">
             <FormControl className="w-full">
-              <InputLabel style={{color: '#f1f2f2'}} id="demo-multiple-name-label">
+              <InputLabel
+                style={{ color: "#f1f2f2" }}
+                id="demo-multiple-name-label"
+              >
                 Year/Month
               </InputLabel>
               <Select
@@ -147,8 +99,11 @@ const Banner = () => {
             </FormControl>
           </div>
           <div className="w-full md:w-3/12 lg:w-3/12">
-            <FormControl className=" w-full" style={{color: '#f1f2f2'}}>
-              <InputLabel  style={{color: '#f1f2f2'}} id="demo-multiple-name-label">
+            <FormControl className=" w-full" style={{ color: "#f1f2f2" }}>
+              <InputLabel
+                style={{ color: "#f1f2f2" }}
+                id="demo-multiple-name-label"
+              >
                 Vegan rating
               </InputLabel>
               <Select
@@ -181,7 +136,132 @@ const Banner = () => {
               Search
             </button>
           </div>
-        </form>
+        </form> */}
+        <div className="mt-10 flex flex-col md:flex-row md:space-y-0 space-y-5 gap-3 justify-between md:items-center pb-10">
+          <TextField
+            onClick={() => setIsModalOpen(true)}
+            id="outlined-basic"
+            label="Destination"
+            value={destination}
+            variant="outlined"
+            size="large"
+            fullWidth
+            sx={{
+              "& .MuiOutlinedInput-root": {
+                "& fieldset": {
+                  borderColor: "lightblue", // Border color
+                  background: "transparent",
+                },
+                "&:hover fieldset": {
+                  borderColor: "white", // Border color on hover
+                  background: "transparent",
+                },
+                "&.Mui-focused fieldset": {
+                  borderColor: "white", // Border color when focused
+                  background: "transparent",
+                },
+              },
+              "& .MuiInputBase-input": {
+                height: "35px", // Height of the input element
+                color: "white", // Text color
+                backgroundColor: "transparent", // Ensure input background is transparent
+              },
+              "& .MuiInputLabel-root": {
+                color: "white", // Label color
+                background: "transparent",
+              },
+              "& .MuiInputLabel-root.Mui-focused": {
+                color: "white", // Label color when focused
+                background: "transparent",
+              },
+              "& .MuiInputBase-input::selection": {
+                background: "transparent", // Remove background color when text is selected
+              },
+              width: "100%", // Width of the entire TextField
+            }}
+          />
+          <LocalizationProvider dateAdapter={AdapterDayjs}>
+            <DatePicker
+              label={"Select Month and Year"}
+              views={["month", "year"]}
+              sx={{
+                "& .MuiOutlinedInput-root": {
+                  "& fieldset": {
+                    borderColor: "lightblue", // Border color
+                  },
+                  "&:hover fieldset": {
+                    borderColor: "white", // Border color on hover
+                  },
+                  "&.Mui-focused fieldset": {
+                    borderColor: "white", // Border color when focused
+                  },
+                },
+                "& .MuiInputBase-input": {
+                  height: "35px", // Height of the input element
+                  color: "white", // Text color
+                  backgroundColor: "transparent", // Ensure input background is transparent
+                },
+                "& .MuiInputLabel-root": {
+                  color: "white", // Label color
+                },
+                "& .MuiInputLabel-root.Mui-focused": {
+                  color: "white", // Label color when focused
+                },
+                width: "100%", // Width of the entire TextField
+              }}
+            />
+          </LocalizationProvider>
+          <TextField
+            id="outlined-basic"
+            label="Outlined"
+            variant="outlined"
+            size="large"
+            fullWidth
+            sx={{
+              "& .MuiOutlinedInput-root": {
+                "& fieldset": {
+                  borderColor: "lightblue", // Border color
+                  background: "transparent",
+                },
+                "&:hover fieldset": {
+                  borderColor: "white", // Border color on hover
+                  background: "transparent",
+                },
+                "&.Mui-focused fieldset": {
+                  borderColor: "white", // Border color when focused
+                  background: "transparent",
+                },
+              },
+              "& .MuiInputBase-input": {
+                height: "35px", // Height of the input element
+                color: "white", // Text color
+                backgroundColor: "transparent", // Ensure input background is transparent
+              },
+              "& .MuiInputLabel-root": {
+                color: "white", // Label color
+                background: "transparent",
+              },
+              "& .MuiInputLabel-root.Mui-focused": {
+                color: "white", // Label color when focused
+                background: "transparent",
+              },
+              "& .MuiInputBase-input::selection": {
+                background: "transparent", // Remove background color when text is selected
+              },
+              width: "100%", // Width of the entire TextField
+            }}
+          />
+          <div
+            className={`button2 text-[#f1f2f2] hover:text-[#0080ff] text-[14px] md:text-[22px] font-[400]`}
+          >
+            Search
+          </div>
+        </div>
+        <SearchItemModal
+          isModalOpen={isModalOpen}
+          setIsModalOpen={setIsModalOpen}
+          setDestination={setDestination}
+        />
       </div>
     </div>
   );
