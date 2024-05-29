@@ -1,0 +1,85 @@
+[
+  {
+    "region": "Southeast Asia",
+    "countries": ["Indonesia", "Philippines", "Malaysia", "Thailand", "Myanmar"]
+  },
+  {
+    "region": "Indian Ocean",
+    "countries": [
+      "Maldives",
+      "Seychelles",
+      "Andaman Islands & Nicobar Islands",
+      "Somalia",
+      "Oman",
+      "India"
+    ]
+  },
+  {
+    "region": "Red Sea",
+    "countries": [
+      "Egypt",
+      "Saudi Arabia",
+      "Djibouti",
+      "Sudan",
+      "Eritrea",
+      "Jordan",
+      "Israel"
+    ]
+  },
+  {
+    "region": "Americas",
+    "countries": [
+      "Mexico",
+      "Belize",
+      "Panama",
+      "Ecuador",
+      "Costa Rica",
+      "Honduras",
+      "Columbia",
+      "Nicaragua"
+    ]
+  },
+  {
+    "region": "Caribbean",
+    "countries": [
+      "Turks and Caicos",
+      "Bahamas",
+      "Dominican Republic",
+      "Cayman Islands",
+      "British Virgin Islands",
+      "Bonaire",
+      "Cuba",
+      "Aruba",
+      "Saint Kitts and Nevis"
+    ]
+  },
+  {
+    "region": "Micronesia",
+    "countries": ["Palau", "Yap", "Chuuk", "Guam", "Marshall Islands"]
+  },
+  {
+    "region": "Pacific",
+    "countries": [
+      "Fiji",
+      "Solomon Islands",
+      "French Polynesia",
+      "Tahiti",
+      "Vanuatu",
+      "Hawaii",
+      "Papua New Guinea",
+      "Rarotonga"
+    ]
+  },
+  {
+    "region": "Oceania",
+    "countries": ["Australia", "New Zealand"]
+  },
+  {
+    "region": "Europe",
+    "countries": ["Portugal", "Croatia", "Spain", "France", "Greece"]
+  },
+  {
+    "region": "Polar Regions",
+    "countries": ["Antarctica", "The Arctic"]
+  }
+]
