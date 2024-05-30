@@ -25,13 +25,13 @@ const ratings = [
 const Banner = () => {
   const [error, setError] = useState("");
   const router = useRouter();
-  const { setSearchValues } = useContext(userContext);
-  const [tabValue, setTabValue] = useState("Liveaboards");
+  const { searchValues, setSearchValues } = useContext(userContext);
+  // const [tabValue, setTabValue] = useState("Liveaboards");
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [destination, setDestination] = useState("");
+  // const [destination, setDestination] = useState("");
   const [rating, setRating] = useState({ minRating: "", maxRating: "" });
   const [formattedDate, setFormattedDate] = useState("");
-  const [property, setProperty] = useState("");
+  // const [property, setProperty] = useState("");
   const renderSelectedValue = (value) => {
     return `${value.minRating}-${value.maxRating}`;
   };
@@ -39,29 +39,14 @@ const Banner = () => {
   const handleDateChange = (date) => {
     const formatted = date ? dayjs(date).format("YYYY-MM-DD") : "";
 
-    setFormattedDate(formatted);
+    setSearchValues({ ...searchValues, data: formatted });
   };
 
   const handleSearchValues = () => {
-    const searchItems = {};
-    if (destination) {
-      searchItems.destination = destination;
-    }
-    if (property) {
-      searchItems.property = property;
-    }
     if (rating?.minRating) {
-      searchItems.minRating = rating?.minRating;
-      searchItems.maxRating = rating?.maxRating;
+      searchValues.minRating = rating?.minRating;
+      searchValues.maxRating = rating?.maxRating;
     }
-    if (tabValue) {
-      searchItems.tabValue = tabValue;
-    }
-    if (formattedDate) {
-      searchItems.date = formattedDate;
-    }
-
-    setSearchValues({ ...searchItems });
     router.push("/secondPage");
   };
 
@@ -83,10 +68,15 @@ const Banner = () => {
             <div className="flex items-center gap-2 md:gap-5 mt-10">
               {tabItems?.map((item, index) => (
                 <div
-                  onClick={() => setTabValue(item)}
+                  onClick={() =>
+                    setSearchValues({
+                      ...searchValues,
+                      tabValue: item,
+                    })
+                  }
                   key={index}
                   className={`${
-                    tabValue === item && `bg-white text-black`
+                    searchValues?.tabValue === item && `bg-white text-black`
                   } button2 text-[#f1f2f2] hover:text-[#0080ff] text-[14px] md:text-[22px] font-[400]`}
                 >
                   {item}
@@ -98,97 +88,13 @@ const Banner = () => {
             <img className="h-80" src="/images/client/bannerImage.png" alt="" />
           </div>
         </div>
-        {/* <form className="mt-10 flex flex-col md:flex-row md:space-y-0 space-y-5 gap-3 justify-between md:items-center pb-10">
-          <div className="w-full md:w-3/12 lg:w-6/12">
-            <FormControl className=" w-full">
-              <TextField
-                className="border-2 border-white bg-none"
-                input={<OutlinedInput label="Name" />}
-                MenuProps={MenuProps}
-                id="outlined-basic"
-                label="Outlined"
-                variant="outlined"
-              />
-            </FormControl>
-          </div>
-          <div className="w-full md:w-3/12 lg:w-3/12">
-            <FormControl className="w-full">
-              <InputLabel
-                style={{ color: "#f1f2f2" }}
-                id="demo-multiple-name-label"
-              >
-                Year/Month
-              </InputLabel>
-              <Select
-                className="border-2 border-white"
-                labelId="demo-multiple-name-label"
-                id="demo-multiple-name"
-                multiple
-                value={personName}
-                onChange={handleChange}
-                input={<OutlinedInput label="Name" />}
-                MenuProps={MenuProps}
-                IconComponent={() => (
-                  <ArrowDropDown className="text-white cursor-pointer" />
-                )}
-              >
-                {names.map((name) => (
-                  <MenuItem
-                    key={name}
-                    value={name}
-                    style={getStyles(name, personName, theme)}
-                  >
-                    {name}
-                  </MenuItem>
-                ))}
-              </Select>
-            </FormControl>
-          </div>
-          <div className="w-full md:w-3/12 lg:w-3/12">
-            <FormControl className=" w-full" style={{ color: "#f1f2f2" }}>
-              <InputLabel
-                style={{ color: "#f1f2f2" }}
-                id="demo-multiple-name-label"
-              >
-                Vegan rating
-              </InputLabel>
-              <Select
-                className="border-2 border-white"
-                labelId="demo-multiple-name-label"
-                id="demo-multiple-name"
-                multiple
-                value={personName}
-                onChange={handleChange}
-                input={<OutlinedInput label="Name" />}
-                MenuProps={MenuProps}
-                IconComponent={() => (
-                  <ArrowDropDown className="text-white cursor-pointer" />
-                )}
-              >
-                {names.map((name) => (
-                  <MenuItem
-                    key={name}
-                    value={name}
-                    style={getStyles(name, personName, theme)}
-                  >
-                    {name}
-                  </MenuItem>
-                ))}
-              </Select>
-            </FormControl>
-          </div>
-          <div className=" lg:ms:[30px] xl:ms-[60px]">
-            <button className="rounded-full border-2 bg-white text-[20px]  duration-300 text-[#0080ff]  px-14 py-4 font-normal border-white cursor-pointer">
-              Search
-            </button>
-          </div>
-        </form> */}
+
         <div className="mt-10 flex flex-col md:flex-row md:space-y-0 space-y-5 gap-3 justify-between md:items-center pb-10 text-white">
           <TextField
             onClick={() => setIsModalOpen(true)}
             id="outlined-basic"
             label="Destination"
-            value={destination}
+            value={searchValues?.destination}
             variant="outlined"
             size="large"
             fullWidth
@@ -226,7 +132,7 @@ const Banner = () => {
               width: "100%", // Width of the entire TextField
             }}
           />
-          {tabValue === "Special Offers" ? (
+          {searchValues?.tabValue === "Special Offers" ? (
             <div className="w-full">
               <FormControl className=" w-full" style={{ color: "#f1f2f2" }}>
                 <InputLabel
@@ -239,9 +145,14 @@ const Banner = () => {
                   className="border-2 border-white"
                   labelId="demo-simple-select-label"
                   id="demo-simple-select"
-                  value={property}
+                  value={searchValues?.property}
                   input={<OutlinedInput label="Name" />}
-                  onChange={(e) => setProperty(e.target.value)}
+                  onChange={(e) =>
+                    setSearchValues({
+                      ...searchValues,
+                      property: e.target.value,
+                    })
+                  }
                   IconComponent={() => (
                     <ArrowDropDown className="text-white cursor-pointer" />
                   )}
@@ -341,7 +252,6 @@ const Banner = () => {
         <SearchItemModal
           isModalOpen={isModalOpen}
           setIsModalOpen={setIsModalOpen}
-          setDestination={setDestination}
         />
       </div>
     </div>

@@ -6,6 +6,7 @@ import { userContext } from "@/src/storage/contextApi";
 
 const SecondPage = () => {
   const { searchValues } = useContext(userContext);
+  console.log(searchValues);
   return (
     <div>
       <Banner />

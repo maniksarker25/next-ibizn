@@ -2,8 +2,9 @@ import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { baseUrl } from "@/src/config/serverConfig";
+import { userContext } from "@/src/storage/contextApi";
 
 const style = {
   position: "absolute",
@@ -27,13 +28,10 @@ const style = {
   },
 };
 
-export default function SearchItemModal({
-  isModalOpen,
-  setIsModalOpen,
-  setDestination,
-}) {
+export default function SearchItemModal({ isModalOpen, setIsModalOpen }) {
   const handleClose = () => setIsModalOpen(false);
   const [searchItems, setSearchItems] = useState([]);
+  const { searchValues, setSearchValues } = useContext(userContext);
   //   console.log(searchItems);
   //   const [updatedSearchItems, setUpdatedSearchItems] = useState([]);
   //   console.log(updatedSearchItems);
@@ -66,7 +64,7 @@ export default function SearchItemModal({
   }, []);
 
   const handleDestination = (destination) => {
-    setDestination(destination);
+    setSearchValues({ ...searchValues, destination });
     setIsModalOpen(false);
   };
 
