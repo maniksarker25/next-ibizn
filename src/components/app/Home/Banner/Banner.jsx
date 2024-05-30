@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { ArrowDropDown } from "@mui/icons-material";
 import OutlinedInput from "@mui/material/OutlinedInput";
 import InputLabel from "@mui/material/InputLabel";
@@ -11,6 +11,9 @@ import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import SearchItemModal from "./SearchItemModal";
 import dayjs from "dayjs";
+import { Typography } from "@mui/material";
+import { userContext } from "@/src/storage/contextApi";
+import { useRouter } from "next/router";
 
 const tabItems = ["Liveaboards", "Resorts", "Special Offers"];
 const ratings = [
@@ -20,11 +23,15 @@ const ratings = [
   { minRating: 4, maxRating: 5 },
 ];
 const Banner = () => {
-  const [tabValue, setTabValue] = useState("");
+  const [error, setError] = useState("");
+  const router = useRouter();
+  const { setSearchValues } = useContext(userContext);
+  const [tabValue, setTabValue] = useState("Liveaboards");
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [destination, setDestination] = useState("");
   const [rating, setRating] = useState({ minRating: "", maxRating: "" });
   const [formattedDate, setFormattedDate] = useState("");
+  const [property, setProperty] = useState("");
   const renderSelectedValue = (value) => {
     return `${value.minRating}-${value.maxRating}`;
   };
@@ -34,6 +41,30 @@ const Banner = () => {
 
     setFormattedDate(formatted);
   };
+
+  const handleSearchValues = () => {
+    const searchItems = {};
+    if (destination) {
+      searchItems.destination = destination;
+    }
+    if (property) {
+      searchItems.property = property;
+    }
+    if (rating?.minRating) {
+      searchItems.minRating = rating?.minRating;
+      searchItems.maxRating = rating?.maxRating;
+    }
+    if (tabValue) {
+      searchItems.tabValue = tabValue;
+    }
+    if (formattedDate) {
+      searchItems.date = formattedDate;
+    }
+
+    setSearchValues({ ...searchItems });
+    router.push("/secondPage");
+  };
+
   return (
     <div className="bg-primary">
       <div className=" customContainer px-5 xl:px-0">
@@ -195,84 +226,75 @@ const Banner = () => {
               width: "100%", // Width of the entire TextField
             }}
           />
-          <LocalizationProvider dateAdapter={AdapterDayjs}>
-            <DatePicker
-              onChange={handleDateChange}
-              disablePast
-              label={"Select Month and Year"}
-              views={["month", "year"]}
-              sx={{
-                "& .MuiOutlinedInput-root": {
-                  "& fieldset": {
-                    borderColor: "lightblue", // Border color
+          {tabValue === "Special Offers" ? (
+            <div className="w-full">
+              <FormControl className=" w-full" style={{ color: "#f1f2f2" }}>
+                <InputLabel
+                  style={{ color: "#f1f2f2" }}
+                  id="demo-simple-select-label"
+                >
+                  Select Property
+                </InputLabel>
+                <Select
+                  className="border-2 border-white"
+                  labelId="demo-simple-select-label"
+                  id="demo-simple-select"
+                  value={property}
+                  input={<OutlinedInput label="Name" />}
+                  onChange={(e) => setProperty(e.target.value)}
+                  IconComponent={() => (
+                    <ArrowDropDown className="text-white cursor-pointer" />
+                  )}
+                  sx={{
+                    borderWidth: "0.5px",
+                    height: 52,
+                    color: "white",
+                    ".MuiSelect-icon": {
+                      color: "white",
+                    },
+                  }}
+                >
+                  <MenuItem value={"boat"}>Boat</MenuItem>
+                  <MenuItem value={"resort"}>Resort</MenuItem>
+                </Select>
+              </FormControl>
+            </div>
+          ) : (
+            <LocalizationProvider dateAdapter={AdapterDayjs}>
+              <DatePicker
+                onChange={handleDateChange}
+                disablePast
+                label={"Select Month and Year"}
+                views={["month", "year"]}
+                sx={{
+                  "& .MuiOutlinedInput-root": {
+                    "& fieldset": {
+                      borderColor: "lightblue", // Border color
+                    },
+                    "&:hover fieldset": {
+                      borderColor: "white", // Border color on hover
+                    },
+                    "&.Mui-focused fieldset": {
+                      borderColor: "white", // Border color when focused
+                    },
                   },
-                  "&:hover fieldset": {
-                    borderColor: "white", // Border color on hover
+                  "& .MuiInputBase-input": {
+                    height: "35px", // Height of the input element
+                    color: "white", // Text color
+                    backgroundColor: "transparent", // Ensure input background is transparent
                   },
-                  "&.Mui-focused fieldset": {
-                    borderColor: "white", // Border color when focused
+                  "& .MuiInputLabel-root": {
+                    color: "white", // Label color
                   },
-                },
-                "& .MuiInputBase-input": {
-                  height: "35px", // Height of the input element
-                  color: "white", // Text color
-                  backgroundColor: "transparent", // Ensure input background is transparent
-                },
-                "& .MuiInputLabel-root": {
-                  color: "white", // Label color
-                },
-                "& .MuiInputLabel-root.Mui-focused": {
-                  color: "white", // Label color when focused
-                },
-                width: "100%", // Width of the entire TextField
-              }}
-            />
-          </LocalizationProvider>
-          {/* <TextField
-            id="outlined-basic"
-            label="Vegan Rating"
-            variant="outlined"
-            type="number"
-            size="large"
-            fullWidth
-            inputProps={{
-              min: 1,
-              max: 5,
-            }}
-            sx={{
-              "& .MuiOutlinedInput-root": {
-                "& fieldset": {
-                  borderColor: "lightblue", // Border color
-                  background: "transparent",
-                },
-                "&:hover fieldset": {
-                  borderColor: "white", // Border color on hover
-                  background: "transparent",
-                },
-                "&.Mui-focused fieldset": {
-                  borderColor: "white", // Border color when focused
-                  background: "transparent",
-                },
-              },
-              "& .MuiInputBase-input": {
-                height: "35px", // Height of the input element
-                color: "white", // Text color
-                backgroundColor: "transparent", // Ensure input background is transparent
-              },
-              "& .MuiInputLabel-root": {
-                color: "white", // Label color
-                background: "transparent",
-              },
-              "& .MuiInputLabel-root.Mui-focused": {
-                color: "white", // Label color when focused
-                background: "transparent",
-              },
-              "& .MuiInputBase-input::selection": {
-                background: "transparent", // Remove background color when text is selected
-              },
-              width: "100%", // Width of the entire TextField
-            }}
-          /> */}
+                  "& .MuiInputLabel-root.Mui-focused": {
+                    color: "white", // Label color when focused
+                  },
+                  width: "100%", // Width of the entire TextField
+                }}
+              />
+            </LocalizationProvider>
+          )}
+
           <div className="w-full">
             <FormControl className=" w-full" style={{ color: "#f1f2f2" }}>
               <InputLabel
@@ -311,6 +333,7 @@ const Banner = () => {
           </div>
           <div
             className={`button2 text-[#f1f2f2] hover:text-[#0080ff] text-[14px] md:text-[22px] font-[400]`}
+            onClick={handleSearchValues}
           >
             Search
           </div>
