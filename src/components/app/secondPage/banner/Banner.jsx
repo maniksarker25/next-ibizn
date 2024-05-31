@@ -26,12 +26,9 @@ const Banner = () => {
   const { searchValues, setSearchValues } = useContext(userContext);
   const [error, setError] = useState("");
   const router = useRouter();
-  // const [tabValue, setTabValue] = useState("Liveaboards");
   const [isModalOpen, setIsModalOpen] = useState(false);
-  // const [destination, setDestination] = useState("");
   const [rating, setRating] = useState({ minRating: "", maxRating: "" });
   const [formattedDate, setFormattedDate] = useState("");
-  // const [property, setProperty] = useState("");
   const renderSelectedValue = (value) => {
     return `${value.minRating}-${value.maxRating}`;
   };
