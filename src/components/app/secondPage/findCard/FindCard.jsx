@@ -283,3 +283,5 @@ const FindCard = () => {
 };
 
 export default FindCard;
+
+
