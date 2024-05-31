@@ -58,10 +58,14 @@ export default function SearchItemModal({ isModalOpen, setIsModalOpen }) {
   const updateSearchItem = getUniqueRegionsWithCountries(searchItems);
   // get search item
   useEffect(() => {
-    fetch(`${baseUrl}/resorts/search-item`)
+    fetch(
+      `${baseUrl}/${
+        searchValues?.tabValue === "Resorts" ? "resorts" : "boats"
+      }/search-item`
+    )
       .then((res) => res.json())
       .then((data) => setSearchItems(data?.data));
-  }, []);
+  }, [searchValues]);
 
   const handleDestination = (destination) => {
     setSearchValues({ ...searchValues, destination });

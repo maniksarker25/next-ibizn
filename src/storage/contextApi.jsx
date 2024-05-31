@@ -17,7 +17,7 @@ const ContextApi = ({ children }) => {
     minRating: "",
     maxRating: "",
   });
-  // console.log(searchValues);
+  console.log(searchValues);
   useEffect(() => {
     fetch("/country.json")
       .then((res) => res.json())
