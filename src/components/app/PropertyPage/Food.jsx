@@ -1,19 +1,17 @@
 import RatingPortion from './RatingPortion';
 
 const Content = ({ title, description }) => (
-  <div className="md:w-1/2 md:h-3/4 md:overflow-hidden md:rounded-lg md:flex md:items-start md:gap-10 md:flex-col md:pr-8">
-    <h1 className="md:text-6xl md:font-light md:text-ellipsis md:text-[#0080FF]">{title}</h1>
-    <p className="md:text-2xl md:font-light md:text-black md:leading-9">
-      {description}
-    </p>
+  <div className="w-full  flex flex-col justify-center items-start  md:justify-start">
+    <h1 className="text-3xl mt-20 text-[#0080FF] md:text-6xl md:font-light md:text-[#0080FF] md:mb-5">{title}</h1>
+    <p className="text-[16px] md:text-xl md:font-light md:text-black md:leading-9">{description}</p>
     <RatingPortion />
   </div>
 );
 
 const Image = ({ src, alt }) => (
-  <div className="md:w-1/2 md:h-3/4 md:bg-cyan-50 md:overflow-hidden md:rounded-lg">
+  <div className="p-2">
     <img
-      className="w-full h-full object-cover"
+      className="w-full h-auto object-cover rounded-lg"
       src={src}
       alt={alt}
     />
@@ -35,7 +33,7 @@ const Food = () => {
   };
 
   return (
-    <div className="md:w-full md:h-[90vh] md:bg-white md:flex md:items-center md:gap-5 md:justify-between md:px-28">
+    <div className="flex flex-col gap-10 items-center lg:flex-row mt-20 w-[90%] mx-auto bg-white">
       <Content title={foodInfo.title} description={foodInfo.description} />
       <Image src={foodInfo.imageUrl} alt={foodInfo.imageAlt} />
     </div>

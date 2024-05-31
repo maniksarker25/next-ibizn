@@ -28,10 +28,10 @@ const Accommodation = () => {
 
   const Button = ({ label }) => (
     <button
-      className={`px-6 py-4 inline rounded-full text-2xl border-[#0080FF] text-[#0080FF] font-medium border-[1px] ${
+      className={`px-4 py-2 text-sm md:text-xl lg:text-2xl rounded-full border-2 ${
         activeButton === label
-          ? "bg-[#0080FF] text-white"
-          : "hover:bg-[#0080FF] hover:text-white"
+          ? "bg-[#0080FF] text-white border-[#0080FF]"
+          : "text-[#0080FF] border-[#0080FF] hover:bg-[#0080FF] hover:text-white transition-colors duration-300"
       }`}
       onClick={() => setActiveButton(label)}
     >
@@ -40,22 +40,20 @@ const Accommodation = () => {
   );
 
   return (
-    <section className="w-full py-16 h-[80vh] px-28 flex items-center justify-between gap-10">
-      <div className="w-1/2 h-full">
+    <section className="flex flex-col-reverse lg:flex-row bg-white mt-20 w-[90%] mx-auto items-center justify-center py-8 lg:py-16  gap-8 lg:gap-12">
+      <div className="w-full lg:w-1/2 h-[350px] lg:h-[500px] order-first lg:order-none">
         <img
-          className="w-full h-full object-cover"
+          className="w-full h-full object-cover rounded-lg"
           src={imgSrc}
           alt={activeButton}
         />
       </div>
-      <div className="w-1/2 h-full flex items-start justify-between flex-col">
-        <div className="flex flex-col gap-10">
-          <h1 className="text-7xl font-seni-bold text-[#0080FF]">
-            Accommodation
-          </h1>
-          <p className="w-[90%] text-3xl font-light">{description}</p>
+      <div className="w-full lg:w-1/2 flex flex-col justify-between h-full">
+        <div className="flex flex-col gap-4 lg:gap-6">
+          <h1 className="text-3xl mt-20 text-[#0080FF] md:text-6xl md:font-light md:text-[#0080FF] md:mb-5">Accommodation</h1>
+          <p className="text-[16px] md:text-xl md:font-light md:text-black md:leading-9">{description}</p>
         </div>
-        <div className="flex items-center justify-center gap-10">
+        <div className="flex flex-wrap gap-4 mt-4 lg:mt-6">
           {Object.keys(accommodationTypes).map((button) => (
             <Button key={button} label={button} />
           ))}

@@ -12,27 +12,30 @@ import EnvironmentelPacket from "./EnvironmentelPacket";
 function PropertyPage() {
   return (
     <>
-      <Liveaboards />
-      <LiveaboardDetails />
-      <div id="accommodation">
+       <Liveaboards /> 
+       <LiveaboardDetails /> 
+        <div id="accommodation">
         <Accommodation />
-      </div>
-      {/* <div className="swipeboard">
+      </div> 
+
+       {/* <div className="swipeboard">
         <SwipeBoard />
-      </div> */}
-      <div id="facilities">
+      </div>  */}
+
+       <div id="facilities">
         <Facilities />
-      </div>
-      <div id="food">
+      </div> 
+
+       <div id="food">
         <Food />
-      </div>
-      <div id="scuba">
+      </div> 
+       <div id="scuba">
         <Scuba />
-      </div>
-      <div id="exclusions">
+      </div> 
+       <div id="exclusions">
         <Exclusions />
-      </div>
-      <EnvironmentelPacket />
+      </div> 
+     <EnvironmentelPacket />
     </>
   );
 }

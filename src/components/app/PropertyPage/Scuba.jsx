@@ -1,4 +1,3 @@
-
 const Diving = {
   title: "Diving",
   description: `The MSY Ilike liveaboard Raja Ampat caters for up to 16 guests in
@@ -14,31 +13,35 @@ const Diving = {
 };
 
 const Image = ({ src, alt }) => (
-  <div className="md:w-1/2 md:h-3/4 md:bg-cyan-50 md:overflow-hidden md:rounded-lg">
-    <img className="w-full h-full object-cover" src={src} alt={alt} />
+  <div className="w-full lg:w-1/2 overflow-hidden flex-shrink-0 py-8">
+    <img className="w-full object-cover h-[350px] md:h-[500px] rounded-xl" src={src} alt={alt} />
   </div>
 );
 
 const Content = ({ title, description }) => (
-  <div className="md:w-1/2 md:h-3/4 md:overflow-hidden md:rounded-lg md:flex md:items-start md:gap-10 md:flex-col md:pr-8">
-    <h1 className="md:text-6xl md:font-light md:text-ellipsis md:text-[#0080FF]">
+  <div id="diving" className="lg:w-1/2 w-full md:overflow-hidden md:rounded-lg md:flex md:flex-col md:justify-between md:items-start md:pr-8">
+   <div className="flex  flex-col items-start justify-between">
+   <h1 className="text-3xl mt-20 text-[#0080FF] md:text-6xl md:font-light md:text-[#0080FF] md:mb-5">
       {title}
     </h1>
-    <p className="md:text-2xl md:font-light md:text-black md:leading-9">
+    <p className="text-[16px] md:text-xl md:font-light md:text-black md:leading-9">
       {description}
     </p>
-    
+   </div>
+   <div className="py-8 flex items-center justify-around gap-10 text-xl mt-5 text-[#0080FF]  font-regular  mb-5">
+    <h1>Sharks</h1>
+    <h1>Sea turtles</h1>
+    <h1>Sea turtles</h1>
+   </div>
   </div>
 );
 
 function Scuba() {
   return (
-    <>
-      <div id="diving" className="md:w-full md:h-[90vh] md:bg-slate-300 md:flex md:items-center md:gap-5 md:justify-between md:px-28">
-        <Image src={Diving.imageUrl} alt={Diving.imageAlt} />
-        <Content title={Diving.title} description={Diving.description} />
-      </div>
-    </>
+    <div className="mt-20 w-[90%] mx-auto flex justify-end flex-col-reverse md:gap-5 lg:flex-row md:items-center">
+      <Image src={Diving.imageUrl} alt={Diving.imageAlt} />
+      <Content title={Diving.title} description={Diving.description} />
+    </div>
   );
 }
 
