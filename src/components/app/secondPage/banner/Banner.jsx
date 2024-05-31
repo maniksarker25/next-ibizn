@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { userContext } from "@/src/storage/contextApi";
 import { ArrowDropDown } from "@mui/icons-material";
 import OutlinedInput from "@mui/material/OutlinedInput";
@@ -39,7 +39,7 @@ const Banner = () => {
   const handleDateChange = (date) => {
     const formatted = date ? dayjs(date).format("YYYY-MM-DD") : "";
 
-    setSearchValues({ ...searchValues, data: formatted });
+    setSearchValues({ ...searchValues, date: formatted });
   };
 
   const handleSearchValues = () => {
@@ -47,8 +47,15 @@ const Banner = () => {
       searchValues.minRating = rating?.minRating;
       searchValues.maxRating = rating?.maxRating;
     }
-    router.push("/secondPage");
   };
+
+  useEffect(() => {
+    // Set the default value for rating when the component mounts
+    setRating({
+      minRating: searchValues.minRating,
+      maxRating: searchValues.maxRating,
+    });
+  }, []);
   return (
     <div className="bg-primary">
       <div className="w-[90%] sm:w-[85%] mx-auto py-20">
@@ -159,6 +166,11 @@ const Banner = () => {
                 <DatePicker
                   onChange={handleDateChange}
                   disablePast
+                  value={
+                    searchValues?.date
+                      ? dayjs(new Date(searchValues.date).toISOString())
+                      : null
+                  }
                   label={"Select Month and Year"}
                   views={["month", "year"]}
                   sx={{
@@ -202,7 +214,7 @@ const Banner = () => {
                   className="border-2 border-white"
                   labelId="demo-simple-select-label"
                   id="demo-simple-select"
-                  // value={rating}
+                  value={rating}
                   renderValue={renderSelectedValue}
                   input={<OutlinedInput label="Name" />}
                   onChange={(e) => setRating(e.target.value)}

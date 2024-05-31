@@ -39,7 +39,7 @@ const Banner = () => {
   const handleDateChange = (date) => {
     const formatted = date ? dayjs(date).format("YYYY-MM-DD") : "";
 
-    setSearchValues({ ...searchValues, data: formatted });
+    setSearchValues({ ...searchValues, date: formatted });
   };
 
   const handleSearchValues = () => {

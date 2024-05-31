@@ -60,7 +60,10 @@ export default function SearchItemModal({ isModalOpen, setIsModalOpen }) {
   useEffect(() => {
     fetch(
       `${baseUrl}/${
-        searchValues?.tabValue === "Resorts" ? "resorts" : "boats"
+        searchValues?.tabValue === "Resorts" ||
+        searchValues?.property === "resort"
+          ? "resorts"
+          : "boats"
       }/search-item`
     )
       .then((res) => res.json())
