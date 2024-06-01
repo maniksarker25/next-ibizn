@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Liveaboards from "./Liveaboards";
 import LiveaboardDetails from "./LiveaboardDetails";
 import Accommodation from "./Accommodation";
@@ -8,9 +8,17 @@ import Scuba from "./Scuba";
 import Exclusions from "./Exclusions";
 import EnvironmentelPacket from "./EnvironmentelPacket";
 import SwipeBoard from "./SwipeBoard";
+import { baseUrl } from "@/src/config/serverConfig";
 // import SwipeBoard from "@/src/components/app/PropertyPage/SwipeBoard";
 
 function PropertyPage() {
+  const [propertyData, setPropertyData] = useState({});
+  console.log(propertyData);
+  useEffect(() => {
+    fetch(`${baseUrl}/boats/single-boat/6607eeb58a3751bc5d5ff2d0`)
+      .then((res) => res.json())
+      .then((data) => setPropertyData(data.data));
+  }, []);
   return (
     <>
       <Liveaboards />
