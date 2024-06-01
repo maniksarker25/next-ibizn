@@ -6,8 +6,62 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
 import { Pagination } from "swiper/modules";
+import QuestionMarkIcon from "@mui/icons-material/QuestionMark";
+import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
+import Modal from "@mui/material/Modal";
+import MoodIcon from "@mui/icons-material/Mood";
+
+const faqData = [
+  {
+    question: "How can I book a boat for a fishing trip?",
+    answer:
+      "Booking a boat for a fishing trip is easy! Simply visit our website or give us a call to check availability and make a reservation. We'll help you find the perfect boat for your fishing adventure.",
+  },
+  {
+    question: "How can I book a boat for a fishing trip?",
+    answer:
+      "Booking a boat for a fishing trip is easy! Simply visit our website or give us a call to check availability and make a reservation. We'll help you find the perfect boat for your fishing adventure.",
+  },
+  {
+    question: "How can I book a boat for a fishing trip?",
+    answer:
+      "Booking a boat for a fishing trip is easy! Simply visit our website or give us a call to check availability and make a reservation. We'll help you find the perfect boat for your fishing adventure.",
+  },
+  {
+    question: "How can I book a boat for a fishing trip?",
+    answer:
+      "Booking a boat for a fishing trip is easy! Simply visit our website or give us a call to check availability and make a reservation. We'll help you find the perfect boat for your fishing adventure.",
+  },
+  {
+    question: "How can I book a boat for a fishing trip?",
+    answer:
+      "Booking a boat for a fishing trip is easy! Simply visit our website or give us a call to check availability and make a reservation. We'll help you find the perfect boat for your fishing adventure.",
+  },
+  {
+    question: "How can I book a boat for a fishing trip?",
+    answer:
+      "Booking a boat for a fishing trip is easy! Simply visit our website or give us a call to check availability and make a reservation. We'll help you find the perfect boat for your fishing adventure.",
+  },
+  {
+    question: "How can I book a boat for a fishing trip?",
+    answer:
+      "Booking a boat for a fishing trip is easy! Simply visit our website or give us a call to check availability and make a reservation. We'll help you find the perfect boat for your fishing adventure.",
+  },
+  {
+    question: "How can I book a boat for a fishing trip?",
+    answer:
+      "Booking a boat for a fishing trip is easy! Simply visit our website or give us a call to check availability and make a reservation. We'll help you find the perfect boat for your fishing adventure.",
+  },
+
+  //if you want Add more questions and answers here as needed
+];
 
 const FindCard = () => {
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+
   return (
     <div className=" lg:w-[85%] mx-auto px-5 lg:px-0 py-20">
       <div>
@@ -158,27 +212,76 @@ const FindCard = () => {
             </div>
           </div>
         </div>
-        <div className="xl:w-[25%] lg:mt-10 xl:mt-0">
-          <h1 className="lg:text-[32px] md:text-3xl text-xl text-primary">
-            Tips and FAQ for your booking
+        {/* from here code develope by hosaindev */}
+        <div className="xl:w-[25%] relative lg:mt-10 xl:mt-0">
+          <h1
+            onMouseOver={handleOpen}
+            className="lg:text-[32px] md:text-3xl text-xl text-primary"
+          >
+            Tips and FAQ for your booking{" "}
+            <QuestionMarkIcon className="animate-bounce" />
           </h1>
-          <p className="lg:text-subtitle md:text-xl text-[14px] text-gray-500 mt-5">
-            Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam
-            nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat
-            volutpat.
-          </p>
-          <p className="lg:text-subtitle md:text-xl text-[14px] text-gray-500 my-5">
-            Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper
-            suscipit lobortis nisl ut aliquip ex ea commodo consequat.
-          </p>
-          <p className="lg:text-subtitle md:text-xl text-[14px] text-gray-500">
-            Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse
-            molestie
-          </p>
+
+          <Modal
+            open={open}
+            onClose={handleClose}
+            aria-labelledby="modal-modal-title"
+            aria-describedby="modal-modal-description"
+          >
+            <Box
+              sx={{
+                position: "absolute",
+                top: "50%",
+                left: "50%",
+                transform: "translate(-50%, -50%)",
+                maxHeight: "80vh",
+                overflowY: "auto",
+                bgcolor: "background.paper",
+                border: "none",
+                boxShadow: 24,
+                outline: "none",
+                p: 2,
+              }}
+            >
+              <Typography>
+                <h1 className="inline-block lg:text-[32px] md:text-3xl text-xl text-primary">
+                  Tips and FAQ for your booking
+                </h1>{" "}
+                <MoodIcon className="animate-bounce text-primary sm:hidden lg:inline-block md:inline-block lg:text-[32px] md:text-3xl text-xl" />
+              </Typography>
+              <div className="w-full h-[1px] bg-slate-400 mt-8"></div>
+              <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+                <div className="opacity-[60%]">
+                  {/* if you want to see question and answer go to top line number 15 and you can see in faqData object */}
+                  {faqData.map((item, index) => (
+                    <div key={index}>
+                      <p className="lg:text-subtitle md:text-xl text-[14px] text-gray-500 mt-5">
+                        <h1>
+                          <b className="opacity-[100%] text-red-600">
+                            Question:{(index + 1).toFixed(0)}
+                          </b>
+                          - {item.question}
+                        </h1>
+                        <br />
+                        <b className="opacity-[100%] text-primary">
+                          Answer:
+                        </b>{" "}
+                        {item.answer}
+                      </p>
+                      <br />
+                    </div>
+                  ))}
+                </div>
+              </Typography>
+            </Box>
+          </Modal>
         </div>
+        {/* so far develope by hosaindev */}
       </div>
     </div>
   );
 };
 
 export default FindCard;
+
+
