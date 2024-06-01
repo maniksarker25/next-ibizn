@@ -3,7 +3,7 @@ import Environmental from "./Environmental";
 function EnvironmentelPacket() {
   return (
     <>
-      <div className="h-auto  md:h-auto mt-20 w-[90%] mx-auto py-2">
+      <div className="h-auto  md:h-auto mt-20 w-[90%] mx-auto py-8">
         <Environmental
           items={[
             {
