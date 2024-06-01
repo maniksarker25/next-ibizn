@@ -7,6 +7,7 @@ import Food from "./Food";
 import Scuba from "./Scuba";
 import Exclusions from "./Exclusions";
 import EnvironmentelPacket from "./EnvironmentelPacket";
+import SwipeBoard from "./SwipeBoard";
 // import SwipeBoard from "@/src/components/app/PropertyPage/SwipeBoard";
 
 function PropertyPage() {
@@ -16,14 +17,13 @@ function PropertyPage() {
       <div>
         <div className="px-4 lg:px-0">
           <LiveaboardDetails />
+          <div className="swipeboard">
+            <SwipeBoard />
+          </div>
           <div id="accommodation">
             <Accommodation />
           </div>
         </div>
-
-        {/* <div className="swipeboard">
-        <SwipeBoard />
-      </div>  */}
 
         <div id="facilities">
           <Facilities />

@@ -25,9 +25,6 @@ const ratings = [
 ];
 const Banner = ({ setSearchResult }) => {
   const { searchValues, setSearchValues } = useContext(userContext);
-  console.log(searchValues);
-  const [error, setError] = useState("");
-  const router = useRouter();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [destination, setDestination] = useState("");
   const [rating, setRating] = useState({ minRating: "", maxRating: "" });
@@ -64,7 +61,6 @@ const Banner = ({ setSearchResult }) => {
       return queryString;
     };
 
-    // Construct the query string from searchValues
     const queryString = objectToQueryString(searchValues);
 
     fetch(
@@ -80,7 +76,6 @@ const Banner = ({ setSearchResult }) => {
   };
 
   useEffect(() => {
-    // Set the default value for rating when the component mounts
     setRating({
       minRating: searchValues.minRating,
       maxRating: searchValues.maxRating,
@@ -109,7 +104,6 @@ const Banner = ({ setSearchResult }) => {
             ))}
           </div>
 
-          {/* nice to meet you man */}
           <div className="mt-10 flex flex-col md:flex-row md:space-y-0 space-y-5 gap-3 justify-between md:items-center pb-10 text-white">
             <TextField
               onClick={() => setIsModalOpen(true)}
@@ -122,35 +116,35 @@ const Banner = ({ setSearchResult }) => {
               sx={{
                 "& .MuiOutlinedInput-root": {
                   "& fieldset": {
-                    borderColor: "lightblue", // Border color
+                    borderColor: "lightblue",
                     background: "transparent",
                   },
                   "&:hover fieldset": {
-                    borderColor: "white", // Border color on hover
+                    borderColor: "white",
                     background: "transparent",
                   },
                   "&.Mui-focused fieldset": {
-                    borderColor: "white", // Border color when focused
+                    borderColor: "white",
                     background: "transparent",
                   },
                 },
                 "& .MuiInputBase-input": {
-                  height: "35px", // Height of the input element
-                  color: "white", // Text color
-                  backgroundColor: "transparent", // Ensure input background is transparent
+                  height: "35px",
+                  color: "white",
+                  backgroundColor: "transparent",
                 },
                 "& .MuiInputLabel-root": {
-                  color: "white", // Label color
+                  color: "white",
                   background: "transparent",
                 },
                 "& .MuiInputLabel-root.Mui-focused": {
-                  color: "white", // Label color when focused
+                  color: "white",
                   background: "transparent",
                 },
                 "& .MuiInputBase-input::selection": {
-                  background: "transparent", // Remove background color when text is selected
+                  background: "transparent",
                 },
-                width: "100%", // Width of the entire TextField
+                width: "100%",
               }}
             />
             {searchValues?.tabValue === "Special Offers" ? (
