@@ -36,7 +36,7 @@ const SecondPage = () => {
   }, [searchValues]);
   return (
     <div>
-      <Banner />
+      <Banner setSearchResult={setSearchResult} />
       <Filtering />
       <FindCard />
     </div>

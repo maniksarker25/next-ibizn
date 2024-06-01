@@ -28,7 +28,12 @@ const style = {
   },
 };
 
-export default function SearchItemModal({ isModalOpen, setIsModalOpen }) {
+export default function SearchItemModal({
+  isModalOpen,
+  setIsModalOpen,
+  setDestination,
+  destination,
+}) {
   const handleClose = () => setIsModalOpen(false);
   const [searchItems, setSearchItems] = useState([]);
   const { searchValues, setSearchValues } = useContext(userContext);
@@ -71,7 +76,12 @@ export default function SearchItemModal({ isModalOpen, setIsModalOpen }) {
   }, [searchValues]);
 
   const handleDestination = (destination) => {
-    setSearchValues({ ...searchValues, destination });
+    // setSearchValues({ ...searchValues, destination });
+    if (setDestination) {
+      setDestination(destination);
+    } else {
+      setSearchValues({ ...searchValues, destination });
+    }
     setIsModalOpen(false);
   };
 

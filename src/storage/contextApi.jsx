@@ -12,7 +12,7 @@ const ContextApi = ({ children }) => {
   const [searchValues, setSearchValues] = useState({
     tabValue: "Liveaboards",
     destination: "",
-    property: "",
+    // property: "",
     date: "",
     minRating: "",
     maxRating: "",

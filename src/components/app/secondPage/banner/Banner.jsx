@@ -14,6 +14,7 @@ import dayjs from "dayjs";
 import { Typography } from "@mui/material";
 import { useRouter } from "next/router";
 import SearchItemModal from "../../Home/Banner/SearchItemModal";
+import { baseUrl } from "@/src/config/serverConfig";
 
 const tabItems = ["Liveaboards", "Resorts", "Special Offers"];
 const ratings = [
@@ -22,11 +23,13 @@ const ratings = [
   { minRating: 3, maxRating: 4 },
   { minRating: 4, maxRating: 5 },
 ];
-const Banner = () => {
+const Banner = ({ setSearchResult }) => {
   const { searchValues, setSearchValues } = useContext(userContext);
+  console.log(searchValues);
   const [error, setError] = useState("");
   const router = useRouter();
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [destination, setDestination] = useState("");
   const [rating, setRating] = useState({ minRating: "", maxRating: "" });
   const [formattedDate, setFormattedDate] = useState("");
   const renderSelectedValue = (value) => {
@@ -36,14 +39,44 @@ const Banner = () => {
   const handleDateChange = (date) => {
     const formatted = date ? dayjs(date).format("YYYY-MM-DD") : "";
 
-    setSearchValues({ ...searchValues, date: formatted });
+    // setSearchValues({ ...searchValues, date: formatted });
+    setFormattedDate(formatted);
   };
 
   const handleSearchValues = () => {
-    if (rating?.minRating) {
+    if (rating.minRating) {
       searchValues.minRating = rating?.minRating;
       searchValues.maxRating = rating?.maxRating;
     }
+    if (formattedDate) {
+      searchValues.date = formattedDate;
+    }
+    if (destination) {
+      searchValues.destination = destination;
+    }
+
+    const objectToQueryString = (obj) => {
+      const queryString = Object.keys(obj)
+        .map(
+          (key) => `${encodeURIComponent(key)}=${encodeURIComponent(obj[key])}`
+        )
+        .join("&");
+      return queryString;
+    };
+
+    // Construct the query string from searchValues
+    const queryString = objectToQueryString(searchValues);
+
+    fetch(
+      `${baseUrl}/${
+        searchValues?.tabValue === "Resorts" ||
+        searchValues?.property === "resort"
+          ? "resorts/all-resorts"
+          : "boats/all-boats"
+      }?${queryString}`
+    )
+      .then((res) => res.json())
+      .then((data) => setSearchResult(data?.data));
   };
 
   useEffect(() => {
@@ -52,7 +85,7 @@ const Banner = () => {
       minRating: searchValues.minRating,
       maxRating: searchValues.maxRating,
     });
-  }, []);
+  }, [searchValues]);
   return (
     <div className="bg-primary">
       <div className="w-[90%] sm:w-[85%] mx-auto py-20">
@@ -82,7 +115,7 @@ const Banner = () => {
               onClick={() => setIsModalOpen(true)}
               id="outlined-basic"
               label="Destination"
-              value={searchValues?.destination}
+              value={destination || searchValues?.destination}
               variant="outlined"
               size="large"
               fullWidth
@@ -245,6 +278,8 @@ const Banner = () => {
           <SearchItemModal
             isModalOpen={isModalOpen}
             setIsModalOpen={setIsModalOpen}
+            setDestination={setDestination}
+            destination={destination}
           />
         </div>
       </div>
