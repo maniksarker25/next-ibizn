@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { useState } from "react";
 
 const Footer = () => {
@@ -37,7 +38,7 @@ const Footer = () => {
           <div className="md:flex lg:flex-col justify-center md:ms-3 lg:ms-0">
             <div>
               <h1 className="text-primary text-lg font-bold font-outfit">
-                 Drivers
+                Drivers
               </h1>
               <div className="text-gray mt-3">
                 <h1>About Us</h1>
@@ -53,17 +54,21 @@ const Footer = () => {
               Operators
             </h1>
             <div className="text-gray mt-3">
-              <h1>Sign Up</h1>
-              <h1>Login</h1>
+              <Link className="mt-4" href={"/auth"}>
+                Login
+              </Link>
             </div>
           </div>
           <div className="md:flex lg:flex-col md:justify-center lg:justify-start md:me-3 lg:ms-0">
             <div>
-            <h1 className="text-primary text-lg font-bold font-outfit"> Agents</h1>
-            <div className="text-gray mt-3">
-              <h1>Sign Up</h1>
-              <h1>Login</h1>
-            </div>
+              <h1 className="text-primary text-lg font-bold font-outfit">
+                {" "}
+                Agents
+              </h1>
+              <div className="text-gray mt-3">
+                <h1>Sign Up</h1>
+                <h1>Login</h1>
+              </div>
             </div>
           </div>
           <div className="md:flex lg:flex-col md:justify-start lg:justify-start xl:text-end text-start">
@@ -124,8 +129,12 @@ const Footer = () => {
               </div>
 
               <div className="mt-5">
-                <h1 className="text-[#f1f2f2] text-xl font-normal ">+64 2102413170</h1>
-                <h1 className="text-primary text-xl font-normal">info@deeparture.travel</h1>
+                <h1 className="text-[#f1f2f2] text-xl font-normal ">
+                  +64 2102413170
+                </h1>
+                <h1 className="text-primary text-xl font-normal">
+                  info@deeparture.travel
+                </h1>
               </div>
             </div>
           </div>
