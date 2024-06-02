@@ -7,10 +7,12 @@ import { baseUrl } from "@/src/config/serverConfig";
 
 const SecondPage = () => {
   const { searchValues } = useContext(userContext);
-  console.log(searchValues);
+  // console.log(searchValues);
+  const [isLoading, setIsLoading] = useState(false);
   const [searchResult, setSearchResult] = useState([]);
-  console.log(searchResult);
+  // console.log(searchResult);
   useEffect(() => {
+    setIsLoading(true);
     const objectToQueryString = (obj) => {
       const queryString = Object.keys(obj)
         .map(
@@ -32,13 +34,16 @@ const SecondPage = () => {
       }?${queryString}`
     )
       .then((res) => res.json())
-      .then((data) => setSearchResult(data?.data));
+      .then((data) => {
+        setSearchResult(data?.data);
+        setIsLoading(false);
+      });
   }, [searchValues]);
   return (
     <div>
-      <Banner setSearchResult={setSearchResult} />
-      <Filtering />
-      <FindCard />
+      {/* <Banner setSearchResult={setSearchResult} /> */}
+      {/* <Filtering /> */}
+      <FindCard searchResult={searchResult} isLoading={isLoading} />
     </div>
   );
 };

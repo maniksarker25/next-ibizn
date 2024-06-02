@@ -151,6 +151,7 @@ const Banner = () => {
                     setSearchValues({
                       ...searchValues,
                       property: e.target.value,
+                      date: "",
                     })
                   }
                   IconComponent={() => (
