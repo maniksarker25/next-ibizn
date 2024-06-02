@@ -12,9 +12,9 @@ export default function RatingPortion() {
         "& > legend": { mt: 2 },
       }}
     >
-
-
-      <Typography component="legend" className="md:text-2xl md:text-[#0080FF]"><span className="font-semibold">Vegan rating</span> :{value}</Typography>
+      <Typography component="legend" className="md:text-2xl md:text-[#0080FF]">
+        <span className="font-semibold">Vegan rating</span> :{value}
+      </Typography>
       <Rating name="read-only" value={value} readOnly />
     </Box>
   );

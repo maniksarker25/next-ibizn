@@ -179,6 +179,7 @@ const FindCard = ({ searchResult, isLoading }) => {
             aria-describedby="modal-modal-description"
           >
             <Box
+              className="w-[90%] lg:w-[800px] md:w-[90%]"
               sx={{
                 position: "absolute",
                 top: "50%",
