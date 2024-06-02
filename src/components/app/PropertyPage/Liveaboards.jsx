@@ -55,6 +55,9 @@ function Liveaboards() {
                     onClick={() => {
                       setActiveButton(button);
                       scrollToSection(button.toLowerCase());
+                      if (button.includes(" ")) {
+                        scrollToSection(button.replace(/\s+/g, '').toLocaleLowerCase())
+                      }
                     }}
                   >
                     {button}

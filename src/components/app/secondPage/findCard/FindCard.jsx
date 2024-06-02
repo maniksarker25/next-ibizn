@@ -214,13 +214,14 @@ const FindCard = () => {
         </div>
         {/* from here code develope by hosaindev */}
         <div className="xl:w-[25%] relative lg:mt-10 xl:mt-0">
-          <h1
-            onMouseOver={handleOpen}
-            className="lg:text-[32px] md:text-3xl text-xl text-primary"
-          >
+          <div className="lg:text-[32px] md:text-3xl text-xl text-primary">
             Tips and FAQ for your booking{" "}
-            <QuestionMarkIcon className="animate-bounce" />
-          </h1>
+            <QuestionMarkIcon
+              onMouseOver={handleOpen}
+              className="animate-bounce"
+              sx={{ cursor: "pointer" }}
+            />
+          </div>
 
           <Modal
             open={open}
