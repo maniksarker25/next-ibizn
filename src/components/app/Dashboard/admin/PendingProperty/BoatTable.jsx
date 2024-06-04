@@ -8,6 +8,7 @@ const BoatTable = () => {
   const [controlData, setControlData] = useState(false);
   const [boats, setBoats] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [ratingError, setRatingError] = useState("");
   const [open, setOpen] = React.useState(false);
   const handleClose = () => setOpen(false);
   const [singleData, setSingleData] = useState({});
@@ -41,6 +42,10 @@ const BoatTable = () => {
 
   // handel boat approved
   const handleApproved = (id) => {
+    if (ratting === null) {
+      setRatingError("Please add vegan rating");
+      return;
+    }
     fetch(`${baseUrl}/boats/update-boat/${id}`, {
       method: "PUT",
       headers: {
@@ -129,6 +134,7 @@ const BoatTable = () => {
         handleClose={handleClose}
         setRatings={setRatings}
         setFoodBasedQuestionAnswer={setFoodBasedQuestionAnswer}
+        ratingError={ratingError}
       />
     </div>
   );

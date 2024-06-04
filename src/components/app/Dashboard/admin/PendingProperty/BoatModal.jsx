@@ -5,6 +5,7 @@ import { userContext } from "@/src/storage/contextApi";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 import { useContext, useEffect, useState } from "react";
+import OperatorDetails from "./OperatorDetails";
 
 const style = {
   position: "absolute",
@@ -28,6 +29,7 @@ const BoatModal = ({
   handleClose,
   setRatings,
   setFoodBasedQuestionAnswer,
+  ratingError,
 }) => {
   const [boatData, setBoatData] = useState({});
   const { loader, setLoader } = useContext(userContext);
@@ -160,7 +162,7 @@ const BoatModal = ({
                   );
                 })}
               </div>
-
+              <OperatorDetails userInfo={boatData?.user} />
               <div>
                 {/* <p>Food Based Question Answer</p>
                 <textarea
@@ -180,6 +182,9 @@ const BoatModal = ({
                     max={5}
                   />
                   {error && <p className="text-red-600 block">{error}</p>}
+                  {ratingError && (
+                    <p className="text-red-600 block">{ratingError}</p>
+                  )}
                 </div>
               </div>
               <div className="mt-3">

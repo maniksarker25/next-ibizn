@@ -39,7 +39,6 @@ const BoatTable = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         if (data?.success) {
           toast.success("Boat approved successfully");
           setAction(true);
@@ -100,7 +99,7 @@ const BoatTable = () => {
                           item?.resitricted ? "text-red-500" : "text-green-800"
                         } text-xs font-medium me-2 px-2.5 py-0.5 rounded-full`}
                       >
-                        {item?.resitricted ? "restricted" : "unrestricted"}
+                        {item?.resitricted ? "restricted" : "Active"}
                       </span>
                     </td>
                     {/* <td className="py-2 px-4 border-b">{item?.region}</td>
@@ -114,7 +113,7 @@ const BoatTable = () => {
                           item?.resitricted ? "bg-green-400" : "bg-red-400"
                         } text-white`}
                       >
-                        {item?.resitricted ? "unrestricted" : "restricted"}
+                        {item?.resitricted ? "Make Active" : "Make Restricted"}
                       </button>
                     </td>
                   </tr>

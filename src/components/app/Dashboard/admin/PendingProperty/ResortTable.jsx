@@ -7,10 +7,9 @@ import Box from "@mui/material/Box";
 const ResortTable = () => {
   const [controlData, setControlData] = useState(false);
   const [resort, setResort] = useState([]);
-  console.log(resort);
   const [loading, setLoading] = useState(true);
   const [open, setOpen] = React.useState(false);
-
+  const [ratingError, setRatingError] = useState("");
   const [singleData, setSingleData] = useState({});
   const [ratting, setRatings] = useState(null);
   const [foodBasedQuestionAnswer, setFoodBasedQuestionAnswer] = useState(null);
@@ -43,6 +42,10 @@ const ResortTable = () => {
 
   // handel boat approved
   const handleApproved = (id) => {
+    if (ratting === null) {
+      setRatingError("Please add vegan rating");
+      return;
+    }
     fetch(`${baseUrl}/resorts/update-resort/${id}`, {
       method: "PUT",
       headers: {
@@ -141,6 +144,7 @@ const ResortTable = () => {
         handleClose={handleClose}
         setRatings={setRatings}
         setFoodBasedQuestionAnswer={setFoodBasedQuestionAnswer}
+        ratingError={ratingError}
       />
     </div>
   );

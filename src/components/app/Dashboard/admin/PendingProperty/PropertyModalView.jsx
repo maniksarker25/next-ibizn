@@ -5,6 +5,7 @@ import { userContext } from "@/src/storage/contextApi";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 import { useContext, useEffect, useState } from "react";
+import OperatorDetails from "./OperatorDetails";
 
 const style = {
   position: "absolute",
@@ -20,7 +21,7 @@ const style = {
   p: 4,
   overflow: "scroll",
 };
-console.log({ Questions });
+// console.log({ Questions });
 const PropertyModalView = ({
   open,
   setOpen,
@@ -29,8 +30,10 @@ const PropertyModalView = ({
   handleClose,
   setRatings,
   setFoodBasedQuestionAnswer,
+  ratingError,
 }) => {
   const [resortData, setResortData] = useState({});
+
   const { loader, setLoader } = useContext(userContext);
   const [error, setError] = useState("");
   const rattingNumberHandler = (e) => {
@@ -55,6 +58,19 @@ const PropertyModalView = ({
         setLoader(false);
       });
   }, [singleData]);
+
+  // const showBankInfo = () => {
+  //   console.log("show bank info");
+  //   fetch(`${baseUrl}/bank-information/${resortData?.user?._id}`, {
+  //     method: "GET",
+  //     headers: {
+  //       "content-type": "application/json",
+  //       Authorization: localStorage.getItem("access-token"),
+  //     },
+  //   })
+  //     .then((res) => res.json())
+  //     .then((data) => setBankInformation(data?.data));
+  // };
 
   return (
     <Modal
@@ -162,6 +178,71 @@ const PropertyModalView = ({
                 );
               })}
             </div>
+            {/* <div className="my-8">
+              <h2 className="text-2xl font-semibold ">Operator Details</h2>
+              <div>
+                <p className="text-lg my-2">
+                  <span className="font-semibold">Name:</span>{" "}
+                  {resortData?.user?.fullName}
+                </p>
+                <p className="text-lg my-2">
+                  <span className="font-semibold">Email:</span>{" "}
+                  {resortData?.user?.email}
+                </p>
+                <p className="text-lg my-2">
+                  <span className="font-semibold">Phone:</span>{" "}
+                  {resortData?.user?.phone}
+                </p>
+                <p className="text-lg my-2">
+                  <span className="font-semibold">Status:</span>{" "}
+                  {resortData?.user?.status}
+                </p>
+              </div>
+              {!bankInformation && (
+                <button
+                  onClick={showBankInfo}
+                  className="bg-green-500 px-4 py-2 rounded text-white my-4"
+                >
+                  See Bank Information
+                </button>
+              )}
+              {bankInformation && (
+                <div>
+                  <h2 className="text-xl font-semibold my-4">
+                    Bank Information
+                  </h2>
+                  <div>
+                    <h2 className="text-lg font-semibold">Local Bank Info</h2>
+                    <p className="text-lg my-2">
+                      <span className="font-semibold">Bank Name:</span>{" "}
+                      {bankInformation?.localBank?.bankName}
+                    </p>
+                    <p className="text-lg my-2">
+                      <span className="font-semibold">
+                        Account Holder Name:
+                      </span>{" "}
+                      {bankInformation?.localBank?.accountHolderName}
+                    </p>
+                    <p className="text-lg my-2">
+                      <span className="font-semibold">Account Number:</span>{" "}
+                      {bankInformation?.localBank?.accountNumber}
+                    </p>
+                    <p className="text-lg my-2">
+                      <span className="font-semibold">Routing Number:</span>{" "}
+                      {bankInformation?.localBank?.routingNumber}
+                    </p>
+                  </div>
+                  <div>
+                    <h2 className="text-lg font-semibold">Wise Bank Info</h2>
+                    <p className="text-lg my-2">
+                      <span className="font-semibold">Email:</span>{" "}
+                      {bankInformation?.wiseBank?.email}
+                    </p>
+                  </div>
+                </div>
+              )}
+            </div> */}
+            <OperatorDetails userInfo={resortData?.user} />
             <div>
               <div>
                 {/* <p>Food Based Question Answer</p>
@@ -182,6 +263,9 @@ const PropertyModalView = ({
                     max={5}
                   />
                   {error && <p className="text-red-600 block">{error}</p>}
+                  {ratingError && (
+                    <p className="text-red-600 block">{ratingError}</p>
+                  )}
                 </div>
               </div>
             </div>
