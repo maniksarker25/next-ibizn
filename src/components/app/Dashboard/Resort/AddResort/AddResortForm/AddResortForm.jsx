@@ -27,6 +27,7 @@ const AddResortForm = ({ increaseProgress, decreaseProgress }) => {
     diving: {},
   });
 
+  console.log(resortData);
   const handleInputChange = (e) => {
     let newValue = { ...resortData };
     if (e.target.name === "special") {
@@ -240,7 +241,7 @@ const AddResortForm = ({ increaseProgress, decreaseProgress }) => {
       },
       body: JSON.stringify({
         ...resortData,
-        listOfPackages: [...listofPackages],
+        // listOfPackages: [...listofPackages],
         carousalImages: [...caruselImages],
         deactivationPeriod: {
           ...deactivitionDate,

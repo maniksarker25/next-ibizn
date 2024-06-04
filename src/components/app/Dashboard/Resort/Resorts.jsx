@@ -6,8 +6,9 @@ import Loader from "../../../core/shared/Loader/Loader";
 import { DeleteOutline, EditNoteOutlined } from "@mui/icons-material";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { Typography } from "@mui/material";
 const Resorts = () => {
-  const router = useRouter()
+  const router = useRouter();
   const [resorts, setResorts] = useState([]);
   const [resortControl, setResortControl] = useState(false);
   const { loader, setLoader } = useContext(userContext);
@@ -60,56 +61,63 @@ const Resorts = () => {
   }
 
   const resorthandler = (id) => {
-    router.push(`/dashboard/resort/edit-resort/${id}`)
-    
-  }
+    router.push(`/dashboard/resort/edit-resort/${id}`);
+  };
 
   return (
     <div>
-      <div className="overflow-x-auto">
-        <table className="min-w-full bg-white border border-gray-300">
-          <thead>
-            <tr className="text-center">
-              <th className="py-2 px-1 border-b">RESORT NAME</th>
-              <th className="py-2 px-1 border-b">REGION</th>
-              <th className="py-2 px-1 border-b">COUNTRY</th>
-              <th className="py-2 px-1 border-b">DISTRICT</th>
-              <th className="py-2 px-1 border-b">ACTION</th>
-            </tr>
-          </thead>
-          <tbody>
-            {resorts?.map((item, index) => (
-              <tr
-                key={index}
-                className={
-                  index % 2 === 0 ? "bg-gray-100 text-center" : "text-center"
-                }
-              >
-                <td className="py-2 px-4 border-b">{item?.propertyName}</td>
-                <td className="py-2 px-4 border-b">{item?.region}</td>
-                <td className="py-2 px-4 border-b">{item?.country}</td>
-                <td className="py-2 px-4 border-b">{item?.district}</td>
-                <td className="py-2 px-4 border-b flex justify-center">
-                  <div className="flex  gap-3 items-center">
-
-                    <button className="px-3 py-1 rounded bg-indigo-600 text-white flex gap-2 items-center" onClick={() => resorthandler(item._id)}>
-                      <span>Edit</span> <EditNoteOutlined />
-                    </button>
-
-                    <button
-                      onClick={() => handleResortDelete(item?._id)}
-                      className="px-3 py-1 rounded bg-red-400 text-white flex gap-2 items-center"
-                    >
-                      <span>Delete</span> <DeleteOutline />
-                    </button>
-                  </div>
-                </td>
-                {/* Add more columns as needed */}
+      {resorts?.length > 0 ? (
+        <div className="overflow-x-auto">
+          <table className="min-w-full bg-white border border-gray-300">
+            <thead>
+              <tr className="text-center">
+                <th className="py-2 px-1 border-b">RESORT NAME</th>
+                <th className="py-2 px-1 border-b">REGION</th>
+                <th className="py-2 px-1 border-b">COUNTRY</th>
+                <th className="py-2 px-1 border-b">DISTRICT</th>
+                <th className="py-2 px-1 border-b">ACTION</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
+            </thead>
+            <tbody>
+              {resorts?.map((item, index) => (
+                <tr
+                  key={index}
+                  className={
+                    index % 2 === 0 ? "bg-gray-100 text-center" : "text-center"
+                  }
+                >
+                  <td className="py-2 px-4 border-b">{item?.propertyName}</td>
+                  <td className="py-2 px-4 border-b">{item?.region}</td>
+                  <td className="py-2 px-4 border-b">{item?.country}</td>
+                  <td className="py-2 px-4 border-b">{item?.district}</td>
+                  <td className="py-2 px-4 border-b flex justify-center">
+                    <div className="flex  gap-3 items-center">
+                      <button
+                        className="px-3 py-1 rounded bg-indigo-600 text-white flex gap-2 items-center"
+                        onClick={() => resorthandler(item._id)}
+                      >
+                        <span>Edit</span> <EditNoteOutlined />
+                      </button>
+
+                      <button
+                        onClick={() => handleResortDelete(item?._id)}
+                        className="px-3 py-1 rounded bg-red-400 text-white flex gap-2 items-center"
+                      >
+                        <span>Delete</span> <DeleteOutline />
+                      </button>
+                    </div>
+                  </td>
+                  {/* Add more columns as needed */}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      ) : (
+        <Typography component={"h4"} variant="h4">
+          There is no resort{" "}
+        </Typography>
+      )}
     </div>
   );
 };
