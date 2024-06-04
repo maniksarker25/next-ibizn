@@ -37,12 +37,16 @@ const SecondPage = () => {
       .then((data) => {
         setSearchResult(data?.data);
         setIsLoading(false);
+      })
+      .catch((error) => {
+        console.log(error.message);
+        setIsLoading(false);
       });
   }, [searchValues]);
   return (
     <div>
-      {/* <Banner setSearchResult={setSearchResult} /> */}
-      {/* <Filtering /> */}
+      <Banner setSearchResult={setSearchResult} />
+      <Filtering />
       <FindCard searchResult={searchResult} isLoading={isLoading} />
     </div>
   );

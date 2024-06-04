@@ -1,9 +1,10 @@
-import PropertyPage from "@/src/components/app/PropertyPage/PropertyPage"
+import PropertyPage from "@/src/components/app/PropertyPage/PropertyPage";
+import { useParams } from "next/navigation";
 
 const propertyPage = () => {
-  return (
-    <PropertyPage />
-  )
-}
+  const params = useParams();
 
-export default propertyPage
+  return <PropertyPage id={params?.id} />;
+};
+
+export default propertyPage;

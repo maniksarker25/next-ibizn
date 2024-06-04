@@ -13,7 +13,7 @@ import Itineraries from "../Dashboard/Boat/Itineraries";
 import ItinerariesAndPrices from "./Itinerary/ItinerariesAndPrices";
 // import SwipeBoard from "@/src/components/app/PropertyPage/SwipeBoard";
 
-function PropertyPage() {
+function PropertyPage({ id }) {
   const [propertyData, setPropertyData] = useState({});
   useEffect(() => {
     fetch(`${baseUrl}/boats/single-boat/6607eeb58a3751bc5d5ff2d0`)
@@ -50,7 +50,7 @@ function PropertyPage() {
           </div>
           <EnvironmentelPacket />
           <div id="itinerariesandprices">
-            <ItinerariesAndPrices propertyData ={propertyData} />
+            <ItinerariesAndPrices propertyData={propertyData} />
           </div>
         </div>
       </div>

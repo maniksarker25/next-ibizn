@@ -3,8 +3,9 @@ import React, { useEffect, useState, useContext } from "react";
 import Swal from "sweetalert2";
 import { userContext } from "@/src/storage/contextApi";
 import Loader from "../../../core/shared/Loader/Loader";
-import EditItenaries from "./EditItenareis/EditItenaries"
-import { DeleteOutline, EditNoteOutlined, } from "@mui/icons-material";
+import EditItenaries from "./EditItenareis/EditItenaries";
+import { DeleteOutline, EditNoteOutlined } from "@mui/icons-material";
+import { Box, Typography } from "@mui/material";
 
 const Itineraries = () => {
   const [itineraries, setItineraries] = useState([]);
@@ -69,58 +70,75 @@ const Itineraries = () => {
 
   return (
     <>
-      <div className="overflow-x-auto">
-        <table className="min-w-full bg-white border border-gray-300">
-          <thead>
-            <tr className="text-center">
-              <th className="py-2 px-1 border-b">ITINERARY NAME</th>
-              <th className="py-2 px-1 border-b">REGION</th>
-              <th className="py-2 px-1 border-b">COUNTRY</th>
-              <th className="py-2 px-1 border-b">DISTRICT</th>
+      <Box>
+        {itineraries?.length > 0 ? (
+          <div className="overflow-x-auto">
+            <table className="min-w-full bg-white border border-gray-300">
+              <thead>
+                <tr className="text-center">
+                  <th className="py-2 px-1 border-b">ITINERARY NAME</th>
+                  <th className="py-2 px-1 border-b">REGION</th>
+                  <th className="py-2 px-1 border-b">COUNTRY</th>
+                  <th className="py-2 px-1 border-b">DISTRICT</th>
 
-              <th className="py-2 px-1 border-b">ACTION</th>
-            </tr>
-          </thead>
-          <tbody>
-            {itineraries?.map((item, index) => (
-              <tr
-                key={index}
-                className={
-                  index % 2 === 0 ? "bg-gray-100 text-center" : "text-center"
-                }
-              >
-                <td className="py-2 px-4 border-b">{item?.itineraryName}</td>
-                <td className="py-2 px-4 border-b">{item?.region}</td>
-                <td className="py-2 px-4 border-b">{item?.country}</td>
-                <td className="py-2 px-4 border-b">{item?.district}</td>
+                  <th className="py-2 px-1 border-b">ACTION</th>
+                </tr>
+              </thead>
+              <tbody>
+                {itineraries?.map((item, index) => (
+                  <tr
+                    key={index}
+                    className={
+                      index % 2 === 0
+                        ? "bg-gray-100 text-center"
+                        : "text-center"
+                    }
+                  >
+                    <td className="py-2 px-4 border-b">
+                      {item?.itineraryName}
+                    </td>
+                    <td className="py-2 px-4 border-b">{item?.region}</td>
+                    <td className="py-2 px-4 border-b">{item?.country}</td>
+                    <td className="py-2 px-4 border-b">{item?.district}</td>
 
-
-                <td className="py-2 px-4 border-b flex justify-center">
-                  <div className="flex items-center gap-3">
-                    <button
-                      onClick={() => handleOpen(item?._id)}
-                      className="px-3 py-1 rounded text-white bg-indigo-600 flex gap-2 items-center"
-                    >
-                      <span className="font-bold">Edit</span> <EditNoteOutlined />
-                    </button>
-                    <button
-                      onClick={() => handleItineraryDelete(item?._id)}
-                      className="px-3 py-1 rounded bg-red-500 text-white flex gap-2 items-center"
-                    >
-                      <span className="font-bold">Delete</span> <DeleteOutline />
-                    </button>
-                  </div>
-
-                </td>
-                {/* Add more columns as needed */}
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-      {
-        open && <EditItenaries itinerariesData={itinerariesData} open={open} setItineraryControl={setItineraryControl} handleClose={handleClose} />
-      }
+                    <td className="py-2 px-4 border-b flex justify-center">
+                      <div className="flex items-center gap-3">
+                        <button
+                          onClick={() => handleOpen(item?._id)}
+                          className="px-3 py-1 rounded text-white bg-indigo-600 flex gap-2 items-center"
+                        >
+                          <span className="font-bold">Edit</span>{" "}
+                          <EditNoteOutlined />
+                        </button>
+                        <button
+                          onClick={() => handleItineraryDelete(item?._id)}
+                          className="px-3 py-1 rounded bg-red-500 text-white flex gap-2 items-center"
+                        >
+                          <span className="font-bold">Delete</span>{" "}
+                          <DeleteOutline />
+                        </button>
+                      </div>
+                    </td>
+                    {/* Add more columns as needed */}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        ) : (
+          <Typography component={"h4"} variant="h4">
+            There is no itineraries{" "}
+          </Typography>
+        )}
+      </Box>
+      {open && (
+        <EditItenaries
+          itinerariesData={itinerariesData}
+          open={open}
+          setItineraryControl={setItineraryControl}
+          handleClose={handleClose}
+        />
+      )}
     </>
   );
 };

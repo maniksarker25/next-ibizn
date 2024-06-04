@@ -116,35 +116,30 @@ const Banner = ({ setSearchResult }) => {
               sx={{
                 "& .MuiOutlinedInput-root": {
                   "& fieldset": {
-                    borderColor: "lightblue",
-                    background: "transparent",
+                    borderColor: "lightblue", // Border color
                   },
                   "&:hover fieldset": {
-                    borderColor: "white",
-                    background: "transparent",
+                    borderColor: "white", // Border color on hover
                   },
                   "&.Mui-focused fieldset": {
-                    borderColor: "white",
-                    background: "transparent",
+                    borderColor: "white", // Border color when focused
                   },
                 },
                 "& .MuiInputBase-input": {
-                  height: "35px",
-                  color: "white",
-                  backgroundColor: "transparent",
+                  height: "35px", // Height of the input element
+                  color: "white", // Text color
+                  backgroundColor: "transparent", // Ensure input background is transparent
                 },
                 "& .MuiInputLabel-root": {
-                  color: "white",
-                  background: "transparent",
+                  color: "white", // Label color
                 },
                 "& .MuiInputLabel-root.Mui-focused": {
-                  color: "white",
-                  background: "transparent",
+                  color: "white", // Label color when focused
                 },
-                "& .MuiInputBase-input::selection": {
-                  background: "transparent",
+                "& .MuiSvgIcon-root": {
+                  color: "white", // Color of the calendar icon
                 },
-                width: "100%",
+                width: "100%", // Width of the entire TextField
               }}
             />
             {searchValues?.tabValue === "Special Offers" ? (
@@ -219,6 +214,9 @@ const Banner = ({ setSearchResult }) => {
                     },
                     "& .MuiInputLabel-root.Mui-focused": {
                       color: "white", // Label color when focused
+                    },
+                    "& .MuiSvgIcon-root": {
+                      color: "white", // Color of the calendar icon
                     },
                     width: "100%", // Width of the entire TextField
                   }}

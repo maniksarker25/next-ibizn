@@ -54,8 +54,11 @@ const Footer = () => {
               Operators
             </h1>
             <div className="text-gray mt-3">
-              <Link className="mt-4" href={"/auth"}>
+              <Link className="mt-4 mr-4" href={"/auth"}>
                 Login
+              </Link>
+              <Link className="mt-4" href={"/auth"}>
+                SignUp
               </Link>
             </div>
           </div>

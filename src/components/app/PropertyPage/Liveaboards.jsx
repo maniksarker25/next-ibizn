@@ -3,7 +3,7 @@ import { useState } from "react";
 
 function Liveaboards() {
   const [activeButton, setActiveButton] = useState("Liveaboard");
-  const router = useRouter()
+  const router = useRouter();
   const buttons = [
     "Liveaboard",
     "Accommodation",
@@ -42,7 +42,7 @@ function Liveaboards() {
               </h1>
             </div>
 
-            <div className="bg-[#0080FF] text-white p-2 md:border-t-[1px] md:border-white md:flex md:items-center md:justify-between md:pl-8 md:w-full md:py-8 md:px-8">
+            <div className=" bg-[#0080FF] text-white p-2 md:border-t-[1px] md:border-white md:flex md:items-center md:justify-between md:pl-8 md:w-full md:py-8 md:px-8">
               <div className="flex flex-wrap justify-start md:justify-start gap-2 md:gap-4">
                 {buttons.map((button) => (
                   <button
@@ -56,7 +56,9 @@ function Liveaboards() {
                       setActiveButton(button);
                       scrollToSection(button.toLowerCase());
                       if (button.includes(" ")) {
-                        scrollToSection(button.replace(/\s+/g, '').toLocaleLowerCase())
+                        scrollToSection(
+                          button.replace(/\s+/g, "").toLocaleLowerCase()
+                        );
                       }
                     }}
                   >
@@ -64,8 +66,13 @@ function Liveaboards() {
                   </button>
                 ))}
               </div>
-              <div onClick={()=>router.push("/secondPage")} className="text-white mt-2 md:mt-0 md:ml-8">
-                <ul className="underline px-2 py-8 cursor-pointer text-nowrap">Back to results</ul>
+              <div
+                onClick={() => router.push("/secondPage")}
+                className="text-white mt-2 md:mt-0 md:ml-8"
+              >
+                <ul className="underline px-2 py-8 cursor-pointer text-nowrap">
+                  Back to results
+                </ul>
               </div>
             </div>
           </div>

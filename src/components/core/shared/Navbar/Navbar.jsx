@@ -3,16 +3,19 @@ import { useRouter } from "next/router";
 import { userContext } from "@/src/storage/contextApi";
 import Link from "next/link";
 import MenuIcon from "@mui/icons-material/Menu";
+
 import { Box, Drawer } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import { useContext, useState } from "react";
 import UseBasicModal from "../../UI/Modal/UseBasicModal";
+import SignUpModal from "./SignUpModal";
+import ContactUsModal from "./ContactUsModal";
 
 const MyNavbar = () => {
   const { user, setControl, control } = useContext(userContext);
   const router = useRouter();
   const [isModalOpen, setIsModalOpen] = useState(false);
-
+  const [isContactOpen, setIsContactOpen] = useState(false);
   const [open, setOpen] = useState(false);
   // handle logout -------------
   const handleLogOut = () => {
@@ -64,9 +67,12 @@ const MyNavbar = () => {
                   onClick={() => setIsModalOpen(true)}
                   className="button text-[#f1f2f2] hover:text-[#0080ff] text-[12px] sm:text-base font-[300]"
                 >
-                  Sign-In
+                  SignUp
                 </div>
-                <div className="button text-[#f1f2f2] hover:text-[#0080ff] text-[12px] sm:text-base font-[300]">
+                <div
+                  onClick={() => setIsContactOpen(true)}
+                  className="button text-[#f1f2f2] hover:text-[#0080ff] text-[12px] sm:text-base font-[300]"
+                >
                   Contact us
                 </div>
               </div>
@@ -119,9 +125,12 @@ const MyNavbar = () => {
                   onClick={() => setIsModalOpen(true)}
                   className="button text-[#f1f2f2] hover:text-[#0080ff] text-[12px] sm:text-base font-[300]"
                 >
-                  Sign-In
+                  SignUp
                 </div>
-                <div className="button text-[#f1f2f2] hover:text-[#0080ff]  text-base font-[300]">
+                <div
+                  onClick={() => setIsContactOpen(true)}
+                  className="button text-[#f1f2f2] hover:text-[#0080ff]  text-base font-[300]"
+                >
                   Contact us
                 </div>
               </div>
@@ -141,11 +150,11 @@ const MyNavbar = () => {
           </div>
         </Box>
       </Drawer>
-      <UseBasicModal open={isModalOpen} setOpen={setIsModalOpen}>
-        <div>
-          <h1>Modal data</h1>
-        </div>
-      </UseBasicModal>
+      <ContactUsModal
+        isModalOpen={isContactOpen}
+        setIsModalOpen={setIsContactOpen}
+      />
+      <SignUpModal isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} />
     </>
   );
 };

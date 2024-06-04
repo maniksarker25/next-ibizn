@@ -24,26 +24,41 @@ function CabinModal({ cabins, setOpen, open }) {
             border: "none",
           }}
         >
-          <Typography variant="h6" id="modal-modal-title" className="text-xl md:text-5xl text-primary font-[400]">
-            Cabin Details
-          </Typography>
-          <div className="w-full h-[1px] bg-slate-400 mt-2"></div>
-          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            {cabins && cabins.length > 0 ? (
-              cabins.map((cabin) => (
-                <div key={cabin._id} className="mb-4 flex flex-col md:flex-row md:items-center justify-between outline-none border-b-primary border-b-[1px] py-4">
-                  <Typography variant="subtitle1" className="text-xl md:text-2xl">
-                    <span className="text-primary text-xl md:text-3xl">Name </span>: {cabin.cabinName}
-                  </Typography>
-                  <Typography variant="subtitle2" className="text-xl">
-                    <span className="text-primary text-xl font-light md:text-2xl">Price</span> :- ${cabin.cabinPrice}
-                  </Typography>
-                </div>
-              ))
-            ) : (
-              <Typography>No cabins available</Typography>
-            )}
-          </Typography>
+          <div className="p-6">
+            <Typography
+              variant="h6"
+              id="modal-modal-title"
+              className="text-xl md:text-3xl text-primary font-[400]"
+            >
+              Cabins
+            </Typography>
+            <div className="w-full h-[1px] bg-slate-400 mt-2"></div>
+            <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+              {cabins && cabins.length > 0 ? (
+                cabins.map((cabin) => (
+                  <div
+                    key={cabin._id}
+                    className="mb-4 flex flex-col md:flex-row md:items-center justify-between outline-none border-b-primary border-b-[1px] py-4"
+                  >
+                    <Typography
+                      variant="subtitle1"
+                      className="text-xl md:text-2xl"
+                    >
+                      {cabin.cabinName}
+                    </Typography>
+                    <Typography variant="subtitle2" className="text-xl">
+                      <span className="text-primary text-xl font-light md:text-2xl">
+                        price
+                      </span>{" "}
+                      : ${cabin.cabinPrice}
+                    </Typography>
+                  </div>
+                ))
+              ) : (
+                <Typography>No cabins available</Typography>
+              )}
+            </Typography>
+          </div>
         </Box>
       </Modal>
     </div>

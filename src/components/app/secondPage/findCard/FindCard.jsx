@@ -15,6 +15,7 @@ import Wifi from "./Wifi";
 import LoadingCard from "@/src/components/core/shared/Loader/LoadingCard";
 import Itineraries from "./Itineraries";
 import { Alert } from "@mui/material";
+import { useRouter } from "next/router";
 
 const faqData = [
   {
@@ -62,6 +63,7 @@ const faqData = [
 ];
 
 const FindCard = ({ searchResult, isLoading }) => {
+  const router = useRouter();
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -84,7 +86,11 @@ const FindCard = ({ searchResult, isLoading }) => {
             <div>
               {" "}
               {searchResult?.map((item, index) => (
-                <div key={index} className="border-2 border-primary mb-20">
+                <div
+                  onClick={() => router.push(`/secondPage/${item?._id}`)}
+                  key={index}
+                  className="border-2 border-primary mb-20 cursor-pointer"
+                >
                   <div className="md:flex gap-5">
                     <div>
                       <Swiper
@@ -95,23 +101,35 @@ const FindCard = ({ searchResult, isLoading }) => {
                         }}
                         modules={[Pagination]}
                       >
-                        {item?.carousal?.map((img, index) => (
-                          <SwiperSlide>
-                            <div>
-                              <img
-                                className={`xl:h-96 lg:h-[350px] inline-block lg:w-96 w-full object-cover`}
-                                src={img}
-                                alt="carousalImages"
-                              />
-                            </div>
-                          </SwiperSlide>
-                        ))}
+                        {item?.carousal
+                          ? item?.carousal?.map((img, index) => (
+                              <SwiperSlide>
+                                <div>
+                                  <img
+                                    className={`xl:h-96 lg:h-[350px] inline-block lg:w-96 w-full object-cover`}
+                                    src={img}
+                                    alt="carousalImages"
+                                  />
+                                </div>
+                              </SwiperSlide>
+                            ))
+                          : item?.carousalImages?.map((img, index) => (
+                              <SwiperSlide>
+                                <div>
+                                  <img
+                                    className={`xl:h-96 lg:h-[350px] inline-block lg:w-96 w-full object-cover`}
+                                    src={img}
+                                    alt="carousalImages"
+                                  />
+                                </div>
+                              </SwiperSlide>
+                            ))}
                       </Swiper>
                     </div>
                     <div className="p-3">
                       <div className="mt-6">
                         <h1 className="lg:text-[32px] text-xl text-[#0080ff]">
-                          {item?.nameOfProperty}
+                          {item?.nameOfProperty || item?.propertyName}
                         </h1>
                         <p className="mt-[20px] lg:text-[25px] text-sm text-gray-400 font-outfit md:w-full">
                           Operating from Sharm El Sheikh, this liveaboard boasts

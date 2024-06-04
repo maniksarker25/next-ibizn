@@ -201,6 +201,9 @@ const Banner = () => {
                   "& .MuiInputLabel-root.Mui-focused": {
                     color: "white", // Label color when focused
                   },
+                  "& .MuiSvgIcon-root": {
+                    color: "white", // Color of the calendar icon
+                  },
                   width: "100%", // Width of the entire TextField
                 }}
               />

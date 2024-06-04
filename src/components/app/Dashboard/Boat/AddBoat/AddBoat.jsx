@@ -18,7 +18,7 @@ import { userContext } from "@/src/storage/contextApi";
 const AddBoat = () => {
   const rotuer = useRouter();
   const { submitLoader, setSubmitLoader } = useContext(userContext);
-  const [progress, setProgress] = React.useState(7);
+  const [progress, setProgress] = React.useState(8);
   const [caruselImages, setCaruselImages] = useState([]);
   const [boardData, setBoardData] = useState({});
   const [selectedFacilities, setSelectedFacilities] = useState([]);
@@ -31,7 +31,7 @@ const AddBoat = () => {
   const totalSteps = 8;
   const [itineraryData, setItineraryData] = useState([]);
   // const [fileError, setFileError] = useState('');
-  console.log({ currentStep });
+  console.log("current step =======================>", currentStep);
 
   const increaseProgress = () => {
     setProgress((oldProgress) => Math.min(oldProgress + 12.5, 100));
@@ -398,7 +398,6 @@ const AddBoat = () => {
             setCurrentStep={setCurrentStep}
             increaseProgress={increaseProgress}
             decreaseProgress={decreaseProgress}
-            submitData={submitData}
           />
         );
       case 8:
@@ -411,6 +410,7 @@ const AddBoat = () => {
             setCurrentStep={setCurrentStep}
             increaseProgress={increaseProgress}
             decreaseProgress={decreaseProgress}
+            submitData={submitData}
           />
         );
       default:

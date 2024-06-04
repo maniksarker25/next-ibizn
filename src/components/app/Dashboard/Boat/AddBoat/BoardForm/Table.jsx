@@ -49,6 +49,7 @@ const BoardTable = ({
   increaseProgress,
   decreaseProgress,
   boardData,
+  submitData,
 }) => {
   console.log({ boardData });
   const [row, setRow] = useState(0);
@@ -128,12 +129,11 @@ const BoardTable = ({
   };
   console.log({ itineraryData });
 
- const removeRow= (index)=>{
-  
-  const newItineraryData =  itineraryData.filter((item,index))
-  
-  setItineraryData(newItineraryData)
- }
+  const removeRow = (index) => {
+    const newItineraryData = itineraryData.filter((item, index));
+
+    setItineraryData(newItineraryData);
+  };
 
   // go to next step ------------
   const goToNextStep = (e) => {
@@ -148,7 +148,7 @@ const BoardTable = ({
   };
   return (
     <div className="overflow-x-auto">
-      <form onSubmit={goToNextStep}>
+      <form onSubmit={submitData}>
         <Button onClick={incrementRow}>(+) add new row</Button>
         <table className="min-w-full bg-white border border-gray-300">
           <thead>
@@ -190,23 +190,20 @@ const BoardTable = ({
                   )}
                 </td>
                 <td className="py-2  border-b flex justify-center">
-                <div className="flex gap-3 items-center">
-                <button
-                  
-                  className="px-3 py-1 rounded bg-indigo-500 text-white flex gap-2 items-center"
-                >
-                  <span>Edit</span> <EditNoteOutlined/>
-                </button>
-                <button
-                type="button"
-                 onClick={()=> removeRow(index)}
-                  className="px-3 py-1 rounded bg-red-500 text-white flex gap-2 items-center"
-                >
-                  <span>Delete</span> <DeleteOutline/>
-                </button>
-                </div>
-              </td>
-                
+                  <div className="flex gap-3 items-center">
+                    <button className="px-3 py-1 rounded bg-indigo-500 text-white flex gap-2 items-center">
+                      <span>Edit</span> <EditNoteOutlined />
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => removeRow(index)}
+                      className="px-3 py-1 rounded bg-red-500 text-white flex gap-2 items-center"
+                    >
+                      <span>Delete</span> <DeleteOutline />
+                    </button>
+                  </div>
+                </td>
+
                 {/* Add more columns as needed */}
               </tr>
             ))}

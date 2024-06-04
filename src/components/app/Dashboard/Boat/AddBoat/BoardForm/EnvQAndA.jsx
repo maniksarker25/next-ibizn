@@ -28,7 +28,7 @@ const EnvQAndA = ({
   return (
     <div>
       <h2 className="my-4 text-xl pb-2 border-b-2">Environmental Questions</h2>
-      <form onSubmit={submitData}>
+      <form onSubmit={goToNextStep}>
         <div className="mb-4">
           <label
             htmlFor="q1"
