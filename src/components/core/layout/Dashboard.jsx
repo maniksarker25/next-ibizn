@@ -15,19 +15,20 @@ import ListItemText from "@mui/material/ListItemText";
 import Toolbar from "@mui/material/Toolbar";
 import { styled, useTheme } from "@mui/material/styles";
 import * as React from "react";
-
+import DeckIcon from "@mui/icons-material/Deck";
+import DirectionsBoatIcon from "@mui/icons-material/DirectionsBoat";
 import toast from "react-hot-toast";
 // import icons
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import InventoryIcon from "@mui/icons-material/Inventory";
 import { useRouter } from "next/router";
-
 import { userContext } from "@/src/storage/contextApi";
 import AddBusinessIcon from "@mui/icons-material/AddBusiness";
 import ExpandMoreRoundedIcon from "@mui/icons-material/ExpandMoreRounded";
-
+import Inventory2Icon from "@mui/icons-material/Inventory2";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import LogoutIcon from "@mui/icons-material/Logout";
+import MapsHomeWorkIcon from "@mui/icons-material/MapsHomeWork";
 import Link from "next/link";
 const drawerWidth = 240;
 
@@ -124,30 +125,29 @@ const adminSideBarData = [
   {
     name: "Pending Orders",
     router: "/dashboard/admin/pending-orders",
-    icon: <AccountCircleIcon />,
+    icon: <Inventory2Icon />,
   },
   {
     name: "Pending Property List",
     router: "/dashboard/admin/pending-property",
-    icon: <AccountCircleIcon />,
+    icon: <AddBusinessIcon />,
   },
   {
     name: "Property List",
     router: "/dashboard/admin/property-of-list",
-    icon: <AccountCircleIcon />,
+    icon: <MapsHomeWorkIcon />,
   },
   {
     name: "Resort Items",
     router: "/dashboard/admin/resort-items",
-    icon: <InventoryIcon />,
+    icon: <DeckIcon />,
   },
   {
     name: "Boat Items",
     router: "/dashboard/admin/boat-items",
-    icon: <AddBusinessIcon />,
+    icon: <DirectionsBoatIcon />,
   },
 ];
-
 
 export default function PersistentDrawerLeft({ children }) {
   const router = useRouter();
@@ -173,26 +173,26 @@ export default function PersistentDrawerLeft({ children }) {
     router.push("/auth");
   };
   const handleRouter = (path) => {
-    router.push(path)
-    setExpand(-1)
-  }
+    router.push(path);
+    setExpand(-1);
+  };
   const currentRoute = (route) => {
-    const currentPath= router.pathname
-    let path = 'rgba(0,0,0,0.5)'
+    const currentPath = router.pathname;
+    let path = "rgba(0,0,0,0.5)";
     if (route.router === currentPath) {
-      path = 'black'
+      path = "black";
     }
 
     if (route?.submenu) {
-      const isPath = route.submenu?.find(menu => menu.router === currentPath)
+      const isPath = route.submenu?.find((menu) => menu.router === currentPath);
       if (isPath) {
-        path = 'black'
+        path = "black";
       }
     }
 
     return path;
-  }
-  
+  };
+
   return (
     <Box sx={{ display: "flex" }}>
       <CssBaseline />
@@ -261,20 +261,17 @@ export default function PersistentDrawerLeft({ children }) {
               sx={{ display: "block" }}
               onClick={() =>
                 route.router
-                  ? (handleRouter(route.router))
-                  : setExpand((prevEndex) => (index))
+                  ? handleRouter(route.router)
+                  : setExpand((prevEndex) => index)
               }
-
-
             >
               <ListItemButton
                 sx={{
                   //   minHeight: 48,
                   justifyContent: open ? "initial" : "center",
                   px: 2.5,
-
                 }}
-                style={{ textAlign: "left", color: "black", }}
+                style={{ textAlign: "left", color: "black" }}
               >
                 <ListItemIcon
                   sx={{
@@ -288,7 +285,9 @@ export default function PersistentDrawerLeft({ children }) {
                 <ListItemText
                   primary={route?.name}
                   sx={{
-                    opacity: open ? 1 : 0, fontWeight: router.pathname === route.router ? '700' : 'initial',
+                    opacity: open ? 1 : 0,
+                    fontWeight:
+                      router.pathname === route.router ? "700" : "initial",
                     color: currentRoute(route),
                   }}
                 />
@@ -306,11 +305,11 @@ export default function PersistentDrawerLeft({ children }) {
                     <ListItem
                       key={subIndex}
                       sx={{ marginTop: -2 }}
-                    // onClick={() =>
-                    //   subItem.router
-                    //     && router.push(subItem?.router)
+                      // onClick={() =>
+                      //   subItem.router
+                      //     && router.push(subItem?.router)
 
-                    // }
+                      // }
                     >
                       <ListItemButton>
                         {/* <ListItemText primary={subItem?.name} /> */}

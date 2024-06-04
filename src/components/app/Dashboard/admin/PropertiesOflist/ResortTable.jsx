@@ -2,12 +2,23 @@ import Loader from "@/src/components/core/shared/Loader/Loader";
 import { baseUrl } from "@/src/config/serverConfig";
 import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
+import PropertyModalView from "../PendingProperty/PropertyModalView";
 
 const ResortTable = () => {
   const [resorts, setResorts] = useState([]);
   const [loading, setLoading] = useState(false);
   const [loader, setLoader] = useState(false);
   const [action, setAction] = useState(false);
+  const [open, setOpen] = React.useState(false);
+  const [singleData, setSingleData] = useState({});
+  const handleClose = () => {
+    setOpen(false);
+    setSingleData({});
+  };
+  const handleOpen = (data) => {
+    setSingleData({ id: data?._id });
+    setOpen(true);
+  };
   useEffect(() => {
     setLoading(true);
     fetch(`${baseUrl}/resorts/approved-resorts`, {
@@ -94,11 +105,17 @@ const ResortTable = () => {
                         item?.resitricted ? "text-red-500" : "text-green-800"
                       } text-xs font-medium me-2 px-2.5 py-0.5 rounded-full`}
                     >
-                      {item?.resitricted ? "restricted" : "unrestricted"}
+                      {item?.resitricted ? "restricted" : "active"}
                     </span>
                   </td>
 
                   <td className="py-2 px-4 border-b">
+                    <button
+                      onClick={() => handleOpen(item)}
+                      className="mr-4 bg-green-500 px-3 py-1 text-white  rounded"
+                    >
+                      View
+                    </button>
                     <button
                       disabled={loader}
                       onClick={() => handleStatusChange(item?._id)}
@@ -106,7 +123,7 @@ const ResortTable = () => {
                         item?.resitricted ? "bg-green-400" : "bg-red-400"
                       } text-white`}
                     >
-                      {item?.resitricted ? "unrestricted" : "restricted"}
+                      {item?.resitricted ? "Make Active" : "Make Restricted"}
                     </button>
                   </td>
                   {/* Add more columns as needed */}
@@ -116,6 +133,13 @@ const ResortTable = () => {
           </table>
         </div>
       )}
+      <PropertyModalView
+        open={open}
+        setOpen={setOpen}
+        singleData={singleData}
+        handleClose={handleClose}
+        // setFoodBasedQuestionAnswer={setFoodBasedQuestionAnswer}
+      />
     </div>
   );
 };

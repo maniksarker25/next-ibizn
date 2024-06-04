@@ -243,40 +243,45 @@ const PropertyModalView = ({
               )}
             </div> */}
             <OperatorDetails userInfo={resortData?.user} />
-            <div>
+            {resortData?.status === "pending" && (
               <div>
-                {/* <p>Food Based Question Answer</p>
-                <textarea
-                  name="foodBasedQuestionAnswer"
-                  type="text"
-                  onChange={(e) => setFoodBasedQuestionAnswer(e.target.value)}
-                  className="w-full"
-                /> */}
-                <div className="space-y-2">
-                  <p className="font-medium">Add veganRating</p>
+                {" "}
+                <div>
+                  <div>
+                    {/* <p>Food Based Question Answer</p>
+              <textarea
+                name="foodBasedQuestionAnswer"
+                type="text"
+                onChange={(e) => setFoodBasedQuestionAnswer(e.target.value)}
+                className="w-full"
+              /> */}
+                    <div className="space-y-2">
+                      <p className="font-medium">Add veganRating</p>
 
-                  <input
-                    onChange={(e) => rattingNumberHandler(e)}
-                    type="number"
-                    className="focus:border-none active:border-none py-2 w-[300px]"
-                    min={1}
-                    max={5}
-                  />
-                  {error && <p className="text-red-600 block">{error}</p>}
-                  {ratingError && (
-                    <p className="text-red-600 block">{ratingError}</p>
-                  )}
+                      <input
+                        onChange={(e) => rattingNumberHandler(e)}
+                        type="number"
+                        className="focus:border-none active:border-none py-2 w-[300px]"
+                        min={1}
+                        max={5}
+                      />
+                      {error && <p className="text-red-600 block">{error}</p>}
+                      {ratingError && (
+                        <p className="text-red-600 block">{ratingError}</p>
+                      )}
+                    </div>
+                  </div>
+                </div>
+                <div className="mt-6 flex justify-end">
+                  <button
+                    onClick={() => handleApproved(resortData?._id)}
+                    className="text-white bg-green-500 rounded px-4 py-2"
+                  >
+                    Approve
+                  </button>
                 </div>
               </div>
-            </div>
-            <div className="mt-6 flex justify-end">
-              <button
-                onClick={() => handleApproved(resortData?._id)}
-                className="text-white bg-green-500 rounded px-4 py-2"
-              >
-                Approve
-              </button>
-            </div>
+            )}
           </div>
         )}
       </Box>

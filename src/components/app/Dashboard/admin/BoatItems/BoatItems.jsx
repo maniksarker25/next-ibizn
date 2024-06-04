@@ -59,11 +59,11 @@ const BoatItems = () => {
             onChange={handleChange}
             aria-label="basic tabs example"
           >
-            <Tab label="Facility" {...a11yProps(0)} />
-            <Tab label="Inclusion" {...a11yProps(1)} />
-            <Tab label="Exclusion" {...a11yProps(2)} />
-            <Tab label="Equipment" {...a11yProps(3)} />
-            <Tab label="Dive course" {...a11yProps(3)} />
+            <Tab label="Facilities" {...a11yProps(0)} />
+            <Tab label="Inclusions" {...a11yProps(1)} />
+            <Tab label="Exclusions" {...a11yProps(2)} />
+            <Tab label="Equipments" {...a11yProps(3)} />
+            <Tab label="Dive courses" {...a11yProps(3)} />
           </Tabs>
         </Box>
         <CustomTabPanel value={value} index={0}>

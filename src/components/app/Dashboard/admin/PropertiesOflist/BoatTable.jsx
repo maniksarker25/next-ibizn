@@ -2,12 +2,21 @@ import Loader from "@/src/components/core/shared/Loader/Loader";
 import { baseUrl } from "@/src/config/serverConfig";
 import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
+import BoatModal from "../PendingProperty/BoatModal";
 
 const BoatTable = () => {
   const [boats, setBoats] = useState([]);
   const [loader, setLoader] = useState(false);
   const [action, setAction] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [open, setOpen] = React.useState(false);
+  const [singleData, setSingleData] = useState({});
+
+  const handleOpen = (data) => {
+    setSingleData({ id: data?._id });
+    setOpen(true);
+  };
+  const handleClose = () => setOpen(false);
   useEffect(() => {
     setLoading(true);
     fetch(`${baseUrl}/boats/approved-boats`, {
@@ -107,6 +116,12 @@ const BoatTable = () => {
 
                     <td className="py-2 px-4 border-b">
                       <button
+                        onClick={() => handleOpen(item)}
+                        className="mr-4 bg-green-500 px-3 py-1 text-white  rounded"
+                      >
+                        View
+                      </button>
+                      <button
                         disabled={loader}
                         onClick={() => handleStatusChange(item?._id)}
                         className={`px-3 py-1 rounded ${
@@ -122,6 +137,12 @@ const BoatTable = () => {
           </table>
         </div>
       )}
+      <BoatModal
+        open={open}
+        setOpen={setOpen}
+        singleData={singleData}
+        handleClose={handleClose}
+      />
     </div>
   );
 };

@@ -163,39 +163,43 @@ const BoatModal = ({
                 })}
               </div>
               <OperatorDetails userInfo={boatData?.user} />
-              <div>
-                {/* <p>Food Based Question Answer</p>
+              {boatData?.status === "pending" && (
+                <div>
+                  <div>
+                    {/* <p>Food Based Question Answer</p>
                 <textarea
                   name="foodBasedQuestionAnswer"
                   type="text"
                   onChange={(e) => setFoodBasedQuestionAnswer(e.target.value)}
                   className="w-full"
                 /> */}
-                <div className="space-y-2">
-                  <p className="font-medium">Add veganRating</p>
+                    <div className="space-y-2">
+                      <p className="font-medium">Add veganRating</p>
 
-                  <input
-                    onChange={(e) => rattingNumberHandler(e)}
-                    type="number"
-                    className="focus:border-none active:border-none py-2 w-[300px]"
-                    min={1}
-                    max={5}
-                  />
-                  {error && <p className="text-red-600 block">{error}</p>}
-                  {ratingError && (
-                    <p className="text-red-600 block">{ratingError}</p>
-                  )}
+                      <input
+                        onChange={(e) => rattingNumberHandler(e)}
+                        type="number"
+                        className="focus:border-none active:border-none py-2 w-[300px]"
+                        min={1}
+                        max={5}
+                      />
+                      {error && <p className="text-red-600 block">{error}</p>}
+                      {ratingError && (
+                        <p className="text-red-600 block">{ratingError}</p>
+                      )}
+                    </div>
+                  </div>
+                  <div className="mt-3">
+                    <button
+                      onClick={() => handleApproved(boatData?._id)}
+                      className="text-white bg-green-500 rounded px-4 py-2"
+                      disabled={error}
+                    >
+                      Approve
+                    </button>
+                  </div>
                 </div>
-              </div>
-              <div className="mt-3">
-                <button
-                  onClick={() => handleApproved(boatData?._id)}
-                  className="text-white bg-green-500 rounded px-4 py-2"
-                  disabled={error}
-                >
-                  Approve
-                </button>
-              </div>
+              )}
             </div>
           )}
         </Box>
