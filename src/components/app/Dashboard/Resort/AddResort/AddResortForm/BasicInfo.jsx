@@ -401,6 +401,17 @@ const BasicInfo = ({
               />
             </LocalizationProvider>
           </div>
+          <div className="mt-6">
+            <p className="text-lg font-semibold">Resort daily schedule</p>
+            <textarea
+              type="text"
+              required
+              name="resortDailySchedule"
+              placeholder="Type here"
+              className="w-full h-20 rounded-md"
+              onChange={(e) => handleInputChange(e)}
+            />
+          </div>
         </div>
         <div className="flex justify-between mt-10">
           {currentStep > 1 && (

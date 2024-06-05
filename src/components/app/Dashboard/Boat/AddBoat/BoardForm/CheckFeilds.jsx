@@ -257,7 +257,10 @@ const CheckFeilds = ({
           ))}
         </div>
         <div className="mb-4">
-          <h2 className="my-4 text-xl pb-2 border-b-2">Boat on Dive</h2>
+          <h2 className="my-4 text-xl pb-2 border-b-2">
+            {" "}
+            Dive Courses onboard
+          </h2>
           {boatDive?.map((boatDive) => (
             <label key={boatDive?._id} className="flex gap-x-2 items-center">
               <input

@@ -36,7 +36,7 @@ const EditItenaries = ({
 }) => {
   const [loader, setLoader] = useState(true);
   const [itineraries, setItineraries] = useState({});
-  console.log({ itineraries });
+  // console.log({ itineraries });
   const { country } = useContext(userContext);
   const [cabins, setCabins] = useState([{ cabinName: "", cabinPrice: "" }]);
   const [regiion, setRegion] = useState(itineraries?.region || "");
@@ -391,7 +391,7 @@ const EditItenaries = ({
                     className="w-full h-20 rounded-md"
                   />
                 </div>
-                <div className="mt-3">
+                {/* <div className="mt-3">
                   <p className="text-lg font-semibold">Boat daily schedule</p>
                   <textarea
                     onChange={(e) =>
@@ -407,7 +407,7 @@ const EditItenaries = ({
                     placeholder="Boat daily schedule"
                     className="w-full h-20 rounded-md"
                   />
-                </div>
+                </div> */}
                 {/* {error && <p className="text-red-600 text-xl mb-3">{error}</p>} */}
 
                 <input
