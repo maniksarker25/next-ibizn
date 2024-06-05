@@ -2,7 +2,7 @@ import RatingPortion from "./RatingPortion";
 
 const Content = ({ title, description }) => (
   <div className="w-full lg:w-1/2  flex flex-col justify-center items-start  md:justify-start">
-    <h1 className="text-3xl mt-20 text-[#0080FF] md:text-6xl md:font-light md:text-[#0080FF] md:mb-5">
+    <h1 className="text-3xl  text-[#0080FF] md:text-6xl md:font-light md:text-[#0080FF] mb-5">
       {title}
     </h1>
     <p className="text-[16px] md:text-xl md:font-light md:text-black md:leading-9">
@@ -14,11 +14,7 @@ const Content = ({ title, description }) => (
 
 const Image = ({ src, alt }) => (
   <div className="p-2 w-full lg:w-1/2">
-    <img
-      className="w-full h-auto object-cover rounded-lg"
-      src={src}
-      alt={alt}
-    />
+    <img className="w-full h-auto object-cover " src={src} alt={alt} />
   </div>
 );
 
@@ -38,7 +34,7 @@ const Food = () => {
   };
 
   return (
-    <div className="flex flex-col gap-10 items-center lg:flex-row  md:mt-16 lg:mt-28  customContainer bg-white">
+    <div className="flex flex-col gap-10 items-center lg:flex-row  my-16 lg:my-28  customContainer bg-white">
       <Content title={foodInfo.title} description={foodInfo.description} />
       <Image src={foodInfo.imageUrl} alt={foodInfo.imageAlt} />
     </div>

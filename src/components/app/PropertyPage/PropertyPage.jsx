@@ -15,8 +15,9 @@ import ItinerariesAndPrices from "./Itinerary/ItinerariesAndPrices";
 
 function PropertyPage({ id }) {
   const [propertyData, setPropertyData] = useState({});
+  console.log(propertyData);
   useEffect(() => {
-    fetch(`${baseUrl}/boats/single-boat/6607eeb58a3751bc5d5ff2d0`)
+    fetch(`${baseUrl}/boats/single-boat/65ed6bb31e73aac329377956`)
       .then((res) => res.json())
       .then((data) => setPropertyData(data.data));
   }, []);
@@ -24,7 +25,7 @@ function PropertyPage({ id }) {
     <>
       <Liveaboards />
       <div>
-        <div className="px-4 lg:px-0">
+        <div className="">
           <LiveaboardDetails />
           <div className="swipeboard">
             <SwipeBoard />
@@ -38,17 +39,19 @@ function PropertyPage({ id }) {
           <Facilities />
         </div>
 
-        <div className="px-4 lg:px-0">
-          <div id="food">
+        <div className="">
+          <div className="px-4 lg:px-0" id="food">
             <Food />
           </div>
-          <div id="scuba">
+          <div className="bg-[#F1F2F2] py-20 px-4 lg:px-0" id="scuba">
             <Scuba />
           </div>
-          <div id="exclusions">
+          <div className="py-6" id="exclusions">
             <Exclusions />
           </div>
-          <EnvironmentelPacket />
+          <div className="bg-[#F1F2F2] py-20 px-4 lg:px-0">
+            <EnvironmentelPacket />
+          </div>
           <div id="itinerariesandprices">
             <ItinerariesAndPrices propertyData={propertyData} />
           </div>

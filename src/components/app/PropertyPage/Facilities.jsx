@@ -48,7 +48,7 @@ function Facilities() {
   );
 
   return (
-    <div className="bg-[#0080FF] text-white py-8 md:py-32   mt-16 lg:mt-20 ">
+    <div className="bg-[#0080FF] text-white py-8 md:py-32 ">
       <div className="customContainer px-4">
         <div className="text-start mb-8 ">
           <h1 className="text-3xl md:text-5xl lg:text-7xl font-light">
@@ -58,7 +58,7 @@ function Facilities() {
         <div className="flex flex-row lg:flex-row gap-8">
           <div className="flex-1 flex flex-col md:flex-row gap-10">
             {facilityLists.map((list, index) => (
-              <div key={index} className="flex-1   rounded-lg">
+              <div key={index} className="flex-1  rounded-lg">
                 {renderList(list)}
               </div>
             ))}

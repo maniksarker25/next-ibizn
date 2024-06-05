@@ -7,12 +7,12 @@ const Environmental = ({ items }) => {
   const [expanded, setExpanded] = useState("");
 
   const handleChange = (panel) => (event, newExpanded) => {
-    setExpanded(newExpanded ? panel :'');
+    setExpanded(newExpanded ? panel : "");
   };
 
   return (
     <div>
-      <h1 className="text-3xl text-[#0080ff] font-light md:text-6xl md:font-light md:py-4">
+      <h1 className="text-3xl mb-6 text-[#0080ff] font-light md:text-6xl md:font-light md:py-4">
         Environmental
       </h1>
       {items.map((item, index) => (
@@ -20,22 +20,24 @@ const Environmental = ({ items }) => {
           key={index}
           expanded={expanded === `panel${index}`}
           onChange={handleChange(`panel${index}`)}
-          className="border-t border-[#0080ff] w-full md:w-full"
+          className="border-t border-[#00afff] w-full md:w-full"
+          sx={{ borderRadius: 0, backgroundColor: "#F1F2F2" }}
         >
           <AccordionSummary
             expandIcon={
-              <AddCircleRoundedIcon className="md:text-[#3a95ea] text-[#3a95ea] md:text-5xl" />
+              <AddCircleRoundedIcon className="md:text-[#3a95ea] text-[#3a95ea] md:text-5xl " />
             }
             aria-controls={`panel${index}d-content`}
             id={`panel${index}d-header`}
-            className="md:bg-gray-100 flex-row-reverse md:flex-row-reverse"
+            className="bg-[#F1F2F2] flex-row-reverse md:flex-row-reverse"
+            sx={{ borderRadius: 0 }}
           >
-            <Typography className="md:text-[#0080ff] md:text-2xl md:font-extralight md:py-4 text-[#3a95ea]">
+            <Typography className=" md:text-2xl md:font-extralight md:py-4 text-[#3a95ea]">
               {item.title}
             </Typography>
           </AccordionSummary>
           <AccordionDetails>
-            <Typography  className="md:text-black md:text-lg">
+            <Typography className="text-[#2f2f30] md:text-lg bg-[#F1F2F2]">
               {item.content}
             </Typography>
           </AccordionDetails>

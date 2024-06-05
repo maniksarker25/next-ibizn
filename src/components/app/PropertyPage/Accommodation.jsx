@@ -40,30 +40,32 @@ const Accommodation = () => {
   );
 
   return (
-    <section className="flex flex-col-reverse lg:flex-row bg-white  md:mt-16 lg:mt-20 customContainer items-center justify-center  lg:py-16  gap-8 lg:gap-12">
-      <div className="w-full lg:w-1/2 h-[350px] lg:h-[500px] order-first lg:order-none">
-        <img
-          className="w-full h-full object-cover rounded-lg"
-          src={imgSrc}
-          alt={activeButton}
-        />
-      </div>
-      <div className="w-full lg:w-1/2 flex flex-col justify-between h-full">
-        <div className="flex flex-col gap-4 lg:gap-6">
-          <h1 className="text-3xl mt-20 text-[#0080FF] md:text-6xl md:font-light md:text-[#0080FF] md:mb-5">
-            Accommodation
-          </h1>
-          <p className="text-[16px] md:text-xl md:font-light md:text-black md:leading-9">
-            {description}
-          </p>
+    <div className="bg-[#F1F2F2]  py-20 px-4 lg:px-0">
+      <section className="customContainer flex flex-col-reverse lg:flex-row   items-center justify-center  lg:py-16  gap-8 lg:gap-12 ">
+        <div className="w-full lg:w-1/2 h-[350px] lg:h-[500px] order-first lg:order-none">
+          <img
+            className="w-full h-full object-cover "
+            src={imgSrc}
+            alt={activeButton}
+          />
         </div>
-        <div className="flex flex-wrap gap-4 mt-4 lg:mt-6">
-          {Object.keys(accommodationTypes).map((button) => (
-            <Button key={button} label={button} />
-          ))}
+        <div className="w-full lg:w-1/2 flex flex-col justify-between h-full">
+          <div className="flex flex-col gap-4 lg:gap-6">
+            <h1 className="text-3xl  text-[#0080FF] md:text-6xl md:font-light md:text-[#0080FF] md:mb-5">
+              Accommodation
+            </h1>
+            <p className="text-[16px] md:text-xl md:font-light md:text-black md:leading-9">
+              {description}
+            </p>
+          </div>
+          <div className="flex flex-wrap gap-4 mt-4 lg:mt-6 text-[#2f2f30]">
+            {Object.keys(accommodationTypes).map((button) => (
+              <Button key={button} label={button} />
+            ))}
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </div>
   );
 };
 

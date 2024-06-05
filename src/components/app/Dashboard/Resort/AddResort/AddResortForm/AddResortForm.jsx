@@ -26,6 +26,8 @@ const AddResortForm = ({ increaseProgress, decreaseProgress }) => {
     accommodation: {},
     diving: {},
   });
+  console.log("deactivations: ", deactivitionDate);
+  console.log("discount time: ", discountTimeFrameDate);
 
   console.log(resortData);
   const handleInputChange = (e) => {

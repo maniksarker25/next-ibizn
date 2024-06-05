@@ -24,7 +24,7 @@ function Liveaboards() {
   return (
     <>
       <div className="w-full h-[90vh] relative overflow-hidden">
-        <div className="w-full h-3/4 md:w-full md:h-full">
+        <div className="w-full h-3/4  md:h-full">
           <img
             className="w-full h-full object-cover"
             src="https://plus.unsplash.com/premium_photo-1661925114893-25ed8b336213?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
@@ -33,8 +33,8 @@ function Liveaboards() {
         </div>
         <div className=" w-full h-full">
           <div className="absolute bottom-0 w-full flex flex-col md:absolute md:flex-col md:flex md:w-full">
-            <div className="bg-[#0080FF] text-white p-4 md:w-1/2 md:rounded-tr-xl md:p-8">
-              <h1 className="text-3xl md:text-2xl md:font-light font-semibold">
+            <div className="bg-[#0080FF] text-white p-4 lg:w-1/2 md:rounded-tr-xl md:p-8">
+              <h1 className="md:text-3xl md:font-light ">
                 Raja Ampat | Liveaboards
               </h1>
               <h1 className="text-4xl  md:block md:text-8xl font-light mt-2">
@@ -42,8 +42,8 @@ function Liveaboards() {
               </h1>
             </div>
 
-            <div className=" bg-[#0080FF] text-white p-2 md:border-t-[1px] md:border-white md:flex md:items-center md:justify-between md:pl-8 md:w-full md:py-8 md:px-8">
-              <div className="flex flex-wrap justify-start md:justify-start gap-2 md:gap-4">
+            <div className=" bg-[#0080FF] text-white p-2 border-t-[1px] md:border-white md:flex md:items-center md:justify-between md:pl-8 md:w-full md:py-8 md:px-8">
+              <div className="flex flex-wrap justify-start md:justify-start gap-2 md:gap-4 mt-4">
                 {buttons.map((button) => (
                   <button
                     key={button}

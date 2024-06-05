@@ -2,7 +2,7 @@ import { baseUrl } from "@/src/config/serverConfig";
 import React, { useContext, useEffect, useState } from "react";
 import { useDropzone } from "react-dropzone";
 import { compressAndConvertToBase64 } from "@/src/config/base64";
-import { LocalizationProvider } from "@mui/x-date-pickers";
+import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
 import { DateRangePicker } from "@mui/x-date-pickers-pro";
 import { AdapterDayjs } from "@mui/x-date-pickers-pro/AdapterDayjs";
 import { userContext } from "@/src/storage/contextApi";
@@ -328,10 +328,10 @@ const BasicInfo = ({
             )}
           </div>
         </div>
-        <div className="mb-4">
-          <h2 className="my-4 text-xl">Period of Closure</h2>
+        <div className="my-4">
+          <h2 className="mt-10 mb-4 text-2xl ">Period of Closure</h2>
 
-          <LocalizationProvider dateAdapter={AdapterDayjs}>
+          {/* <LocalizationProvider dateAdapter={AdapterDayjs}>
             <DateRangePicker
               defaultValue={[
                 deactivitionDate?.startDate || "",
@@ -346,7 +346,35 @@ const BasicInfo = ({
                 </>
               )}
             />
-          </LocalizationProvider>
+          </LocalizationProvider> */}
+          <div className="flex gap-6">
+            <LocalizationProvider dateAdapter={AdapterDayjs}>
+              <div>
+                <p className="mb-1">Start Date</p>
+                <DatePicker
+                  value={deactivitionDate.startDate}
+                  onChange={(newDate) =>
+                    setDeactivitionDate({
+                      ...deactivitionDate,
+                      startDate: newDate,
+                    })
+                  }
+                />
+              </div>
+              <div>
+                <p className="mb-1">End Date</p>
+                <DatePicker
+                  value={deactivitionDate.endDate}
+                  onChange={(newDate) =>
+                    setDeactivitionDate({
+                      ...deactivitionDate,
+                      endDate: newDate,
+                    })
+                  }
+                />
+              </div>
+            </LocalizationProvider>
+          </div>
         </div>
         <div className="mb-4">
           <label
@@ -383,7 +411,7 @@ const BasicInfo = ({
             onChange={(e) => handleInputChange(e)}
           />
 
-          <div className="my-4">
+          {/* <div className="my-4">
             <LocalizationProvider dateAdapter={AdapterDayjs}>
               <DateRangePicker
                 defaultValue={[
@@ -400,6 +428,37 @@ const BasicInfo = ({
                 )}
               />
             </LocalizationProvider>
+          </div> */}
+          <div>
+            <h2 className="mt-10 mb-4 text-2xl ">Discount time frame</h2>
+            <div className="flex gap-6">
+              <LocalizationProvider dateAdapter={AdapterDayjs}>
+                <div>
+                  <p className="mb-1">Start Date</p>
+                  <DatePicker
+                    value={discountTimeFrameDate.startDate}
+                    onChange={(newDate) =>
+                      setDiscountTimeFrameDate({
+                        ...discountTimeFrameDate,
+                        startDate: newDate,
+                      })
+                    }
+                  />
+                </div>
+                <div>
+                  <p className="mb-1">End Date</p>
+                  <DatePicker
+                    value={discountTimeFrameDate.endDate}
+                    onChange={(newDate) =>
+                      setDiscountTimeFrameDate({
+                        ...discountTimeFrameDate,
+                        endDate: newDate,
+                      })
+                    }
+                  />
+                </div>
+              </LocalizationProvider>
+            </div>
           </div>
           <div className="mt-6">
             <p className="text-lg font-semibold">Resort daily schedule</p>

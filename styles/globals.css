@@ -55,4 +55,44 @@ body {
   background-color: #2563eb !important;
 }
 
+.main-text {
+  color: #2f2f30;
+}
+
+.main-bg-color {
+  background-color: #0080ff;
+}
+
+.hover-color {
+  background: #00afff;
+}
+
 /* thats code for swiper in second page */
+/* swiper-custom.css */
+.swiper-button-next,
+.swiper-button-prev {
+  background-color: white;
+  border-radius: 50%;
+  width: 25px !important;
+  height: 25px !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px !important;
+}
+
+.swiper-button-next::after {
+  font-size: 13px !important; /* Adjust the font size if needed */
+  color: #00afff;
+  padding: 10px !important;
+}
+.swiper-button-prev::after {
+  font-size: 13px !important; /* Adjust the font size if needed */
+  color: #00afff;
+  padding: 10px !important;
+}
+
+.swiper-button-next:hover,
+.swiper-button-prev:hover {
+  background-color: #f0f0f0; /* Light gray on hover */
+}

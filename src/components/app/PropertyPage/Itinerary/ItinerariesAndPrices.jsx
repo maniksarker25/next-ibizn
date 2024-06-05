@@ -2,7 +2,6 @@ import { useState } from "react";
 import CabinModal from "./CabinModal";
 
 function ItinerariesAndPrices({ propertyData }) {
-  console.log(propertyData);
   const [cabins, setCabins] = useState([]);
 
   const [open, setOpen] = useState(false);
@@ -12,18 +11,18 @@ function ItinerariesAndPrices({ propertyData }) {
   };
 
   if (!propertyData || !propertyData.schedules) {
-    return <div>No property data available.</div>;
+    return <div>No itinerary data available</div>;
   }
 
   return (
     <div className="w-full bg-primary">
       <div className="customContainer mx-auto py-8 px-4">
-        <h1 className="text-3xl text-[#0080ff] font-light md:text-6xl md:font-light md:py-4">
+        <h1 className="text-2xl text-white font-light md:text-6xl md:font-light my-8">
           Itineraries and Prices
         </h1>
 
-        {propertyData.schedules.length > 0 ? (
-          propertyData.schedules.map((schedule, index) => (
+        {propertyData?.schedules?.length > 0 ? (
+          propertyData?.schedules?.map((schedule, index) => (
             <div
               key={index}
               className="border-2 flex flex-col xl:flex-row gap-4 border-[#09aafe] text-white p-8 mb-4 rounded-lg md:justify-between items-start"
@@ -31,21 +30,21 @@ function ItinerariesAndPrices({ propertyData }) {
               <div className="w-full">
                 <div className="md:text-white md:text-4xl items-end font-[400] flex flex-wrap gap-2 md:gap-8">
                   <div className="inline-block text-xl md:text-xl lg:text-4xl">
-                    {new Date(schedule.tripStart).toLocaleDateString("en-GB", {
+                    {new Date(schedule?.tripStart).toLocaleDateString("en-GB", {
                       day: "2-digit",
                       month: "short",
                       year: "numeric",
                     })}{" "}
                     —{" "}
-                    {new Date(schedule.tripEnd).toLocaleDateString("en-GB", {
+                    {new Date(schedule?.tripEnd).toLocaleDateString("en-GB", {
                       day: "2-digit",
                       month: "short",
                       year: "numeric",
                     })}
                   </div>
                   <div className="inline-block text-2xl font-light">
-                    ({schedule.itinerary.numberOfDays} Days /{" "}
-                    {schedule.itinerary.numberOfNights} Nights)
+                    ({schedule?.itinerary?.numberOfDays} Days /{" "}
+                    {schedule?.itinerary?.numberOfNights} Nights)
                   </div>
                   <span className="inline-block text-[#09aafe] text-xl font-bold">
                     (from {schedule.cost} USD)
@@ -53,8 +52,8 @@ function ItinerariesAndPrices({ propertyData }) {
                 </div>
                 <div className="mt-4">
                   <span className="text-2xl md:text-5xl md:font-light">
-                    {schedule.itinerary.embarkationPoints} —{" "}
-                    {schedule.itinerary.disembarkationPoints}
+                    {schedule?.itinerary?.embarkationPoints} —{" "}
+                    {schedule?.itinerary?.disembarkationPoints}
                   </span>
                 </div>
               </div>
