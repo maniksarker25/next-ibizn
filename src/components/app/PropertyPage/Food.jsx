@@ -2,7 +2,7 @@ import RatingPortion from "./RatingPortion";
 
 const Content = ({ title, description }) => (
   <div className="w-full lg:w-1/2  flex flex-col justify-center items-start  md:justify-start">
-    <h1 className="text-3xl  text-[#0080FF] md:text-6xl md:font-light md:text-[#0080FF] mb-5">
+    <h1 className="text-3xl  text-[#0080FF] md:text-6xl md:font-light md:text-[#0080FF] mb-5 font-outfit">
       {title}
     </h1>
     <p className="text-[16px] md:text-xl md:font-light md:text-black md:leading-9">

@@ -4,11 +4,11 @@ import CancelOutlinedIcon from "@mui/icons-material/CancelOutlined";
 function Exclusions() {
   return (
     <>
-      <div className=" md:mt-16 lg:mt-20  customContainer gap-5 py-5 flex flex-col-reverse items-start justify-around md:flex-row md:gap-5  md:flex md:items-center md:justify-center md:py-20 md:bg-white px-4 lg:px-0">
+      <div className=" md:mt-16 lg:mt-20  customContainer gap-5 py-5 flex flex-col items-start justify-around md:flex-row md:gap-5  md:flex md:items-center md:justify-center md:py-20 md:bg-white px-4 lg:px-0">
         <div className="md:w-1/2 md:h-full flex flex-col items-start">
           <h1 className="md:text-[3vw] md:text-[#0080FF] mb-6 text-[#0080FF] text-3xl">
             <CheckCircleOutlineIcon
-              sx={{ fontSize: "50px", color: "#3a95ea" }}
+              sx={{ fontSize: "50px", fontWeight: "200px", color: "#3a95ea" }}
             />
             {"Trip Inclusions"}
           </h1>

@@ -43,11 +43,11 @@ function Liveaboards() {
             </div>
 
             <div className=" bg-[#0080FF] text-white p-2 border-t-[1px] md:border-white md:flex md:items-center md:justify-between md:pl-8 md:w-full md:py-8 md:px-8">
-              <div className="flex flex-wrap justify-start md:justify-start gap-2 md:gap-4 mt-4">
+              <div className="flex flex-wrap justify-start md:justify-start  gap-4 mt-4">
                 {buttons.map((button) => (
                   <button
                     key={button}
-                    className={`rounded-full border border-white text-sm md:text-lg p-2 md:px-4 ${
+                    className={`rounded-full border border-white text-sm md:text-lg  px-5 py-1.5 ${
                       activeButton === button
                         ? "bg-white text-[#0080FF]"
                         : "hover:bg-white hover:text-[#0080FF] cursor-pointer transition duration-300"

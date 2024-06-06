@@ -28,7 +28,7 @@ const Content = ({ title, description }) => (
     className="lg:w-1/2 w-full md:overflow-hidden md:rounded-lg md:flex md:flex-col md:justify-between md:items-start md:pr-8"
   >
     <div className="flex  flex-col items-start justify-between">
-      <h1 className="text-3xl mb-6 text-[#0080FF] md:text-6xl md:font-light md:text-[#0080FF] md:mb-5">
+      <h1 className="text-3xl mb-6 text-[#0080FF] md:text-6xl md:font-light md:text-[#0080FF] md:mb-5 font-outfit">
         {title}
       </h1>
       <p className="text-[16px] md:text-xl md:font-light md:text-black md:leading-9">

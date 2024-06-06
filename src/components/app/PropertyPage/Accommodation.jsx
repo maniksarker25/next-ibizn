@@ -51,14 +51,14 @@ const Accommodation = () => {
         </div>
         <div className="w-full lg:w-1/2 flex flex-col justify-between h-full">
           <div className="flex flex-col gap-4 lg:gap-6">
-            <h1 className="text-3xl  text-[#0080FF] md:text-6xl md:font-light md:text-[#0080FF] md:mb-5">
+            <h1 className="text-3xl  text-[#0080FF] md:text-6xl md:font-light md:text-[#0080FF] md:mb-5 font-outfit">
               Accommodation
             </h1>
             <p className="text-[16px] md:text-xl md:font-light md:text-black md:leading-9">
               {description}
             </p>
           </div>
-          <div className="flex flex-wrap gap-4 mt-4 lg:mt-6 text-[#2f2f30]">
+          <div className="flex flex-wrap gap-4 mt-12 lg:mt-16 text-[#2f2f30]">
             {Object.keys(accommodationTypes).map((button) => (
               <Button key={button} label={button} />
             ))}

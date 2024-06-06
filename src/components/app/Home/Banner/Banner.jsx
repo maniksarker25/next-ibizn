@@ -98,6 +98,7 @@ const Banner = () => {
             variant="outlined"
             size="large"
             fullWidth
+            className="w-full lg:w-[45%]"
             sx={{
               "& .MuiOutlinedInput-root": {
                 "& fieldset": {
@@ -133,7 +134,7 @@ const Banner = () => {
             }}
           />
           {searchValues?.tabValue === "Special Offers" ? (
-            <div className="w-full">
+            <div className="w-full lg:w-[25%]">
               <FormControl className=" w-full" style={{ color: "#f1f2f2" }}>
                 <InputLabel
                   style={{ color: "#f1f2f2" }}
@@ -174,6 +175,7 @@ const Banner = () => {
           ) : (
             <LocalizationProvider dateAdapter={AdapterDayjs}>
               <DatePicker
+                className="w-full lg:w-[25%]"
                 onChange={handleDateChange}
                 disablePast
                 label={"Select Month and Year"}
@@ -210,7 +212,7 @@ const Banner = () => {
             </LocalizationProvider>
           )}
 
-          <div className="w-full">
+          <div className="w-full lg:w-[25%]">
             <FormControl className=" w-full" style={{ color: "#f1f2f2" }}>
               <InputLabel
                 style={{ color: "#f1f2f2" }}
@@ -246,11 +248,13 @@ const Banner = () => {
               </Select>
             </FormControl>
           </div>
-          <div
-            className={`button2 text-[#f1f2f2] hover:text-[#0080ff] text-[14px] md:text-[22px] font-[400]`}
-            onClick={handleSearchValues}
-          >
-            Search
+          <div className="lg:w-[15%] text-center">
+            <div
+              className={` bg-white  py-2 rounded-full text-[#00afff]  text-[14px] md:text-[22px] font-[400] cursor-pointer`}
+              onClick={handleSearchValues}
+            >
+              Search
+            </div>
           </div>
         </div>
         <SearchItemModal
