@@ -3,7 +3,7 @@ import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
-import { LocalizationProvider } from "@mui/x-date-pickers-pro";
+import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers-pro";
 import { AdapterDayjs } from "@mui/x-date-pickers-pro/AdapterDayjs";
 import { DateRangePicker } from "@mui/x-date-pickers-pro/DateRangePicker";
 import { baseUrl } from "@/src/config/serverConfig";
@@ -221,7 +221,7 @@ const BoardTable = ({
               <h1 className="font-bold text-xl border-b mb-2 pb-2">
                 Trip Start And End Date
               </h1>
-              <LocalizationProvider dateAdapter={AdapterDayjs}>
+              {/* <LocalizationProvider dateAdapter={AdapterDayjs}>
                 <DateRangePicker
                   value={[formData.tripStart, formData.tripEnd]}
                   onChange={handleDateChange}
@@ -233,7 +233,35 @@ const BoardTable = ({
                     </>
                   )}
                 />
-              </LocalizationProvider>
+              </LocalizationProvider> */}
+              <div className="flex gap-6">
+                <LocalizationProvider dateAdapter={AdapterDayjs}>
+                  <div>
+                    <p className="mb-1">Start Date</p>
+                    <DatePicker
+                      value={formData.tripStart}
+                      onChange={(newDate) =>
+                        setFormData({
+                          ...formData,
+                          tripStart: newDate,
+                        })
+                      }
+                    />
+                  </div>
+                  <div>
+                    <p className="mb-1">End Date</p>
+                    <DatePicker
+                      value={formData.tripEnd}
+                      onChange={(newDate) =>
+                        setFormData({
+                          ...formData,
+                          tripEnd: newDate,
+                        })
+                      }
+                    />
+                  </div>
+                </LocalizationProvider>
+              </div>
             </div>
             <div>
               <h1 className="font-bold text-xl border-b mb-2 mt-3 pb-2">

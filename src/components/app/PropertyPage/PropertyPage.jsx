@@ -15,9 +15,9 @@ import ItinerariesAndPrices from "./Itinerary/ItinerariesAndPrices";
 
 function PropertyPage({ id }) {
   const [propertyData, setPropertyData] = useState({});
-  console.log(propertyData);
+  // console.log(propertyData);
   useEffect(() => {
-    fetch(`${baseUrl}/boats/single-boat/65ed6bb31e73aac329377956`)
+    fetch(`${baseUrl}/boats/single-boat/6661a8c60a5a86bd20f3fd83`)
       .then((res) => res.json())
       .then((data) => setPropertyData(data.data));
   }, []);
