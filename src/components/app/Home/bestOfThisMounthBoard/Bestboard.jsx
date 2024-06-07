@@ -4,7 +4,7 @@ const starRating = 3;
 
 const BestBoard = () => {
   return (
-    <div className="bg-gray-100 py-24">
+    <div className="bg-[#F1F2F2]  py-24">
       <div className="customContainer px-5 xl:px-0">
         <div>
           <h1 className="lg:text-title md:text-5xl  text-4xl  font-[250] font-outfit text-primary mb-5">
@@ -27,10 +27,10 @@ const BestBoard = () => {
                 />
               </div>
               <div className="mt-3 ">
-                <h1 className="text-primary text-xl md:text-2xl md:leading-[24px] md:w-[255px] font-light mx-auto text-center font-outfit">
+                <h1 className="text-primary text-xl md:text-2xl leading-5 md:leading-[24px] md:w-[255px] font-light mx-auto text-center font-outfit">
                   Emperor Elite Liveaboard
                 </h1>
-                <h2 className="text-[#9d9d9c] font-normal text-xl my-3">
+                <h2 className="text-[#9d9d9c] font-normal text-lg">
                   Liveboard / Egypt
                 </h2>
                 <div className="mt-3 flex gap-2 justify-center">

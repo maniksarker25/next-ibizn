@@ -52,7 +52,7 @@ const Banner = () => {
 
   return (
     <div className="bg-primary">
-      <div className=" customContainer px-5 xl:px-0">
+      <div className=" customContainer px-5 xl:px-0 pb-10 md:pb-6">
         <div className="lg:flex justify-between pt-10">
           <div className="md:flex flex-col justify-between">
             <div>
@@ -60,12 +60,12 @@ const Banner = () => {
                 Inclusive dive <br />
                 adventures start here
               </h1>
-              <h2 className="text-xl md:text-3xl font-medium mt-3 text-white tracking-wide">
+              <h2 className="text-xl md:text-3xl  mt-5 text-white tracking-wide">
                 Book your diving trip online
               </h2>
             </div>
             {/* test */}
-            <div className="flex items-center gap-2 md:gap-5 mt-10">
+            <div className="flex items-center gap-2 md:gap-5 mt-8">
               {tabItems?.map((item, index) => (
                 <div
                   onClick={() =>
@@ -76,8 +76,10 @@ const Banner = () => {
                   }
                   key={index}
                   className={`${
-                    searchValues?.tabValue === item && `bg-white text-black`
-                  } button2 text-[#f1f2f2] hover:text-[#0080ff] text-[14px] md:text-[22px] font-[400]`}
+                    searchValues?.tabValue === item
+                      ? "text-[#0080ff]  bg-white"
+                      : "text-[#f1f2f2] bg-transparent border-2"
+                  } px-3 md:px-6 cursor-pointer py-2 rounded-full text-[14px] md:text-[22px] font-[400]`}
                 >
                   {item}
                 </div>
@@ -89,7 +91,7 @@ const Banner = () => {
           </div>
         </div>
 
-        <div className="mt-10 flex flex-col md:flex-row md:space-y-0 space-y-5 gap-3 justify-between md:items-center pb-10 text-white">
+        <div className="mt-10 flex flex-col md:flex-row md:space-y-0 space-y-2 gap-3 justify-between md:items-center pb-10 text-white">
           <TextField
             onClick={() => setIsModalOpen(true)}
             id="outlined-basic"
@@ -248,9 +250,10 @@ const Banner = () => {
               </Select>
             </FormControl>
           </div>
-          <div className="lg:w-[15%] text-center">
+          <div className="w-[200px] lg:w-[15%] text-center ">
             <div
-              className={` bg-white  py-2 rounded-full text-[#00afff]  text-[14px] md:text-[22px] font-[400] cursor-pointer`}
+              className={` bg-white md:px-6 lg:px-0 py-2 rounded-full text-[#0080ff]  
+                text-[22px] font-[400] cursor-pointer mt-6 md:mt-0`}
               onClick={handleSearchValues}
             >
               Search
