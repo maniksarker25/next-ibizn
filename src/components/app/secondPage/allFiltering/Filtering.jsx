@@ -1,10 +1,12 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import FilterAltIcon from "@mui/icons-material/FilterAlt";
-import { TextField } from "@mui/material";
+import { Box, Slider, TextField, Typography } from "@mui/material";
 import FacilityFilter from "./FacilityFilter";
+import { userContext } from "@/src/storage/contextApi";
 
 const Filtering = () => {
   const [isShowPriceField, setIsShowPriceField] = useState(false);
+  const { searchValues } = useContext(userContext);
   const priceFieldRef = useRef(null);
   const handleClickOutside = (event) => {
     if (
@@ -213,7 +215,7 @@ const Filtering = () => {
             </button>
           </div>
         </form> */}
-        <div className="md:flex  gap-7 mt-5 space-y-3 md:space-y-0 md:flex-wrap lg:flex-row items-center">
+        <div className="md:flex  gap-7 mt-5 space-y-6 md:space-y-0 md:flex-wrap lg:flex-row items-center  ">
           <div>
             <div className="relative">
               <TextField
@@ -221,6 +223,7 @@ const Filtering = () => {
                 label="Price Range"
                 variant="outlined"
                 size="small"
+                fullWidth
                 onClick={() => setIsShowPriceField(true)}
                 sx={{
                   "& .MuiOutlinedInput-root": {
@@ -270,6 +273,31 @@ const Filtering = () => {
           </div>
           <div>
             <FacilityFilter />
+          </div>
+          {searchValues?.tabValue !== "Resorts" &&
+            searchValues?.property !== "resort" && (
+              <div>
+                <TextField
+                  id="outlined-basic"
+                  label=" Departure Port"
+                  variant="outlined"
+                  fullWidth
+                />
+              </div>
+            )}
+          <div>
+            {searchValues?.tabValue !== "Resorts" &&
+              searchValues?.property !== "resort" && (
+                <Box sx={{ width: 300 }}>
+                  <Typography>Duration(Number Of Night)</Typography>
+                  <Slider
+                    defaultValue={2}
+                    max={50}
+                    aria-label="Default"
+                    valueLabelDisplay="auto"
+                  />
+                </Box>
+              )}
           </div>
         </div>
       </div>

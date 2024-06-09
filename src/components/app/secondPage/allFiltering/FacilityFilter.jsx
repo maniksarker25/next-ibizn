@@ -68,7 +68,7 @@ const FacilityFilter = () => {
   }, [searchValues]);
   return (
     <div>
-      <FormControl sx={{ m: 1, width: 300 }}>
+      <FormControl sx={{ width: { xs: "100%", sm: 250 } }}>
         <InputLabel id="demo-multiple-checkbox-label">
           Select Facilities
         </InputLabel>
@@ -81,6 +81,7 @@ const FacilityFilter = () => {
           input={<OutlinedInput label="Select Facilities" />}
           renderValue={(selected) => selected.join(", ")}
           MenuProps={MenuProps}
+          width="100%"
           //   size="small"
           sx={{
             display: "flex",

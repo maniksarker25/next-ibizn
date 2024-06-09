@@ -51,7 +51,7 @@ const MyNavbar = () => {
                 USD
               </button>
             </div>
-            {user ? (
+            {/* {user ? (
               <div>
                 <button
                   onClick={handleLogOut}
@@ -60,23 +60,23 @@ const MyNavbar = () => {
                   Log out
                 </button>
               </div>
-            ) : (
-              <div className="flex md:gap-5 gap-3 md:mt-0  items-center">
-                <div
-                  // href={"/auth"}
-                  onClick={() => setIsModalOpen(true)}
-                  className="button text-[#f1f2f2] hover:text-[#0080ff] text-[12px] sm:text-base font-[300]"
-                >
-                  SignUp
-                </div>
-                <div
-                  onClick={() => setIsContactOpen(true)}
-                  className="button text-[#f1f2f2] hover:text-[#0080ff] text-[12px] sm:text-base font-[300]"
-                >
-                  Contact us
-                </div>
+            ) : ( */}
+            <div className="flex md:gap-5 gap-3 md:mt-0  items-center">
+              <div
+                // href={"/auth"}
+                onClick={() => setIsModalOpen(true)}
+                className="button text-[#f1f2f2] hover:text-[#0080ff] text-[12px] sm:text-base font-[300]"
+              >
+                SignUp
               </div>
-            )}
+              <div
+                onClick={() => setIsContactOpen(true)}
+                className="button text-[#f1f2f2] hover:text-[#0080ff] text-[12px] sm:text-base font-[300]"
+              >
+                Contact us
+              </div>
+            </div>
+            {/* )} */}
           </div>
           <div className="md:hidden">
             <button onClick={menuOpen}>
@@ -109,7 +109,7 @@ const MyNavbar = () => {
                 USD
               </button>
             </div>
-            {user ? (
+            {/* {user ? (
               <div>
                 <button
                   onClick={handleLogOut}
@@ -118,23 +118,23 @@ const MyNavbar = () => {
                   Log out
                 </button>
               </div>
-            ) : (
-              <div className="flex flex-col md:gap-5 gap-3 md:mt-0 ">
-                <div
-                  // href={"/auth"}
-                  onClick={() => setIsModalOpen(true)}
-                  className="button text-[#f1f2f2] hover:text-[#0080ff] text-[12px] sm:text-base font-[300]"
-                >
-                  SignUp
-                </div>
-                <div
-                  onClick={() => setIsContactOpen(true)}
-                  className="button text-[#f1f2f2] hover:text-[#0080ff]  text-base font-[300]"
-                >
-                  Contact us
-                </div>
+            ) : ( */}
+            <div className="flex flex-col md:gap-5 gap-3 md:mt-0 ">
+              <div
+                // href={"/auth"}
+                onClick={() => setIsModalOpen(true)}
+                className="button text-[#f1f2f2] hover:text-[#0080ff] text-[12px] sm:text-base font-[300]"
+              >
+                SignUp
               </div>
-            )}
+              <div
+                onClick={() => setIsContactOpen(true)}
+                className="button text-[#f1f2f2] hover:text-[#0080ff]  text-base font-[300]"
+              >
+                Contact us
+              </div>
+            </div>
+            {/* )} */}
             <button
               className="absolute top-2 right-2"
               onClick={() => setOpen(false)}

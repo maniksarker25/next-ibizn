@@ -16,6 +16,7 @@ import LoadingCard from "@/src/components/core/shared/Loader/LoadingCard";
 import Itineraries from "./Itineraries";
 import { Alert } from "@mui/material";
 import { useRouter } from "next/router";
+import Nitrox from "./Nitrox";
 
 const faqData = [
   {
@@ -151,13 +152,16 @@ const FindCard = ({ searchResult, isLoading }) => {
                           <Wifi facilities={item?.facilities} />
                         </div>
                         <div className="flex gap-2 items-center">
+                          <Nitrox facilities={item?.facilities} />
+                        </div>
+                        {/* <div className="flex gap-2 items-center">
                           <h1 className="text-[#0080ff] text-[14px] md:text-[25px] font-outfit">
                             Nitrox:
                           </h1>
                           <h1 className="text-[14px] md:text-[25px] text-[#0080ff]">
                             Free
                           </h1>
-                        </div>
+                        </div> */}
                         <div className="flex gap-2 items-center">
                           <h1 className="text-[#0080ff] text-[14px] md:text-[25px]">
                             Capacity:
