@@ -3,6 +3,8 @@ import FilterAltIcon from "@mui/icons-material/FilterAlt";
 import { Box, Slider, TextField, Typography } from "@mui/material";
 import FacilityFilter from "./FacilityFilter";
 import { userContext } from "@/src/storage/contextApi";
+import DivingType from "./DivingType";
+import ResortStyle from "./ResortStyle";
 
 const Filtering = () => {
   const [isShowPriceField, setIsShowPriceField] = useState(false);
@@ -274,6 +276,38 @@ const Filtering = () => {
           <div>
             <FacilityFilter />
           </div>
+          {searchValues?.tabValue === "Resorts" ||
+          searchValues?.property === "resort" ? (
+            <div>
+              <DivingType />
+            </div>
+          ) : (
+            <div>
+              <TextField
+                id="outlined-basic"
+                label="Capacity "
+                variant="outlined"
+                fullWidth
+                size="small"
+              />
+            </div>
+          )}
+          {searchValues?.tabValue === "Resorts" ||
+          searchValues?.property === "resort" ? (
+            <div>
+              <ResortStyle />
+            </div>
+          ) : (
+            <div>
+              <TextField
+                id="outlined-basic"
+                label="Charter  "
+                variant="outlined"
+                fullWidth
+                size="small"
+              />
+            </div>
+          )}
           {searchValues?.tabValue !== "Resorts" &&
             searchValues?.property !== "resort" && (
               <div>
@@ -282,6 +316,7 @@ const Filtering = () => {
                   label=" Departure Port"
                   variant="outlined"
                   fullWidth
+                  size="small"
                 />
               </div>
             )}

@@ -49,7 +49,7 @@ const BoatTable = () => {
       .then((res) => res.json())
       .then((data) => {
         if (data?.success) {
-          toast.success("Boat approved successfully");
+          toast.success("Boat status updated successfully successfully");
           setAction(true);
           setLoader(false);
         } else {

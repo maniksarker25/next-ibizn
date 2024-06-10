@@ -51,7 +51,7 @@ const ResortTable = () => {
       .then((data) => {
         console.log(data);
         if (data?.success) {
-          toast.success("Boat approved successfully");
+          toast.success("Resort status updated successfully");
           setAction(true);
           setLoader(false);
         } else {

@@ -6,7 +6,8 @@ import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 import { useContext, useEffect, useState } from "react";
 import OperatorDetails from "./OperatorDetails";
-
+import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+import { useRouter } from "next/router";
 const style = {
   position: "absolute",
   top: "50%",
@@ -34,6 +35,7 @@ const BoatModal = ({
   const [boatData, setBoatData] = useState({});
   const { loader, setLoader } = useContext(userContext);
   const [error, setError] = useState("");
+  const router = useRouter();
   const rattingNumberHandler = (e) => {
     const number = Number(e.target.value);
     console.log(number);
@@ -69,8 +71,14 @@ const BoatModal = ({
             <Spinner />
           ) : (
             <div>
-              <h2 className="text-2xl font-semibold ">
+              <h2
+                onClick={() =>
+                  window.open(`/secondPage/${boatData?._id}`, "_blank")
+                }
+                className="text-2xl font-semibold  underline cursor-pointer"
+              >
                 {boatData?.nameOfProperty}
+                <ArrowForwardIcon />
               </h2>
               <img
                 className="w-full h-[300px] rounded my-3 object-contain"
