@@ -1,5 +1,6 @@
 import { useState } from "react";
 import CabinModal from "./CabinModal";
+import BookingModal from "./BookingModal";
 
 function ItinerariesAndPrices({ propertyData }) {
   const [cabins, setCabins] = useState([]);
@@ -8,6 +9,13 @@ function ItinerariesAndPrices({ propertyData }) {
   const handleOpen = (cabins) => {
     setOpen(true);
     setCabins(cabins);
+  };
+  // for booking model;
+  const [schedule, setSchedule] = useState({});
+  const [isOpenBookingModal, setIsOpenBookingModal] = useState(false);
+  const handleOpenBookingModal = (schedule) => {
+    setSchedule(schedule);
+    setIsOpenBookingModal(true);
   };
 
   if (!propertyData || !propertyData.schedules) {
@@ -65,7 +73,10 @@ function ItinerariesAndPrices({ propertyData }) {
                 >
                   Itinerary
                 </button>
-                <button className="bg-white text-primary rounded-full px-6 py-2 md:px-16 text-sm md:text-xl lg:text-2xl">
+                <button
+                  onClick={() => handleOpenBookingModal(schedule)}
+                  className="bg-white text-primary rounded-full px-6 py-2 md:px-16 text-sm md:text-xl lg:text-2xl"
+                >
                   Select
                 </button>
               </div>
@@ -76,6 +87,12 @@ function ItinerariesAndPrices({ propertyData }) {
         )}
       </div>
       <CabinModal cabins={cabins} setOpen={setOpen} open={open} />
+      <BookingModal
+        open={isOpenBookingModal}
+        setOpen={setIsOpenBookingModal}
+        propertyData={propertyData}
+        schedule={schedule}
+      />
     </div>
   );
 }

@@ -49,7 +49,11 @@ const BoatTable = () => {
       .then((res) => res.json())
       .then((data) => {
         if (data?.success) {
-          toast.success("Boat status updated successfully successfully");
+          toast.success(
+            `Property is ${
+              data?.data?.status === "approved" ? "Activated" : "Restricted"
+            }`
+          );
           setAction(true);
           setLoader(false);
         } else {

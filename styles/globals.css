@@ -10,6 +10,9 @@ body {
 .button {
   @apply rounded-full border hover:bg-white duration-500 transition-all  px-2  sm:px-5 py-1 border-white cursor-pointer;
 }
+.main-button {
+  @apply bg-[#2563eb] text-white font-semibold rounded-md;
+}
 .button2 {
   @apply rounded-full border-2 hover:bg-white duration-500 transition-all 
     px-2.5 md:px-8   py-2 border-white cursor-pointer;

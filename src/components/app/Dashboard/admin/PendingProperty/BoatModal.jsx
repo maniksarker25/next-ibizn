@@ -8,6 +8,7 @@ import { useContext, useEffect, useState } from "react";
 import OperatorDetails from "./OperatorDetails";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import { useRouter } from "next/router";
+import LaunchIcon from "@mui/icons-material/Launch";
 const style = {
   position: "absolute",
   top: "50%",
@@ -16,7 +17,6 @@ const style = {
   width: "60vw",
   height: "80vh",
   bgcolor: "background.paper",
-  border: "2px solid #000",
   boxShadow: 24,
   p: 4,
   overflow: "scroll",
@@ -78,7 +78,7 @@ const BoatModal = ({
                 className="text-2xl font-semibold  underline cursor-pointer"
               >
                 {boatData?.nameOfProperty}
-                <ArrowForwardIcon />
+                <LaunchIcon sx={{ ml: "10px" }} />
               </h2>
               <img
                 className="w-full h-[300px] rounded my-3 object-contain"

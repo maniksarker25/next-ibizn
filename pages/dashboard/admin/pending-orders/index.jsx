@@ -1,10 +1,8 @@
-import PendingOrders from '@/src/components/app/Dashboard/admin/PendingOrders/PendingOrders';
-import React from 'react';
+import PendingOrder from "@/src/components/app/Dashboard/admin/PendingOrders/PendingOrder";
+import React from "react";
 
 const index = () => {
-    return (
-        <PendingOrders/>
-    );
+  return <PendingOrder />;
 };
 
 export default index;

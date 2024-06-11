@@ -174,7 +174,7 @@ const BankInformation = () => {
                     </h3>
                     <h3 className="mt-5">
                       <span className="font-semibold block">
-                        Account iban number
+                        Account IBAN number
                       </span>{" "}
                       <p>{bankInformation?.localBank?.accountIbanNumber}</p>
                     </h3>
@@ -197,7 +197,9 @@ const BankInformation = () => {
                       <p>{bankInformation?.localBank?.accountHolderContact}</p>
                     </h4>
                     <h4 className="mt-5">
-                      <span className="font-semibold block">Swift code</span>{" "}
+                      <span className="font-semibold block">
+                        BIC/Swift Code
+                      </span>{" "}
                       <p>{bankInformation?.localBank?.swiftCode}</p>
                     </h4>
                   </div>

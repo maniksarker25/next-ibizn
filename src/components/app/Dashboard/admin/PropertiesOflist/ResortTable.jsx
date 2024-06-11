@@ -49,9 +49,12 @@ const ResortTable = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         if (data?.success) {
-          toast.success("Resort status updated successfully");
+          toast.success(
+            `Property is ${
+              data?.data?.status === "approved" ? "Activated" : "Restricted"
+            }`
+          );
           setAction(true);
           setLoader(false);
         } else {
