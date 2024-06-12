@@ -9,7 +9,7 @@ import "swiper/css/navigation";
 
 // import required modules
 import { Navigation } from "swiper/modules";
-const SwipeBoard = () => {
+const SwipeBoard = ({ propertyData }) => {
   return (
     <div className="mt-12 ">
       <Swiper
@@ -39,42 +39,16 @@ const SwipeBoard = () => {
         }}
         className="mySwiper"
       >
-        <SwiperSlide>
-          <img
-            className="h-56 w-full md:w-96"
-            src="https://images.pexels.com/photos/163236/luxury-yacht-boat-speed-water-163236.jpeg?cs=srgb&dl=pexels-pixabay-163236.jpg&fm=jpg"
-          />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img
-            className="h-56 w-full md:w-96"
-            src="https://www.shutterstock.com/image-photo/sailboat-sea-evening-sunlight-over-600nw-717244969.jpg"
-          />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img
-            className="h-56 w-full md:w-96"
-            src="https://www.shutterstock.com/image-photo/sailboat-sea-evening-sunlight-over-600nw-717244969.jpg"
-          />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img
-            className="h-56 w-full md:w-96"
-            src="https://www.shutterstock.com/image-photo/sailboat-sea-evening-sunlight-over-600nw-717244969.jpg"
-          />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img
-            className="h-56 w-full md:w-96"
-            src="https://images.pexels.com/photos/163236/luxury-yacht-boat-speed-water-163236.jpeg?cs=srgb&dl=pexels-pixabay-163236.jpg&fm=jpg"
-          />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img
-            className="h-56 w-full md:w-96"
-            src="https://images.pexels.com/photos/163236/luxury-yacht-boat-speed-water-163236.jpeg?cs=srgb&dl=pexels-pixabay-163236.jpg&fm=jpg"
-          />
-        </SwiperSlide>
+        {propertyData?.carousal?.map((image) => (
+          <SwiperSlide>
+            <img className="h-56 w-full md:w-96" src={image} />
+          </SwiperSlide>
+        ))}
+        {propertyData?.carousalImages?.map((image) => (
+          <SwiperSlide>
+            <img className="h-56 w-full md:w-96" src={image} />
+          </SwiperSlide>
+        ))}
       </Swiper>
     </div>
   );

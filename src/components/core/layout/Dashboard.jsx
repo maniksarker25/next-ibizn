@@ -91,8 +91,8 @@ const oparatorSideBarData = [
         router: "/dashboard/pending-orders",
       },
       {
-        name: "Past Orders",
-        router: "/dashboard/past-orders",
+        name: "Orders",
+        router: "/dashboard/orders",
       },
     ],
   },
@@ -125,6 +125,11 @@ const adminSideBarData = [
   {
     name: "Pending Orders",
     router: "/dashboard/admin/pending-orders",
+    icon: <Inventory2Icon />,
+  },
+  {
+    name: "Orders",
+    router: "/dashboard/admin/orders",
     icon: <Inventory2Icon />,
   },
   {

@@ -43,11 +43,17 @@ const Content = ({ title, description }) => (
   </div>
 );
 
-function Scuba() {
+function Scuba({ propertyData }) {
   return (
     <div className="customContainer flex justify-end flex-col-reverse md:gap-5 lg:flex-row md:items-center">
-      <Image src={Diving.imageUrl} alt={Diving.imageAlt} />
-      <Content title={Diving.title} description={Diving.description} />
+      <Image
+        src={propertyData?.diving?.Picture || propertyData?.diving?.image}
+        alt={Diving.imageAlt}
+      />
+      <Content
+        title={Diving.title}
+        description={propertyData?.diving?.description}
+      />
     </div>
   );
 }

@@ -1,8 +1,5 @@
 import { baseUrl } from "@/src/config/serverConfig";
 import { useEffect, useState } from "react";
-import Region from "./Helpers/Region";
-import Country from "./Helpers/Country";
-import EditNoteIcon from "@mui/icons-material/EditNote";
 import { useRouter } from "next/router";
 import { Dropdown } from "flowbite-react";
 import Loader from "@/src/components/core/shared/Loader/Loader";
@@ -34,7 +31,7 @@ const PendingBoatOrder = () => {
 
   // handle booking status update
   const handleBookingStatusUpdate = (id, status) => {
-    fetch(`${baseUrl}/boat-booking/update-status-by-admin/${id}`, {
+    fetch(`${baseUrl}/boat-booking/update-status-by-operator/${id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
@@ -44,9 +41,12 @@ const PendingBoatOrder = () => {
     })
       .then((res) => res.json())
       .then((data) => {
+        console.log(data);
         if (data?.success) {
           toast.success(`Booking ${data?.data?.bookingStatus} successfully`);
           setControl(!control);
+        } else {
+          toast.error(data?.message || "Something went wrong");
         }
       })
       .catch((err) => {
@@ -59,7 +59,7 @@ const PendingBoatOrder = () => {
     return <Loader />;
   }
   return (
-    <div className="overflow-x-auto">
+    <div className="overflow-x-auto mt-6">
       <table className="min-w-full bg-white border border-gray-300">
         <thead>
           <tr className="text-center">
@@ -85,20 +85,20 @@ const PendingBoatOrder = () => {
                     className="bg-green-500 text-white rounded-md px-2 py-1"
                     onClick={() =>
                       router.push(
-                        `pending-orders/boat-order-edit/${booking?._id}`
+                        `pending-orders/boat-order-details/${booking?._id}`
                       )
                     }
                   >
                     View
                   </button>
-                  {booking?.bookingStatus === "pending" && (
+                  {booking?.bookingStatus === "approved" && (
                     <Dropdown label="Action" dismissOnClick={false}>
                       <Dropdown.Item
                         onClick={() =>
-                          handleBookingStatusUpdate(booking?._id, "approved")
+                          handleBookingStatusUpdate(booking?._id, "accepted")
                         }
                       >
-                        Approve
+                        Accept
                       </Dropdown.Item>
                       <Dropdown.Item
                         onClick={() =>
@@ -108,16 +108,6 @@ const PendingBoatOrder = () => {
                         Reject
                       </Dropdown.Item>
                     </Dropdown>
-                  )}
-                  {booking?.bookingStatus == "accepted" && (
-                    <button
-                      onClick={() =>
-                        handleBookingStatusUpdate(booking?._id, "confirmed")
-                      }
-                      className="bg-blue-500 rounded-md px-4 py-1 text-white"
-                    >
-                      Confirm
-                    </button>
                   )}
                 </div>
               </td>

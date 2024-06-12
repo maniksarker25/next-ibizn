@@ -18,7 +18,7 @@ const Image = ({ src, alt }) => (
   </div>
 );
 
-const Food = () => {
+const Food = ({ propertyData }) => {
   const foodInfo = {
     title: "Food Onboard",
     description: `The MSY Ilike liveaboard Raja Ampat caters for up to 16 guests in 8
@@ -35,8 +35,17 @@ const Food = () => {
 
   return (
     <div className="flex flex-col gap-10 items-center lg:flex-row  my-16 lg:my-28  customContainer bg-white">
-      <Content title={foodInfo.title} description={foodInfo.description} />
-      <Image src={foodInfo.imageUrl} alt={foodInfo.imageAlt} />
+      <Content
+        title={"Food Onboard"}
+        description={
+          propertyData?.foodOnboard?.description ||
+          propertyData?.food?.description
+        }
+      />
+      <Image
+        src={propertyData?.foodOnboard?.Picture || propertyData?.food?.image}
+        alt={foodInfo.imageAlt}
+      />
     </div>
   );
 };

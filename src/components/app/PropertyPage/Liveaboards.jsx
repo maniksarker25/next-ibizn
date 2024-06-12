@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import { useState } from "react";
 
-function Liveaboards() {
+function Liveaboards({ propertyData }) {
   const [activeButton, setActiveButton] = useState("Liveaboard");
   const router = useRouter();
   const buttons = [
@@ -27,7 +27,7 @@ function Liveaboards() {
         <div className="w-full h-3/4  md:h-full">
           <img
             className="w-full h-full object-cover"
-            src="https://plus.unsplash.com/premium_photo-1661925114893-25ed8b336213?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            src={propertyData?.featuredImage || propertyData?.featureImage}
             alt="Liveaboard"
           />
         </div>
@@ -38,7 +38,7 @@ function Liveaboards() {
                 Raja Ampat | Liveaboards
               </h1>
               <h1 className="text-4xl  md:block md:text-8xl font-light mt-2">
-                MSY Ilike
+                {propertyData?.nameOfProperty || propertyData?.propertyName}
               </h1>
             </div>
 

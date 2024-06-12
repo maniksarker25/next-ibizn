@@ -1,6 +1,6 @@
 import React from "react";
 
-function Facilities() {
+function Facilities({ propertyData }) {
   const facilityLists = [
     [
       "Life Vests",
@@ -20,21 +20,18 @@ function Facilities() {
     ],
   ];
   const facilityLists2 = [
-    [
-      "Plant-based meals available",
-      "Indoor Salon",
-      "Outdoor Dining",
-      "Audio & Video System",
-      "Freshwater maker",
-    ],
-    [
-      "Deck Towels",
-      "Cabin towels",
-      "Nitrox",
-      "Camera Rinse Tanks",
-      "Camera/Video Storage",
-      "A/C cabins",
-    ],
+    "Plant-based meals available",
+    "Indoor Salon",
+    "Outdoor Dining",
+    "Audio & Video System",
+    "Freshwater maker",
+
+    "Deck Towels",
+    "Cabin towels",
+    "Nitrox",
+    "Camera Rinse Tanks",
+    "Camera/Video Storage",
+    "A/C cabins",
   ];
 
   const renderList = (list) => (
@@ -56,20 +53,13 @@ function Facilities() {
           </h1>
         </div>
         <div className="flex flex-row lg:flex-row gap-8">
-          <div className="flex-1 flex flex-col md:flex-row gap-10">
-            {facilityLists.map((list, index) => (
-              <div key={index} className="flex-1  rounded-lg">
-                {renderList(list)}
-              </div>
+          <ul className=" grid md:grid-cols-2 justify-between space-y-4 md:space-y-0">
+            {propertyData?.facilities?.map((item, index) => (
+              <li className="mr-10" key={index}>
+                <span className="opacity-[30%]">—</span> {item}
+              </li>
             ))}
-          </div>
-          <div className="flex-1 flex flex-col md:flex-row gap-10">
-            {facilityLists2.map((list, index) => (
-              <div key={index} className="flex-1  rounded-lg">
-                {renderList(list)}
-              </div>
-            ))}
-          </div>
+          </ul>
         </div>
       </div>
     </div>

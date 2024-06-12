@@ -1,31 +1,18 @@
 import React from "react";
 
-function LiveaboardDetails() {
+function LiveaboardDetails({ propertyData }) {
   return (
     <div className="flex flex-col gap-8 lg:flex-row bg-white  md:mt-16 lg:mt-20 customContainer items-center justify-center px-4 lg:px-0">
       <div className="flex flex-col items-start justify-start gap-4 md:gap-6 lg:gap-8 font-light w-full  text-[#2f2f30]">
         <h1 className="text-3xl mt-20 text-[#0080FF] md:text-6xl md:font-light md:text-[#0080FF] md:mb-2 font-outfit">
           Ilike Liveaboard
         </h1>
-        <p className="text-[16px] md:text-xl md:font-light md:text-black md:leading-9">
-          Best Mid-Range Liveaboard in Indonesia. For the level of service,
-          attention to detail, diving experience, and drive to be inclusive, all
-          at a mid-range price, the MSY Ilike gets our vote for one of
-          Indonesia’s best mid-range priced dive liveaboards.
-        </p>
-        <p className="text-[16px] md:text-xl md:font-light md:text-black md:leading-9 pt-4">
-          Constructed in Bira, Sulawesi, in 2010, the MSY Ilike is a traditional
-          style of Indonesian Phinisi. She is a spacious, comfortable dive
-          liveaboard that cruises Indonesia’s best scuba locations. Boasting two
-          marine engines for speed and safety, she heads to Raja Ampat, Komodo,
-          the Banda Sea, and Alor. The yacht maintains all the necessary
-          equipment to ensure your well-being onboard.
-        </p>
+        {propertyData?.liveABoard?.description}
       </div>
       <div className="w-full md:h-auto md:py-16">
         <img
           className="w-full h-[350px] md:h-[500px] object-cover overflow-hidden"
-          src="https://images.unsplash.com/photo-1517217004452-4ff260cb5598?q=80&w=1964&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+          src={propertyData?.liveABoard?.Picture}
           alt="Ilike Liveaboard"
         />
       </div>

@@ -15,42 +15,42 @@ import ItinerariesAndPrices from "./Itinerary/ItinerariesAndPrices";
 
 function PropertyPage({ id }) {
   const [propertyData, setPropertyData] = useState({});
-  // console.log(propertyData);
+  console.log(propertyData);
   useEffect(() => {
-    fetch(`${baseUrl}/boats/single-boat/6661a8c60a5a86bd20f3fd83`)
+    fetch(`${baseUrl}/boats/single-boat/${id}`)
       .then((res) => res.json())
       .then((data) => setPropertyData(data.data));
   }, []);
   return (
     <>
-      <Liveaboards />
+      <Liveaboards propertyData={propertyData} />
       <div>
         <div className="">
-          <LiveaboardDetails />
+          <LiveaboardDetails propertyData={propertyData} />
           <div className="swipeboard">
-            <SwipeBoard />
+            <SwipeBoard propertyData={propertyData} />
           </div>
           <div id="accommodation">
-            <Accommodation />
+            <Accommodation propertyData={propertyData} />
           </div>
         </div>
 
         <div id="facilities">
-          <Facilities />
+          <Facilities propertyData={propertyData} />
         </div>
 
         <div className="">
           <div className="px-4 lg:px-0" id="food">
-            <Food />
+            <Food propertyData={propertyData} />
           </div>
           <div className="bg-[#F1F2F2] py-20 px-4 lg:px-0" id="scuba">
-            <Scuba />
+            <Scuba propertyData={propertyData} />
           </div>
           <div className="py-6" id="exclusions">
             <Exclusions />
           </div>
           <div className="bg-[#F1F2F2] py-20 px-4 lg:px-0">
-            <EnvironmentelPacket />
+            <EnvironmentelPacket propertyData={propertyData} />
           </div>
           <div id="itinerariesandprices">
             <ItinerariesAndPrices propertyData={propertyData} />

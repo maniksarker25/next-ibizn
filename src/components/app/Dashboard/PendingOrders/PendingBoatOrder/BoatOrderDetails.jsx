@@ -1,14 +1,11 @@
-import Spinner from "@/src/components/core/shared/Loader/Spinner";
 import { baseUrl } from "@/src/config/serverConfig";
 import { Box } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import LaunchIcon from "@mui/icons-material/Launch";
 import { Questions } from "@/src/constant/questions/questions";
 import Loader from "@/src/components/core/shared/Loader/Loader";
-import OperatorDetails from "../../../PendingProperty/OperatorDetails";
-import OrderedSchedule from "./OrderedSchedule";
-import EditForm from "./EditForm";
-const BoatEdit = ({ id }) => {
+import OrderedSchedule from "../../admin/PendingOrders/Edit/BoatEdit/OrderedSchedule";
+const BoatOrderDetails = ({ id }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [bookingData, setBookingData] = useState({});
   useEffect(() => {
@@ -138,17 +135,10 @@ const BoatEdit = ({ id }) => {
             scheduleId={bookingData?.scheduleId}
             schedules={bookingData?.property?.schedules}
           />
-          <OperatorDetails userInfo={bookingData?.operator} />
-          {bookingData?.bookingStatus === "pending" && (
-            <EditForm
-              bookingData={bookingData}
-              setBookingData={setBookingData}
-            />
-          )}
         </div>
       </Box>
     </div>
   );
 };
 
-export default BoatEdit;
+export default BoatOrderDetails;

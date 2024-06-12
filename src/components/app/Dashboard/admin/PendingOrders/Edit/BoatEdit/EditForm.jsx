@@ -147,6 +147,9 @@ const EditForm = ({ bookingData, setBookingData }) => {
         if (data?.success) {
           toast.success("Booking information updated successfully");
         }
+      })
+      .catch((err) => {
+        toast.error("Something went wrong");
       });
   };
 

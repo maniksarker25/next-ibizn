@@ -1,20 +1,17 @@
 import { baseUrl } from "@/src/config/serverConfig";
 import { useEffect, useState } from "react";
-import Region from "./Helpers/Region";
-import Country from "./Helpers/Country";
-import EditNoteIcon from "@mui/icons-material/EditNote";
 import { useRouter } from "next/router";
 import { Dropdown } from "flowbite-react";
 import Loader from "@/src/components/core/shared/Loader/Loader";
 import toast from "react-hot-toast";
-const PendingBoatOrder = () => {
+const BoatOrder = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [control, setControl] = useState(false);
-  const [pendingBooking, setPendingBooking] = useState([]);
+  const [boatOrders, setBoatOrders] = useState([]);
   const router = useRouter();
   useEffect(() => {
     setIsLoading(true);
-    fetch(`${baseUrl}/boat-booking/pending-booking`, {
+    fetch(`${baseUrl}/boat-booking/confirm-booking`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -23,7 +20,7 @@ const PendingBoatOrder = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        setPendingBooking(data?.data);
+        setBoatOrders(data?.data);
         setIsLoading(false);
       })
       .catch((err) => {
@@ -59,7 +56,7 @@ const PendingBoatOrder = () => {
     return <Loader />;
   }
   return (
-    <div className="overflow-x-auto">
+    <div className="overflow-x-auto mt-4">
       <table className="min-w-full bg-white border border-gray-300">
         <thead>
           <tr className="text-center">
@@ -69,7 +66,7 @@ const PendingBoatOrder = () => {
           </tr>
         </thead>
         <tbody>
-          {pendingBooking?.map((booking, index) => (
+          {boatOrders?.map((booking, index) => (
             <tr
               key={booking?._id}
               className={
@@ -85,7 +82,7 @@ const PendingBoatOrder = () => {
                     className="bg-green-500 text-white rounded-md px-2 py-1"
                     onClick={() =>
                       router.push(
-                        `pending-orders/boat-order-edit/${booking?._id}`
+                        `pending-orders/boat-order-details/${booking?._id}`
                       )
                     }
                   >
@@ -129,4 +126,4 @@ const PendingBoatOrder = () => {
   );
 };
 
-export default PendingBoatOrder;
+export default BoatOrder;

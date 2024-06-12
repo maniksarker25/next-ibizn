@@ -3,7 +3,6 @@ import React, { useContext, useEffect, useState } from "react";
 import { useDropzone } from "react-dropzone";
 import { compressAndConvertToBase64 } from "@/src/config/base64";
 import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
-import { DateRangePicker } from "@mui/x-date-pickers-pro";
 import { AdapterDayjs } from "@mui/x-date-pickers-pro/AdapterDayjs";
 import { userContext } from "@/src/storage/contextApi";
 import {
