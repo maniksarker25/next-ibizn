@@ -3,6 +3,7 @@ import React, { useEffect, useState, useContext } from "react";
 import { baseUrl } from "@/src/config/serverConfig";
 import { userContext } from "@/src/storage/contextApi";
 import Loader from "../../../../../core/shared/Loader/Loader";
+import PackageSelect from "./PackageSelect";
 
 const CheckFeilds = ({
   handleInputChange,
@@ -14,7 +15,8 @@ const CheckFeilds = ({
   decreaseProgress,
   resortData,
 }) => {
-  console.log({ resortData });
+  // console.log({ resortData });
+  const [packageError, setPackageError] = useState("");
   const { loader, setLoader } = useContext(userContext);
   const [inclusionShowOthers, setInclusionShowOthers] = useState(false);
   const [exclusionsShowOthers, setExclusionsShowOthers] = useState(false);
@@ -25,7 +27,7 @@ const CheckFeilds = ({
   const [selectedInclusions, setSelectedInclusions] = useState([]);
   const [selectedEquipments, setSelectedEquipments] = useState([]);
   const [selectedDiveCourse, setSelectedDiveCourse] = useState([]);
-  console.log(selectedExclusions);
+  // console.log(selectedExclusions);
 
   // get check field data
   const [facilities, setFacilities] = useState([]);
@@ -219,6 +221,10 @@ const CheckFeilds = ({
   // go to next step ------------
   const goToNextStep = (e) => {
     e.preventDefault();
+    if (!resortData?.listOfPackages?.length) {
+      setPackageError("Please select package");
+      return;
+    }
     setCurrentStep(currentStep + 1);
     increaseProgress();
   };
@@ -662,6 +668,11 @@ const CheckFeilds = ({
             />
           )}
         </div>
+        <PackageSelect
+          resortData={resortData}
+          setResortData={setResortData}
+          packageError={packageError}
+        />
         <div className="flex justify-between mt-10">
           {currentStep > 1 && (
             <button

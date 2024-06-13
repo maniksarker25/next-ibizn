@@ -8,7 +8,6 @@ import BankInformationModal from "./BankInformationModal";
 import { userContext } from "@/src/storage/contextApi";
 import { ClipLoader } from "react-spinners";
 
-
 const style = {
   position: "absolute",
   top: "50%",
@@ -82,11 +81,19 @@ const BankInformation = () => {
     const accountNumber = form.accountNumber.value;
     const routingNumber = form.routingNumber.value;
     const accountHolderName = form.accountHolderName.value;
+    const accountHolderAddress = form.accountHolderAddress.value;
+    const accountIbanNumber = form.accountIbanNumber.value;
+    const swiftCode = form.swiftCode.value;
+    const accountHolderContact = form.accountHolderContact.value;
     const localBank = {
       bankName,
       accountNumber,
       routingNumber,
       accountHolderName,
+      accountHolderAddress,
+      accountIbanNumber,
+      swiftCode,
+      accountHolderContact,
     };
     setSubmitLoader(true);
     fetch(`${baseUrl}/bank-information`, {
@@ -131,7 +138,7 @@ const BankInformation = () => {
   return (
     <div className="mt-10">
       <h1 className="text-2xl font-semibold border-b-2 pb-2 border-indigo-200">
-        Bank information{" "}
+        Bank information for booking payments{" "}
       </h1>
       <div>
         {bankInformation ? (
@@ -159,6 +166,18 @@ const BankInformation = () => {
                       </span>{" "}
                       <p>{bankInformation?.localBank?.accountNumber}</p>
                     </h3>
+                    <h3 className="mt-5">
+                      <span className="font-semibold block">
+                        Account holder address
+                      </span>{" "}
+                      <p>{bankInformation?.localBank?.accountHolderAddress}</p>
+                    </h3>
+                    <h3 className="mt-5">
+                      <span className="font-semibold block">
+                        Account IBAN number
+                      </span>{" "}
+                      <p>{bankInformation?.localBank?.accountIbanNumber}</p>
+                    </h3>
                   </div>
                   <div>
                     <h4>
@@ -167,9 +186,21 @@ const BankInformation = () => {
                     </h4>
                     <h4 className="mt-5">
                       <span className="font-semibold block">
-                        Routing number
+                        ACH Routing Number
                       </span>{" "}
                       <p>{bankInformation?.localBank?.routingNumber}</p>
+                    </h4>
+                    <h4 className="mt-5">
+                      <span className="font-semibold block">
+                        Account holder contact
+                      </span>{" "}
+                      <p>{bankInformation?.localBank?.accountHolderContact}</p>
+                    </h4>
+                    <h4 className="mt-5">
+                      <span className="font-semibold block">
+                        BIC/Swift Code
+                      </span>{" "}
+                      <p>{bankInformation?.localBank?.swiftCode}</p>
                     </h4>
                   </div>
                 </div>
@@ -246,8 +277,11 @@ const BankInformation = () => {
       >
         <Box sx={style}>
           {updateBank === "localBank" ? (
-            <form onSubmit={updateLocalBankInfo}>
-              <div className="mt-3">
+            <form
+              className="h-[60vh] overflow-scroll"
+              onSubmit={updateLocalBankInfo}
+            >
+              <div className="mt-3 ">
                 <p className="text-lg font-semibold">Bank Name:</p>
                 <input
                   type="text"
@@ -258,7 +292,7 @@ const BankInformation = () => {
                 />
               </div>
               <div className="mt-3">
-                <p className="text-lg font-semibold">Routing Number:</p>
+                <p className="text-lg font-semibold">ACH Routing Number:</p>
                 <input
                   type="number"
                   name="routingNumber"
@@ -285,6 +319,52 @@ const BankInformation = () => {
                   className="w-full rounded-md"
                   required
                   defaultValue={bankInformation?.localBank?.accountHolderName}
+                />
+              </div>
+              <div className="mt-3">
+                <p className="text-lg font-semibold">Account Holder Address:</p>
+                <input
+                  type="text"
+                  name="accountHolderAddress"
+                  className="w-full rounded-md"
+                  required
+                  defaultValue={
+                    bankInformation?.localBank?.accountHolderAddress
+                  }
+                />
+              </div>
+              <div className="mt-3">
+                <p className="text-lg font-semibold">Account IBAN number :</p>
+                <input
+                  type="number"
+                  name="accountIbanNumber"
+                  className="w-full rounded-md"
+                  required
+                  defaultValue={bankInformation?.localBank?.accountIbanNumber}
+                />
+              </div>
+              <div className="mt-3">
+                <p className="text-lg font-semibold">BIC/Swift Code :</p>
+                <input
+                  type="text"
+                  name="swiftCode"
+                  className="w-full rounded-md"
+                  required
+                  defaultValue={bankInformation?.localBank?.swiftCode}
+                />
+              </div>
+              <div className="mt-3">
+                <p className="text-lg font-semibold">
+                  Account Holder Contact :
+                </p>
+                <input
+                  type="text"
+                  name="accountHolderContact"
+                  className="w-full rounded-md"
+                  required
+                  defaultValue={
+                    bankInformation?.localBank?.accountHolderContact
+                  }
                 />
               </div>
               <button

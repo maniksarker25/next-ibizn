@@ -9,15 +9,15 @@ const OperatorsOfList = () => {
   const { control, setControl, loader, setLoader } = useContext(userContext);
 
   useEffect(() => {
-    setLoader(true)
+    setLoader(true);
     fetch(`${baseUrl}/users/get-operators`, {
       headers: { Authorization: localStorage.getItem("access-token") },
     })
       .then((res) => res.json())
       .then((data) => {
         if (data.success && data?.data?.length > 0) {
-          setOperators(data?.data)
-          setLoader(false)
+          setOperators(data?.data);
+          setLoader(false);
         }
       })
       .catch((err) => setLoader(false));
@@ -65,8 +65,8 @@ const OperatorsOfList = () => {
       .catch((err) => toast.error("Something went wrong,try again later"));
   };
 
-  if(loader){
-    return <Loader/>
+  if (loader) {
+    return <Loader />;
   }
 
   return (
@@ -112,14 +112,14 @@ const OperatorsOfList = () => {
                     onClick={() => restrictUser(item?._id)}
                     className="px-3 py-1 rounded bg-red-400 text-white"
                   >
-                    Restrict
+                    Make Restricted
                   </button>
                 ) : (
                   <button
                     onClick={() => unRestrictUser(item?._id)}
                     className="px-3 py-1 rounded bg-green-400 text-white"
                   >
-                    UnRestrict
+                    Make Active
                   </button>
                 )}
               </td>

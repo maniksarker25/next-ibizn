@@ -4,13 +4,13 @@ import LinearProgress from "@mui/material/LinearProgress";
 import AddResortForm from "./AddResortForm/AddResortForm";
 
 const AddResort = () => {
-  const [progress, setProgress] = React.useState(8);
+  const [progress, setProgress] = React.useState(7);
   const increaseProgress = () => {
-    setProgress((oldProgress) => Math.min(oldProgress + 12.5, 100));
+    setProgress((oldProgress) => Math.min(oldProgress + 14.28, 100));
   };
 
   const decreaseProgress = () => {
-    setProgress((oldProgress) => Math.max(oldProgress - 12.5, 0));
+    setProgress((oldProgress) => Math.max(oldProgress - 14.28, 0));
   };
   //   React.useEffect(() => {
   //     const timer = setInterval(() => {

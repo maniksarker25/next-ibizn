@@ -2,8 +2,9 @@ import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { baseUrl } from "@/src/config/serverConfig";
+import { userContext } from "@/src/storage/contextApi";
 
 const style = {
   position: "absolute",
@@ -31,9 +32,11 @@ export default function SearchItemModal({
   isModalOpen,
   setIsModalOpen,
   setDestination,
+  destination,
 }) {
   const handleClose = () => setIsModalOpen(false);
   const [searchItems, setSearchItems] = useState([]);
+  const { searchValues, setSearchValues } = useContext(userContext);
   //   console.log(searchItems);
   //   const [updatedSearchItems, setUpdatedSearchItems] = useState([]);
   //   console.log(updatedSearchItems);
@@ -60,13 +63,25 @@ export default function SearchItemModal({
   const updateSearchItem = getUniqueRegionsWithCountries(searchItems);
   // get search item
   useEffect(() => {
-    fetch(`${baseUrl}/resorts/search-item`)
+    fetch(
+      `${baseUrl}/${
+        searchValues?.tabValue === "Resorts" ||
+        searchValues?.property === "resort"
+          ? "resorts"
+          : "boats"
+      }/search-item`
+    )
       .then((res) => res.json())
       .then((data) => setSearchItems(data?.data));
-  }, []);
+  }, [searchValues]);
 
   const handleDestination = (destination) => {
-    setDestination(destination);
+    // setSearchValues({ ...searchValues, destination });
+    if (setDestination) {
+      setDestination(destination);
+    } else {
+      setSearchValues({ ...searchValues, destination });
+    }
     setIsModalOpen(false);
   };
 

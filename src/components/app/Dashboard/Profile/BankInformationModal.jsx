@@ -80,11 +80,19 @@ const BankInformationModal = ({
     const accountNumber = form.accountNumber.value;
     const routingNumber = form.routingNumber.value;
     const accountHolderName = form.accountHolderName.value;
+    const accountHolderAddress = form.accountHolderAddress.value;
+    const accountIbanNumber = form.accountIbanNumber.value;
+    const swiftCode = form.swiftCode.value;
+    const accountHolderContact = form.accountHolderContact.value;
     const localBank = {
       bankName,
       accountNumber,
       routingNumber,
       accountHolderName,
+      accountHolderAddress,
+      accountIbanNumber,
+      swiftCode,
+      accountHolderContact,
     };
     setSubmitLoader(true);
     fetch(`${baseUrl}/bank-information`, {
@@ -103,6 +111,7 @@ const BankInformationModal = ({
           setOpenBankInfoModal(false);
           setSubmitLoader(false);
         } else {
+          setSubmitLoader(false);
           toast.error(data.message);
         }
       })
@@ -134,7 +143,7 @@ const BankInformationModal = ({
                 </Tabs>
               </Box>
               <CustomTabPanel value={value} index={0}>
-                <div>
+                <div className="h-[60vh] overflow-scroll">
                   <form onSubmit={handleAddLocalBank}>
                     <div className="mt-3">
                       <p className="text-lg font-semibold">Bank Name:</p>
@@ -170,6 +179,48 @@ const BankInformationModal = ({
                       <input
                         type="text"
                         name="accountHolderName"
+                        className="w-full rounded-md"
+                        required
+                      />
+                    </div>
+                    <div className="mt-3">
+                      <p className="text-lg font-semibold">
+                        Account Holder Address:
+                      </p>
+                      <input
+                        type="text"
+                        name="accountHolderAddress"
+                        className="w-full rounded-md"
+                        required
+                      />
+                    </div>
+                    <div className="mt-3">
+                      <p className="text-lg font-semibold">
+                        Account IBAN number :
+                      </p>
+                      <input
+                        type="number"
+                        name="accountIbanNumber"
+                        className="w-full rounded-md"
+                        required
+                      />
+                    </div>
+                    <div className="mt-3">
+                      <p className="text-lg font-semibold">BIC/Swift Code :</p>
+                      <input
+                        type="text"
+                        name="swiftCode"
+                        className="w-full rounded-md"
+                        required
+                      />
+                    </div>
+                    <div className="mt-3">
+                      <p className="text-lg font-semibold">
+                        Account Holder Contact :
+                      </p>
+                      <input
+                        type="text"
+                        name="accountHolderContact"
                         className="w-full rounded-md"
                         required
                       />

@@ -3,7 +3,7 @@ import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
-import { LocalizationProvider } from "@mui/x-date-pickers-pro";
+import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers-pro";
 import { AdapterDayjs } from "@mui/x-date-pickers-pro/AdapterDayjs";
 import { DateRangePicker } from "@mui/x-date-pickers-pro/DateRangePicker";
 import { baseUrl } from "@/src/config/serverConfig";
@@ -49,6 +49,7 @@ const BoardTable = ({
   increaseProgress,
   decreaseProgress,
   boardData,
+  submitData,
 }) => {
   console.log({ boardData });
   const [row, setRow] = useState(0);
@@ -128,12 +129,11 @@ const BoardTable = ({
   };
   console.log({ itineraryData });
 
- const removeRow= (index)=>{
-  
-  const newItineraryData =  itineraryData.filter((item,index))
-  
-  setItineraryData(newItineraryData)
- }
+  const removeRow = (index) => {
+    const newItineraryData = itineraryData.filter((item, index));
+
+    setItineraryData(newItineraryData);
+  };
 
   // go to next step ------------
   const goToNextStep = (e) => {
@@ -148,7 +148,7 @@ const BoardTable = ({
   };
   return (
     <div className="overflow-x-auto">
-      <form onSubmit={goToNextStep}>
+      <form onSubmit={submitData}>
         <Button onClick={incrementRow}>(+) add new row</Button>
         <table className="min-w-full bg-white border border-gray-300">
           <thead>
@@ -190,23 +190,20 @@ const BoardTable = ({
                   )}
                 </td>
                 <td className="py-2  border-b flex justify-center">
-                <div className="flex gap-3 items-center">
-                <button
-                  
-                  className="px-3 py-1 rounded bg-indigo-500 text-white flex gap-2 items-center"
-                >
-                  <span>Edit</span> <EditNoteOutlined/>
-                </button>
-                <button
-                type="button"
-                 onClick={()=> removeRow(index)}
-                  className="px-3 py-1 rounded bg-red-500 text-white flex gap-2 items-center"
-                >
-                  <span>Delete</span> <DeleteOutline/>
-                </button>
-                </div>
-              </td>
-                
+                  <div className="flex gap-3 items-center">
+                    <button className="px-3 py-1 rounded bg-indigo-500 text-white flex gap-2 items-center">
+                      <span>Edit</span> <EditNoteOutlined />
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => removeRow(index)}
+                      className="px-3 py-1 rounded bg-red-500 text-white flex gap-2 items-center"
+                    >
+                      <span>Delete</span> <DeleteOutline />
+                    </button>
+                  </div>
+                </td>
+
                 {/* Add more columns as needed */}
               </tr>
             ))}
@@ -224,7 +221,7 @@ const BoardTable = ({
               <h1 className="font-bold text-xl border-b mb-2 pb-2">
                 Trip Start And End Date
               </h1>
-              <LocalizationProvider dateAdapter={AdapterDayjs}>
+              {/* <LocalizationProvider dateAdapter={AdapterDayjs}>
                 <DateRangePicker
                   value={[formData.tripStart, formData.tripEnd]}
                   onChange={handleDateChange}
@@ -236,7 +233,35 @@ const BoardTable = ({
                     </>
                   )}
                 />
-              </LocalizationProvider>
+              </LocalizationProvider> */}
+              <div className="flex gap-6">
+                <LocalizationProvider dateAdapter={AdapterDayjs}>
+                  <div>
+                    <p className="mb-1">Start Date</p>
+                    <DatePicker
+                      value={formData.tripStart}
+                      onChange={(newDate) =>
+                        setFormData({
+                          ...formData,
+                          tripStart: newDate,
+                        })
+                      }
+                    />
+                  </div>
+                  <div>
+                    <p className="mb-1">End Date</p>
+                    <DatePicker
+                      value={formData.tripEnd}
+                      onChange={(newDate) =>
+                        setFormData({
+                          ...formData,
+                          tripEnd: newDate,
+                        })
+                      }
+                    />
+                  </div>
+                </LocalizationProvider>
+              </div>
             </div>
             <div>
               <h1 className="font-bold text-xl border-b mb-2 mt-3 pb-2">

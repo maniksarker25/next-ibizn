@@ -9,7 +9,15 @@ const ContextApi = ({ children }) => {
   const [country, setCountry] = useState([]);
   const [loader, setLoader] = useState(true);
   const [submitLoader, setSubmitLoader] = useState(false);
-
+  const [searchValues, setSearchValues] = useState({
+    tabValue: "Liveaboards",
+    destination: "",
+    // property: "",
+    date: "",
+    minRating: "",
+    maxRating: "",
+  });
+  console.log(searchValues);
   useEffect(() => {
     fetch("/country.json")
       .then((res) => res.json())
@@ -37,8 +45,7 @@ const ContextApi = ({ children }) => {
         setLoader(false);
       });
   }, [control]);
- 
-  
+
   const value = {
     user,
     setUser,
@@ -49,7 +56,8 @@ const ContextApi = ({ children }) => {
     setLoader,
     submitLoader,
     setSubmitLoader,
-    
+    searchValues,
+    setSearchValues,
   };
   // console.log({ country });
   return (

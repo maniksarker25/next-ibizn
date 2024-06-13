@@ -5,7 +5,10 @@ import { userContext } from "@/src/storage/contextApi";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 import { useContext, useEffect, useState } from "react";
-
+import OperatorDetails from "./OperatorDetails";
+import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+import { useRouter } from "next/router";
+import LaunchIcon from "@mui/icons-material/Launch";
 const style = {
   position: "absolute",
   top: "50%",
@@ -14,7 +17,6 @@ const style = {
   width: "60vw",
   height: "80vh",
   bgcolor: "background.paper",
-  border: "2px solid #000",
   boxShadow: 24,
   p: 4,
   overflow: "scroll",
@@ -28,10 +30,12 @@ const BoatModal = ({
   handleClose,
   setRatings,
   setFoodBasedQuestionAnswer,
+  ratingError,
 }) => {
   const [boatData, setBoatData] = useState({});
   const { loader, setLoader } = useContext(userContext);
   const [error, setError] = useState("");
+  const router = useRouter();
   const rattingNumberHandler = (e) => {
     const number = Number(e.target.value);
     console.log(number);
@@ -67,8 +71,14 @@ const BoatModal = ({
             <Spinner />
           ) : (
             <div>
-              <h2 className="text-2xl font-semibold ">
+              <h2
+                onClick={() =>
+                  window.open(`/secondPage/${boatData?._id}`, "_blank")
+                }
+                className="text-2xl font-semibold  underline cursor-pointer"
+              >
                 {boatData?.nameOfProperty}
+                <LaunchIcon sx={{ ml: "10px" }} />
               </h2>
               <img
                 className="w-full h-[300px] rounded my-3 object-contain"
@@ -160,37 +170,44 @@ const BoatModal = ({
                   );
                 })}
               </div>
-
-              <div>
-                {/* <p>Food Based Question Answer</p>
+              <OperatorDetails userInfo={boatData?.user} />
+              {boatData?.status === "pending" && (
+                <div>
+                  <div>
+                    {/* <p>Food Based Question Answer</p>
                 <textarea
                   name="foodBasedQuestionAnswer"
                   type="text"
                   onChange={(e) => setFoodBasedQuestionAnswer(e.target.value)}
                   className="w-full"
                 /> */}
-                <div className="space-y-2">
-                  <p className="font-medium">Add veganRating</p>
+                    <div className="space-y-2">
+                      <p className="font-medium">Add veganRating</p>
 
-                  <input
-                    onChange={(e) => rattingNumberHandler(e)}
-                    type="number"
-                    className="focus:border-none active:border-none py-2 w-[300px]"
-                    min={1}
-                    max={5}
-                  />
-                  {error && <p className="text-red-600 block">{error}</p>}
+                      <input
+                        onChange={(e) => rattingNumberHandler(e)}
+                        type="number"
+                        className="focus:border-none active:border-none py-2 w-[300px]"
+                        min={1}
+                        max={5}
+                      />
+                      {error && <p className="text-red-600 block">{error}</p>}
+                      {ratingError && (
+                        <p className="text-red-600 block">{ratingError}</p>
+                      )}
+                    </div>
+                  </div>
+                  <div className="mt-3">
+                    <button
+                      onClick={() => handleApproved(boatData?._id)}
+                      className="text-white bg-green-500 rounded px-4 py-2"
+                      disabled={error}
+                    >
+                      Approve
+                    </button>
+                  </div>
                 </div>
-              </div>
-              <div className="mt-3">
-                <button
-                  onClick={() => handleApproved(boatData?._id)}
-                  className="text-white bg-green-500 rounded px-4 py-2"
-                  disabled={error}
-                >
-                  Approve
-                </button>
-              </div>
+              )}
             </div>
           )}
         </Box>

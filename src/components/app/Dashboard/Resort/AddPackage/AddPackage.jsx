@@ -31,12 +31,13 @@ const AddPackage = () => {
       body: JSON.stringify({
         packageName: packageData?.packageName,
         numberOfDay: parseInt(packageData?.numberOfDay),
+        numberOfNight: parseInt(packageData?.numberOfNight),
         roomType: packageData?.roomType,
         numberOfDivies: parseInt(packageData?.numberOfDivies),
         fullBoard: packageData?.fullBoard,
         breakfast: packageData?.breakfast,
         upgradeable: packageData?.upgradeable,
-        resortDailySchedule: packageData?.resortDailySchedule,
+        // resortDailySchedule: packageData?.resortDailySchedule,
         divingCourses: packageData?.divingCourses,
         price: parseFloat(packageData?.price),
       }),
@@ -62,7 +63,7 @@ const AddPackage = () => {
       .catch((err) => console.log(err));
   };
 
-  console.log(packageData);
+  // console.log(packageData);
   return (
     <div className="max-w-screen-lg mx-auto ">
       <h3 className="text-center font-semibold text-3xl">
@@ -82,14 +83,14 @@ const AddPackage = () => {
                 className="w-full rounded-md"
               />
             </div>
-            <div className="mt-3 w-full">
-              <p className="text-lg font-semibold">Number of Days</p>
+            <div className="mt-4 w-full">
+              <p className="text-lg font-semibold">Price</p>
               <input
                 onChange={handlePackageDataOnChange}
                 type="number"
                 required
-                name="numberOfDay"
-                placeholder="Number of Days"
+                name="price"
+                placeholder="Price"
                 className="w-full rounded-md"
               />
             </div>
@@ -166,20 +167,31 @@ const AddPackage = () => {
               </select>
             </div>
           </div>
-          <div>
-            <div className="mt-4 w-full">
-              <p className="text-lg font-semibold">Price</p>
+          <div className="lg:flex gap-3 items-center">
+            <div className="mt-3 w-full">
+              <p className="text-lg font-semibold">Number of Days</p>
               <input
                 onChange={handlePackageDataOnChange}
                 type="number"
                 required
-                name="price"
-                placeholder="Price"
+                name="numberOfDay"
+                placeholder="Number of Days"
+                className="w-full rounded-md"
+              />
+            </div>
+            <div className="mt-3 w-full">
+              <p className="text-lg font-semibold">Number of Nights</p>
+              <input
+                onChange={handlePackageDataOnChange}
+                type="number"
+                required
+                name="numberOfNight"
+                placeholder="Number of Days"
                 className="w-full rounded-md"
               />
             </div>
           </div>
-          <div className="mt-3">
+          {/* <div className="mt-3">
             <p className="text-lg font-semibold">Resort daily schedule</p>
             <textarea
               onChange={handlePackageDataOnChange}
@@ -189,7 +201,7 @@ const AddPackage = () => {
               placeholder="Resort daily schedule"
               className="w-full h-20 rounded-md"
             />
-          </div>
+          </div> */}
           {error && <p className="text-red-600 text-xl mb-3">{error}</p>}
 
           <input

@@ -13,7 +13,7 @@ import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 
 const Auth = () => {
   const [active, setActive] = useState("Sign Up");
-  const {submitLoader, setSubmitLoader}=useContext(userContext)
+  const { submitLoader, setSubmitLoader } = useContext(userContext);
   const [isSignUp, setIsSingUp] = React.useState(false);
   const [value, setValue] = useState();
   const router = useRouter();
@@ -51,18 +51,19 @@ const Auth = () => {
           setSubmitLoader(false);
         } else {
           setError(data.message);
-          setSubmitLoader(false)
+          setSubmitLoader(false);
         }
       })
       .catch((err) => {
-        console.log(err)
-        setSubmitLoader(false)
+        console.log(err);
+        setSubmitLoader(false);
       });
   };
 
   const signInUser = (data) => {
+    console.log("signInUser", data);
     setLoginError("");
-    setSubmitLoader(true)
+    setSubmitLoader(true);
     fetch(`${baseUrl}/users/sign-in`, {
       method: "POST",
       headers: {
@@ -79,24 +80,24 @@ const Auth = () => {
           localStorage.setItem("access-token", token);
           toast.success("login successfully");
           setControl(!control);
-          setSubmitLoader(false)
+          setSubmitLoader(false);
 
           // if (data?.data?.user?.bankAccount) {
-          //   
+          //
           // } else {
           //   router.push("/dashboard/profile");
-            
+
           // }
-          router.push("/");
+          router.push("/dashboard/profile");
         } else {
-          setSubmitLoader(false)
+          setSubmitLoader(false);
           console.log(data);
           setLoginError(data?.message);
         }
       })
       .catch((err) => {
         console.error("Error during sign-in:", err);
-        setSubmitLoader(false)
+        setSubmitLoader(false);
       });
   };
 

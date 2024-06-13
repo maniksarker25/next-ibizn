@@ -2,12 +2,21 @@ import Loader from "@/src/components/core/shared/Loader/Loader";
 import { baseUrl } from "@/src/config/serverConfig";
 import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
+import BoatModal from "../PendingProperty/BoatModal";
 
 const BoatTable = () => {
   const [boats, setBoats] = useState([]);
   const [loader, setLoader] = useState(false);
   const [action, setAction] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [open, setOpen] = React.useState(false);
+  const [singleData, setSingleData] = useState({});
+
+  const handleOpen = (data) => {
+    setSingleData({ id: data?._id });
+    setOpen(true);
+  };
+  const handleClose = () => setOpen(false);
   useEffect(() => {
     setLoading(true);
     fetch(`${baseUrl}/boats/approved-boats`, {
@@ -39,9 +48,12 @@ const BoatTable = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         if (data?.success) {
-          toast.success("Boat approved successfully");
+          toast.success(
+            `Property is ${
+              data?.data?.status === "approved" ? "Activated" : "Restricted"
+            }`
+          );
           setAction(true);
           setLoader(false);
         } else {
@@ -100,7 +112,7 @@ const BoatTable = () => {
                           item?.resitricted ? "text-red-500" : "text-green-800"
                         } text-xs font-medium me-2 px-2.5 py-0.5 rounded-full`}
                       >
-                        {item?.resitricted ? "restricted" : "unrestricted"}
+                        {item?.resitricted ? "restricted" : "Active"}
                       </span>
                     </td>
                     {/* <td className="py-2 px-4 border-b">{item?.region}</td>
@@ -108,13 +120,19 @@ const BoatTable = () => {
 
                     <td className="py-2 px-4 border-b">
                       <button
+                        onClick={() => handleOpen(item)}
+                        className="mr-4 bg-green-500 px-3 py-1 text-white  rounded"
+                      >
+                        View
+                      </button>
+                      <button
                         disabled={loader}
                         onClick={() => handleStatusChange(item?._id)}
                         className={`px-3 py-1 rounded ${
                           item?.resitricted ? "bg-green-400" : "bg-red-400"
                         } text-white`}
                       >
-                        {item?.resitricted ? "unrestricted" : "restricted"}
+                        {item?.resitricted ? "Make Active" : "Make Restricted"}
                       </button>
                     </td>
                   </tr>
@@ -123,6 +141,12 @@ const BoatTable = () => {
           </table>
         </div>
       )}
+      <BoatModal
+        open={open}
+        setOpen={setOpen}
+        singleData={singleData}
+        handleClose={handleClose}
+      />
     </div>
   );
 };

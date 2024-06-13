@@ -17,7 +17,7 @@ const AddResortForm = ({ increaseProgress, decreaseProgress }) => {
   const rotuer = useRouter();
   const { submitLoader, setSubmitLoader } = useContext(userContext);
   const [currentStep, setCurrentStep] = useState(1);
-  const totalSteps = 8;
+  const totalSteps = 7;
   const [listofPackages, setListOfPackages] = useState([]);
   const [caruselImages, setCaruselImages] = useState([]);
   const [deactivitionDate, setDeactivitionDate] = useState({});
@@ -26,7 +26,10 @@ const AddResortForm = ({ increaseProgress, decreaseProgress }) => {
     accommodation: {},
     diving: {},
   });
+  // console.log("deactivations: ", deactivitionDate);
+  // console.log("discount time: ", discountTimeFrameDate);
 
+  // console.log(resortData);
   const handleInputChange = (e) => {
     let newValue = { ...resortData };
     if (e.target.name === "special") {
@@ -240,7 +243,7 @@ const AddResortForm = ({ increaseProgress, decreaseProgress }) => {
       },
       body: JSON.stringify({
         ...resortData,
-        listOfPackages: [...listofPackages],
+        // listOfPackages: [...listofPackages],
         carousalImages: [...caruselImages],
         deactivationPeriod: {
           ...deactivitionDate,
@@ -353,19 +356,19 @@ const AddResortForm = ({ increaseProgress, decreaseProgress }) => {
             decreaseProgress={decreaseProgress}
           />
         );
+      // case 6:
+      //   return (
+      //     <Room
+      //       resortData={resortData}
+      //       handleRoomsChange={handleRoomsChange}
+      //       totalSteps={totalSteps}
+      //       currentStep={currentStep}
+      //       setCurrentStep={setCurrentStep}
+      //       increaseProgress={increaseProgress}
+      //       decreaseProgress={decreaseProgress}
+      //     />
+      //   );
       case 6:
-        return (
-          <Room
-            resortData={resortData}
-            handleRoomsChange={handleRoomsChange}
-            totalSteps={totalSteps}
-            currentStep={currentStep}
-            setCurrentStep={setCurrentStep}
-            increaseProgress={increaseProgress}
-            decreaseProgress={decreaseProgress}
-          />
-        );
-      case 7:
         return (
           <CheckFeilds
             resortData={resortData}
@@ -378,7 +381,7 @@ const AddResortForm = ({ increaseProgress, decreaseProgress }) => {
             decreaseProgress={decreaseProgress}
           />
         );
-      case 8:
+      case 7:
         return (
           <EnvQAndA
             resortData={resortData}
